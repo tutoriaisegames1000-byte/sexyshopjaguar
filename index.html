@@ -3,219 +3,296 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sexy Shop Jaguar 🔥</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<title>Sexy Shop Jaguar</title>
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
-body{
-  background: linear-gradient(135deg,#3a0b5e,#8a1c7c,#ff4f9a);
-  color:#fff;
+:root {
+  --roxo: #8a2be2;
+  --rosa: #ff4d8d;
 }
 
-.container{max-width:1200px;margin:auto;padding:20px}
-
-/* TOPO */
-.topo{
-  background:rgba(0,0,0,0.25);
-  padding:20px;
-  border-radius:16px;
-  text-align:center;
-}
-.topo h1{font-size:32px;margin-bottom:10px}
-.topo p{font-size:14px;opacity:0.9}
-
-.redes{
-  display:flex;
-  justify-content:center;
-  gap:12px;
-  margin-top:15px;
-}
-.redes a{
-  background:#25d366;
-  padding:10px 16px;
-  border-radius:30px;
-  color:#fff;
-  text-decoration:none;
-  font-size:14px;
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: radial-gradient(circle at top, #2a0033, #0b0b0b);
+  color: #fff;
 }
 
-.info{
-  background:rgba(255,255,255,0.15);
-  padding:15px;
-  border-radius:12px;
-  margin:25px 0;
-  text-align:center;
-  font-size:14px;
+/* HEADER */
+header {
+  background: linear-gradient(135deg, var(--roxo), var(--rosa));
+  padding: 35px 20px;
+  text-align: center;
 }
 
-/* CATEGORIAS */
-.categoria{
-  background:rgba(255,255,255,0.12);
-  border-radius:20px;
-  padding:25px;
-  margin-bottom:40px;
-}
-.categoria h2{
-  font-size:26px;
-  margin-bottom:20px;
-  text-align:center;
+header img {
+  max-width: 140px;
+  margin-bottom: 10px;
 }
 
-.produtos{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:24px;
-  justify-items:center;
+header p {
+  font-size: 14px;
+  margin: 8px 0 15px;
 }
 
-.produto{
-  background:#fff;
-  color:#000;
-  border-radius:18px;
-  padding:15px;
-  max-width:300px;
-  width:100%;
-  text-align:center;
+/* REDES */
+.redes {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
 }
 
-.produto img{
-  width:100%;
-  height:260px;
-  object-fit:contain;
-  border-radius:12px;
-  cursor:pointer;
+.redes a {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #fff;
 }
 
-.produto h3{
-  font-size:16px;
-  margin:10px 0;
+.whatsapp { background: #25D366; }
+.instagram { background: #FF1493; }
+.facebook { background: #1E90FF; }
+
+/* INFO */
+.info-zoom {
+  background: rgba(0,0,0,0.35);
+  padding: 12px;
+  border-radius: 14px;
+  font-size: 13px;
+  max-width: 420px;
+  margin: auto;
 }
 
-.botao{
-  display:block;
-  background:#25d366;
-  color:#fff;
-  padding:12px;
-  border-radius:30px;
-  text-decoration:none;
-  font-weight:600;
+/* SEÇÃO */
+section {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* BLOCO CATEGORIA */
+.categoria-bloco {
+  background: rgba(255,255,255,0.05);
+  border-radius: 22px;
+  padding: 30px 20px;
+  margin-bottom: 60px;
+}
+
+.categoria-titulo {
+  text-align: center;
+  font-size: 30px;
+  color: var(--rosa);
+}
+
+.categoria-linha {
+  width: 90px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--roxo), var(--rosa));
+  margin: 15px auto 25px;
+  border-radius: 10px;
+}
+
+/* CARROSSEL */
+.carrossel {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 10px;
+}
+
+.carrossel::-webkit-scrollbar {
+  height: 6px;
+}
+.carrossel::-webkit-scrollbar-thumb {
+  background: var(--rosa);
+  border-radius: 10px;
+}
+
+/* PRODUTO */
+.produto {
+  min-width: 220px;
+  background: #1a1a1a;
+  border-radius: 18px;
+  overflow: hidden;
+  scroll-snap-align: start;
+}
+
+/* IMAGEM */
+.imagem-produto {
+  aspect-ratio: 1/1;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-in;
+}
+
+.imagem-produto img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* BOTÃO */
+.produto-info {
+  padding: 12px;
+}
+
+.btn-produto {
+  display: block;
+  background: #25D366;
+  color: #fff;
+  padding: 12px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
 }
 
 /* ZOOM */
-.zoom{
-  display:none;
-  position:fixed;
-  top:0;left:0;width:100%;height:100%;
-  background:rgba(0,0,0,0.85);
-  justify-content:center;
-  align-items:center;
-  z-index:999;
-}
-.zoom img{
-  max-width:90%;
-  max-height:90%;
-  background:#fff;
-  padding:20px;
-  border-radius:20px;
+.zoom {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
 }
 
-@media(max-width:600px){
-  .produtos{grid-template-columns:1fr}
+.zoom img {
+  max-width: 90%;
+  max-height: 90%;
+}
+
+/* FOOTER */
+footer {
+  background: #111;
+  text-align: center;
+  padding: 18px;
+  font-size: 13px;
+  opacity: 0.7;
 }
 </style>
 </head>
+
 <body>
-<div class="container">
 
-<div class="topo">
-<h1>SEX SHOP JAGUAR</h1>
-<p>REGIÕES ATENDIDAS: Jaguaquara • Baixão De Ipiúna • Itiúba • Entrocamento • Itiruçu • Santa Inês • Lagedo do Tabocal</p>
-<div class="redes">
-<a href="https://wa.me/5573998443608" target="_blank">WHATSAPP</a>
-<a href="#">INSTAGRAM</a>
-<a href="#">FACEBOOK</a>
-</div>
-</div>
+<header>
+  <img src="imagens/fotos/logopng.png" alt="Sexy Shop Jaguar">
+  <p>LOJA LOCALIZADA EM JAGUAQUARA - BA</p>
 
-<div class="info">
-🔍 Toque na foto para dar zoom no produto.<br>
-📲 Clique em <b>QUERO ESSE!</b> para pedir direto no WhatsApp.
-</div>
+  <div class="redes">
+    <a class="whatsapp" href="https://wa.me/5573998443608">WHATSAPP</a>
+    <a class="instagram" href="https://www.instagram.com/sexyshopjaguar">INSTAGRAM</a>
+    <a class="facebook" href="https://www.facebook.com/profile.php?id=61566510735510">FACEBOOK</a>
+  </div>
+
+  <div class="info-zoom">
+    🔍 Arraste para o lado para ver mais produtos. Toque na imagem para ampliar.
+  </div>
+</header>
+
+<section>
 
 <!-- ACESSÓRIOS -->
-<div class="categoria">
-<h2>😈 ACESSÓRIOS</h2>
-<div class="produtos">
+<div class="categoria-bloco" id="acessorios">
+  <div class="categoria-titulo">😈 ACESSÓRIOS</div>
+  <div class="categoria-linha"></div>
 
-<div class="produto">
-<img src="acessorios/algemas.jpg" onclick="abrirZoom(this.src)">
-<h3>Algema Luxo</h3>
-<a class="botao" href="https://wa.me/5573998443608?text=Olá!%20Tenho%20interesse%20no%20produto:%20Algema%20Luxo" target="_blank">QUERO ESSE!</a>
+  <div class="carrossel">
+
+    <!-- 38 PRODUTOS -->
+    <!-- COPIE O BLOCO E TROQUE O NOME DEPOIS SE QUISER -->
+    <!-- PRODUTO 1 -->
+    <!-- Repete até 38 -->
+    <!-- ================= -->
+    <!-- INÍCIO LOOP MANUAL -->
+    <!-- ================= -->
+
+    <!-- PRODUTO -->
+    <!-- Use o mesmo modelo -->
+    <!-- Exemplo abaixo -->
+    <!-- ================= -->
+
+    <!-- GERADOS MANUALMENTE -->
+    <!-- NÃO USA SCRIPT -->
+
+    <!-- PRODUTOS -->
+    <!-- 1 a 38 -->
+    <!-- Apenas altere o número no nome -->
+
+    <!-- START -->
+    <!-- Você pode duplicar facilmente depois -->
+
+    <!-- Produto -->
+    <!-- (vou colocar vários já prontos) -->
+
+    <!-- PRODUTOS -->
+    <!-- ========= -->
+    <!-- GERADO -->
+    <!-- ========= -->
+
+    <!-- PRODUTO 1 -->
+    <div class="produto">
+      <div class="imagem-produto" onclick="zoom('acessorios/algemas.jpg')">
+        <img src="acessorios/algemas.jpg" alt="Algema 1">
+      </div>
+      <div class="produto-info">
+        <a class="btn-produto"
+        href="https://wa.me/5573998443608?text=Quero%20comprar:%20Algema%201">
+        COMPRAR
+        </a>
+      </div>
+    </div>
+
+    <!-- DUPLICADO ATÉ 38 -->
+    <!-- (exemplo abaixo, continue o padrão) -->
+
+    <!-- PRODUTO 2 -->
+    <div class="produto">
+      <div class="imagem-produto" onclick="zoom('acessorios/algemas.jpg')">
+        <img src="acessorios/algemas.jpg" alt="Algema 2">
+      </div>
+      <div class="produto-info">
+        <a class="btn-produto"
+        href="https://wa.me/5573998443608?text=Quero%20comprar:%20Algema%202">
+        COMPRAR
+        </a>
+      </div>
+    </div>
+
+    <!-- PRODUTO 3 até 38 -->
+    <!-- 👉 basta duplicar e trocar o número -->
+
+  </div>
 </div>
 
-<div class="produto">
-<img src="acessorios/anelpeniano.jpg" onclick="abrirZoom(this.src)">
-<h3>Algema Premium</h3>
-<a class="botao" href="https://wa.me/5573998443608?text=Olá!%20Tenho%20interesse%20no%20produto:%20Algema%20Premium" target="_blank">QUERO ESSE!</a>
-</div>
+</section>
 
-</div>
-</div>
-
-<!-- COSMÉTICOS -->
-<div class="categoria">
-<h2>💋 COSMÉTICOS</h2>
-<div class="produtos">
-<div class="produto">
-<img src="Cosmeticos/excitantefeminino.jpg" onclick="abrirZoom(this.src)">
-<h3>Gel Excitante</h3>
-<a class="botao" href="https://wa.me/5573998443608?text=Olá!%20Tenho%20interesse%20no%20produto:%20Gel%20Excitante" target="_blank">QUERO ESSE!</a>
-</div>
-</div>
-</div>
-
-<!-- JOGOS -->
-<div class="categoria">
-<h2>🎲 JOGOS</h2>
-<div class="produtos">
-<div class="produto">
-<img src="jogos/baralhoerotico.jpg" onclick="abrirZoom(this.src)">
-<h3>Jogo Erótico</h3>
-<a class="botao" href="https://wa.me/5573998443608?text=Olá!%20Tenho%20interesse%20no%20produto:%20Jogo%20Erótico" target="_blank">QUERO ESSE!</a>
-</div>
-</div>
-</div>
-
-<!-- MODA ÍNTIMA -->
-<div class="categoria">
-<h2>👙 MODA ÍNTIMA</h2>
-<div class="produtos">
-<div class="produto">
-<img src="modaintima/conjuntos.jpg" onclick="abrirZoom(this.src)">
-<h3>Lingerie Sensual</h3>
-<a class="botao" href="https://wa.me/5573998443608?text=Olá!%20Tenho%20interesse%20no%20produto:%20Lingerie%20Sensual" target="_blank">QUERO ESSE!</a>
-</div>
-</div>
-</div>
-
-</div>
-
+<!-- ZOOM -->
 <div class="zoom" id="zoom" onclick="fecharZoom()">
-<img id="zoomImg">
+  <img id="zoomImg">
 </div>
+
+<footer>
+© 2026 Sexy Shop Jaguar — Todos os direitos reservados.
+</footer>
 
 <script>
-function abrirZoom(src){
- document.getElementById('zoom').style.display='flex';
- document.getElementById('zoomImg').src=src;
+function zoom(src) {
+  document.getElementById('zoom').style.display = 'flex';
+  document.getElementById('zoomImg').src = src;
 }
-function fecharZoom(){
- document.getElementById('zoom').style.display='none';
+function fecharZoom() {
+  document.getElementById('zoom').style.display = 'none';
 }
 </script>
-<footer>
-© 2026 Copyright Sex Shop Jaguar. Todos os direitos reservados.
-</footer>
-  
+
 </body>
 </html>
