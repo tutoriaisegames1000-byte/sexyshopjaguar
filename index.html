@@ -10,19 +10,24 @@
   --roxo:#8a2be2;
   --rosa:#ff4d8d;
 }
+
 body{
   margin:0;
   font-family:Arial, Helvetica, sans-serif;
   background:radial-gradient(circle at top,#2a0033,#0b0b0b);
   color:#fff;
 }
+
+/* HEADER */
 header{
   background:linear-gradient(135deg,var(--roxo),var(--rosa));
   padding:35px 20px;
   text-align:center;
 }
+
 header img{max-width:140px;}
 header p{font-size:14px;margin:10px 0;}
+
 .redes{
   display:flex;
   justify-content:center;
@@ -40,6 +45,7 @@ header p{font-size:14px;margin:10px 0;}
 .whatsapp{background:#25D366;}
 .instagram{background:#FF1493;}
 .facebook{background:#1E90FF;}
+
 .info{
   margin-top:15px;
   background:rgba(0,0,0,.35);
@@ -47,24 +53,30 @@ header p{font-size:14px;margin:10px 0;}
   border-radius:14px;
   font-size:13px;
   max-width:420px;
-  margin:auto;
+  margin-left:auto;
+  margin-right:auto;
 }
+
+/* SECTION */
 section{
   max-width:1200px;
   margin:auto;
   padding:40px 20px;
 }
+
 .categoria{
   background:rgba(255,255,255,.05);
   border-radius:22px;
   padding:30px 20px;
   margin-bottom:60px;
 }
+
 .categoria h2{
   text-align:center;
   color:var(--rosa);
   font-size:30px;
 }
+
 .linha{
   width:90px;
   height:4px;
@@ -72,6 +84,8 @@ section{
   margin:15px auto 25px;
   border-radius:10px;
 }
+
+/* CARROSSEL */
 .carrossel{
   display:flex;
   gap:16px;
@@ -83,6 +97,8 @@ section{
   background:var(--rosa);
   border-radius:10px;
 }
+
+/* PRODUTO */
 .produto{
   min-width:220px;
   background:#1a1a1a;
@@ -90,6 +106,7 @@ section{
   overflow:hidden;
   scroll-snap-align:start;
 }
+
 .imagem-produto{
   aspect-ratio:1/1;
   background:#fff;
@@ -98,11 +115,13 @@ section{
   justify-content:center;
   cursor:zoom-in;
 }
+
 .imagem-produto img{
   max-width:100%;
   max-height:100%;
   object-fit:contain;
 }
+
 .produto-info{padding:12px;}
 .btn-produto{
   display:block;
@@ -114,6 +133,8 @@ section{
   font-weight:bold;
   text-decoration:none;
 }
+
+/* ZOOM */
 .zoom{
   position:fixed;
   inset:0;
@@ -127,6 +148,8 @@ section{
   max-width:90%;
   max-height:90%;
 }
+
+/* BOTÃO FLUTUANTE */
 .whats-fixo{
   position:fixed;
   bottom:20px;
@@ -137,8 +160,11 @@ section{
   border-radius:50px;
   font-weight:bold;
   text-decoration:none;
+  box-shadow:0 0 15px rgba(0,0,0,.4);
   z-index:999;
 }
+
+/* FOOTER */
 footer{
   background:#111;
   text-align:center;
@@ -169,12 +195,77 @@ footer{
 
 <section>
 
-<!-- COSMÉTICOS -->
+<!-- ================= COSMÉTICOS ================= -->
 <div class="categoria">
 <h2>💄 COSMÉTICOS</h2>
 <div class="linha"></div>
 
-<div class="carrossel" id="carrosselCosmeticos"></div>
+<div class="carrossel">
+<script>
+const cosmeticos = [
+"apertadinha","batom-penis","bolinhasexplosivas","cremejapones",
+"dessensibilizante","enegertico","excitantemasculino","gargantaprofunda",
+"gelanestesico","gelcorporal","geleletrizante","gelretardante",
+"geltermico","geltremetreme","gelvolumao","gotasdapaixao",
+"hidratanteblow","japoneisinha","lambelambe","laminas",
+"lubrificantecomestivel","lubrificantelovelub","lubrificanterilex",
+"melzinho","oleodemassagem","oleodemassagemperfume","perfumeafrodisiaco",
+"perfumedecalcinha","perfumedecueca","piruladiaseguinte","podabruxa",
+"preservativoespeciais","preservativorilex","sabonetefeminino",
+"sabonetemasculino","tadalafila","velaaromatizada","velademasagem","viagra"
+];
+
+cosmeticos.forEach(nome=>{
+document.write(`
+<div class="produto">
+  <div class="imagem-produto" onclick="zoom('Cosmeticos/${nome}.jpg')">
+    <img src="Cosmeticos/${nome}.jpg">
+  </div>
+  <div class="produto-info">
+    <a class="btn-produto" href="https://wa.me/5573998443608?text=Quero%20comprar:%20${nome}">
+      COMPRAR
+    </a>
+  </div>
+</div>
+`);
+});
+</script>
+</div>
+</div>
+
+<!-- ================= ACESSÓRIOS ================= -->
+<div class="categoria">
+<h2>😈 ACESSÓRIOS</h2>
+<div class="linha"></div>
+
+<div class="carrossel">
+<script>
+const acessorios = [
+"algemas","anelpeniano","bolinhadepompoar","bolinhatailandesa","bombapeniana",
+"capapeniana","cassetete","chibatacommascara","chicote","cintapeniana","coleira",
+"corda","duchaintima","fantasias","gramposdemamilos","massageador","massageadordepes",
+"mastubadoranus","mastubadoregg","mastubadormasculino","mordaça","penisduplo",
+"penisgrande","penismedio","penisvibrador","pilhas","pluganal","plugescalonado",
+"sugador","testedegravidez","varinhamagica","venda","vibrador","vibradorbullet",
+"vibradorgolfinho","vibradormultivelocidade","vibradorrosa","vibradorrotativo"
+];
+
+acessorios.forEach(nome=>{
+document.write(`
+<div class="produto">
+  <div class="imagem-produto" onclick="zoom('acessorios/${nome}.jpg')">
+    <img src="acessorios/${nome}.jpg">
+  </div>
+  <div class="produto-info">
+    <a class="btn-produto" href="https://wa.me/5573998443608?text=Quero%20comprar:%20${nome}">
+      COMPRAR
+    </a>
+  </div>
+</div>
+`);
+});
+</script>
+</div>
 </div>
 
 </section>
@@ -197,44 +288,6 @@ function zoom(src){
 function fecharZoom(){
   document.getElementById('zoom').style.display='none';
 }
-
-const cosmeticos = [
-"apertadinha","batompenis","bolinhasexplosivas","cremejapones",
-"dessensibilizante","energetico","excitantemasculino","gargantaprofunda",
-"gelanestesico","gelcorporal","geletrizante","gelretardante","geltermico",
-"geltremetreme","gelvolumao","gotasdapaixao","hidratanteblow","japoneisinha",
-"lambelambe","laminas","lubrificantecomestivel","lubrificantelovelub",
-"lubrificanterilex","melzinho","oleodemassagem","oleodemassagemperfume",
-"perfumeafrodisiaco","perfumedecalcinha","perfumedecueca",
-"piruladiaseguinte","podabruxa","preservativoespeciais","preservativorilex",
-"sabonetefeminino","sabonetemasculino","tadalafila",
-"velaaromatizada","velademasagem","viagra"
-];
-
-const carrossel = document.getElementById("carrosselCosmeticos");
-
-cosmeticos.forEach(nome=>{
-  carrossel.innerHTML += `
-  <div class="produto">
-    <div class="imagem-produto" onclick="zoom('Cosmeticos/${nome}.jpg')">
-      <img src="Cosmeticos/${nome}.jpg">
-    </div>
-    <div class="produto-info">
-      <a class="btn-produto"
-      href="https://wa.me/5573998443608?text=Quero%20comprar:%20${nome}">
-      COMPRAR
-      </a>
-    </div>
-  </div>`;
-});
-
-/* AUTO SCROLL */
-let scroll=0;
-setInterval(()=>{
-  scroll+=240;
-  if(scroll>=carrossel.scrollWidth) scroll=0;
-  carrossel.scrollTo({left:scroll,behavior:'smooth'});
-},3000);
 </script>
 
 </body>
