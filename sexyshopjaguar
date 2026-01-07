@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sexy Shop Jaguar</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0b0b0b;
+    color: #fff;
+}
+header {
+    background: linear-gradient(135deg, #b8002e, #ff0055);
+    padding: 35px 20px;
+    text-align: center;
+}
+header img {
+    max-width: 140px;
+    margin-bottom: 15px;
+}
+header h1 {
+    margin: 0;
+    font-size: 30px;
+    letter-spacing: 2px;
+}
+header p {
+    margin-top: 10px;
+    font-size: 15px;
+}
+.btn-whatsapp {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 14px 30px;
+    background: #25D366;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+}
+.categorias-menu {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+.categorias-menu a {
+    background: rgba(0,0,0,0.35);
+    padding: 12px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.25);
+}
+section {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+.categoria-bloco {
+    margin-bottom: 70px;
+}
+.categoria-titulo {
+    text-align: center;
+    font-size: 34px;
+    color: #ff4d79;
+}
+.categoria-linha {
+    width: 90px;
+    height: 4px;
+    background: linear-gradient(90deg, #ff0055, #ff7aa2);
+    margin: 15px auto 40px;
+    border-radius: 10px;
+}
+.produtos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+@media (max-width: 900px) {
+    .produtos { grid-template-columns: repeat(2, 1fr); }
+}
+.produto {
+    background: #1a1a1a;
+    border-radius: 16px;
+    overflow: hidden;
+}
+.produto img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+}
+.produto-info {
+    padding: 12px;
+    text-align: center;
+}
+.produto-info h3 {
+    font-size: 15px;
+    margin: 6px 0;
+}
+footer {
+    background: #111;
+    text-align: center;
+    padding: 20px;
+    font-size: 13px;
+    opacity: 0.7;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <img src="logo-sexy-shop-jaguar.png">
+    <h1>SEXY SHOP JAGUAR</h1>
+    <p>Catálogo sensual • Discrição total • WhatsApp</p>
+    <a class="btn-whatsapp" href="https://wa.me/55SEUNUMERO">Falar no WhatsApp</a>
+
+    <div class="categorias-menu">
+        <a href="#acessorios">Acessórios</a>
+        <a href="#cosmeticos">Cosméticos</a>
+        <a href="#jogos">Jogos</a>
+        <a href="#modaintima">Moda Íntima</a>
+    </div>
+</header>
+
+<section>
+
+<!-- ACESSÓRIOS (40) -->
+<div class="categoria-bloco" id="acessorios">
+<div class="categoria-titulo">😈 Acessórios</div>
+<div class="categoria-linha"></div>
+<div class="produtos">
+<!-- 40 produtos -->
+<script>
+for(let i=1;i<=40;i++){
+document.write(`
+<div class="produto">
+<img src="https://picsum.photos/400/400?ac${i}">
+<div class="produto-info"><h3>Acessório ${i}</h3></div>
+</div>`);
+}
+</script>
+</div>
+</div>
+
+<!-- COSMÉTICOS (35) -->
+<div class="categoria-bloco" id="cosmeticos">
+<div class="categoria-titulo">💄 Cosméticos Sensuais</div>
+<div class="categoria-linha"></div>
+<div class="produtos">
+<script>
+for(let i=1;i<=35;i++){
+document.write(`
+<div class="produto">
+<img src="https://picsum.photos/400/400?co${i}">
+<div class="produto-info"><h3>Cosmético ${i}</h3></div>
+</div>`);
+}
+</script>
+</div>
+</div>
+
+<!-- JOGOS (4) -->
+<div class="categoria-bloco" id="jogos">
+<div class="categoria-titulo">🎲 Jogos Sensuais</div>
+<div class="categoria-linha"></div>
+<div class="produtos">
+<script>
+for(let i=1;i<=4;i++){
+document.write(`
+<div class="produto">
+<img src="https://picsum.photos/400/400?jo${i}">
+<div class="produto-info"><h3>Jogo ${i}</h3></div>
+</div>`);
+}
+</script>
+</div>
+</div>
+
+<!-- MODA ÍNTIMA (4) -->
+<div class="categoria-bloco" id="modaintima">
+<div class="categoria-titulo">👙 Moda Íntima</div>
+<div class="categoria-linha"></div>
+<div class="produtos">
+<script>
+for(let i=1;i<=4;i++){
+document.write(`
+<div class="produto">
+<img src="https://picsum.photos/400/400?mi${i}">
+<div class="produto-info"><h3>Lingerie ${i}</h3></div>
+</div>`);
+}
+</script>
+</div>
+</div>
+
+</section>
+
+<footer>
+© Sexy Shop Jaguar • Atendimento discreto
+</footer>
+
+</body>
+</html>
