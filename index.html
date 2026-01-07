@@ -3,289 +3,92 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sexy Shop Jaguar</title>
-
+<title>Sexy Shop Jaguar 🔥</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-body {
-    margin: 0;
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: linear-gradient(180deg, #12001a, #2a0036, #12001a);
-    color: #fff;
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{
+background: linear-gradient(135deg,#3a0b5e,#8a1c7c,#ff4f9a);
+color:#fff;
 }
 
-/* HEADER */
-header {
-    background: linear-gradient(135deg, #7b1fa2, #e91e63);
-    padding: 35px 20px 30px;
-    text-align: center;
+
+.container{max-width:1200px;margin:auto;padding:20px}
+
+
+/* TOPO */
+.topo{
+background:rgba(0,0,0,0.25);
+padding:20px;
+border-radius:16px;
+text-align:center;
+}
+.topo h1{font-size:32px;margin-bottom:10px}
+.topo p{font-size:14px;opacity:0.9}
+
+
+.redes{
+display:flex;
+justify-content:center;
+gap:12px;
+margin-top:15px;
+}
+.redes a{
+background:#25d366;
+padding:10px 16px;
+border-radius:30px;
+color:#fff;
+text-decoration:none;
+font-size:14px;
 }
 
-header img {
-    max-width: 160px;
-    margin-bottom: 12px;
+
+.info{
+background:rgba(255,255,255,0.15);
+padding:15px;
+border-radius:12px;
+margin:25px 0;
+text-align:center;
+font-size:14px;
 }
 
-header p {
-    font-size: 14px;
-    margin: 8px 0 18px;
-    opacity: 0.95;
+
+/* CATEGORIAS */
+.categoria{
+background:rgba(255,255,255,0.12);
+border-radius:20px;
+padding:25px;
+margin-bottom:40px;
+}
+.categoria h2{
+font-size:26px;
+margin-bottom:20px;
+text-align:center;
 }
 
-/* REDES */
-.redes {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 22px;
+
+.produtos{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:24px;
+justify-items:center;
 }
 
-.redes a {
-    padding: 8px 18px;
-    border-radius: 30px;
-    font-size: 13px;
-    font-weight: 600;
-    text-decoration: none;
-    color: #fff;
+
+.produto{
+background:#fff;
+color:#000;
+border-radius:18px;
+padding:15px;
+max-width:300px;
+width:100%;
+text-align:center;
 }
 
-.whatsapp { background: #25D366; }
-.instagram { background: #d6249f; }
-.facebook { background: #1877f2; }
 
-/* MENU */
-.categorias-menu {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
-}
-
-.categorias-menu a {
-    background: rgba(255,255,255,0.15);
-    padding: 10px 22px;
-    border-radius: 30px;
-    color: #fff;
-    text-decoration: none;
-    font-size: 13px;
-    border: 1px solid rgba(255,255,255,0.3);
-    backdrop-filter: blur(4px);
-}
-
-/* SEÇÃO */
-section {
-    padding: 50px 16px;
-    max-width: 1200px;
-    margin: auto;
-}
-
-/* TÍTULOS */
-.categoria-titulo {
-    text-align: center;
-    font-size: 32px;
-    color: #ff80ab;
-    margin-bottom: 10px;
-}
-
-.categoria-linha {
-    width: 100px;
-    height: 4px;
-    background: linear-gradient(90deg, #ff4081, #ce93d8);
-    margin: 0 auto 40px;
-    border-radius: 10px;
-}
-
-/* PRODUTOS */
-.produtos {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 22px;
-}
-
-@media (max-width: 900px) {
-    .produtos {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-.produto {
-    background: rgba(255,255,255,0.08);
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-}
-
-/* IMAGEM */
-.imagem-produto {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    background: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: zoom-in;
-}
-
-.imagem-produto img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-}
-
-/* BOTÃO */
-.produto-info {
-    padding: 14px;
-    text-align: center;
-}
-
-.btn-produto {
-    display: block;
-    background: linear-gradient(135deg, #25D366, #1ebe5d);
-    color: #fff;
-    padding: 12px;
-    border-radius: 14px;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 14px;
-}
-
-/* ZOOM */
-.zoom-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.92);
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
-
-.zoom-overlay img {
-    max-width: 92%;
-    max-height: 92%;
-}
-
-.zoom-overlay span {
-    position: absolute;
-    top: 20px;
-    right: 25px;
-    font-size: 34px;
-    cursor: pointer;
-}
-
-/* FOOTER */
-footer {
-    background: #0d0014;
-    text-align: center;
-    padding: 18px;
-    font-size: 13px;
-    opacity: 0.75;
-}
-</style>
-</head>
-
-<body>
-
-<header>
-    <img src="imagens/fotos/logopng.png" alt="Sexy Shop Jaguar">
-    <p>LOJA LOCALIZADA EM JAGUAQUARA - BA</p>
-
-    <div class="redes">
-        <a class="whatsapp" href="https://wa.me/5573998443608">WHATSAPP</a>
-        <a class="instagram" href="https://www.instagram.com/sexyshopjaguar">INSTAGRAM</a>
-        <a class="facebook" href="https://www.facebook.com/profile.php?id=61566510735510">FACEBOOK</a>
-    </div>
-
-    <div class="categorias-menu">
-        <a href="#acessorios">ACESSÓRIOS</a>
-        <a href="#cosmeticos">COSMÉTICOS</a>
-        <a href="#jogos">JOGOS</a>
-        <a href="#modaintima">MODA ÍNTIMA</a>
-    </div>
-</header>
-
-<section>
-
-<!-- FUNÇÃO PARA CATEGORIA -->
-<script>
-function produtoPadrao(categoria) {
-document.write(`
-<div class="produto">
-  <div class="imagem-produto" onclick="zoomImagem(this)">
-    <img src="acessorios/algemas.jpg" alt="Produto exemplo">
-  </div>
-  <div class="produto-info">
-    <a class="btn-produto" href="https://wa.me/5573998443608?text=Olá!%20Quero%20esse%20produto">
-      QUERO ESSE!
-    </a>
-  </div>
-</div>
-`);
-}
-</script>
-
-<!-- ACESSÓRIOS -->
-<div id="acessorios">
-  <div class="categoria-titulo">😈 ACESSÓRIOS</div>
-  <div class="categoria-linha"></div>
-  <div class="produtos">
-    <script>produtoPadrao()</script>
-    <script>produtoPadrao()</script>
-  </div>
-</div>
-
-<!-- COSMÉTICOS -->
-<div id="cosmeticos">
-  <div class="categoria-titulo">💄 COSMÉTICOS</div>
-  <div class="categoria-linha"></div>
-  <div class="produtos">
-    <script>produtoPadrao()</script>
-    <script>produtoPadrao()</script>
-  </div>
-</div>
-
-<!-- JOGOS -->
-<div id="jogos">
-  <div class="categoria-titulo">🎲 JOGOS</div>
-  <div class="categoria-linha"></div>
-  <div class="produtos">
-    <script>produtoPadrao()</script>
-    <script>produtoPadrao()</script>
-  </div>
-</div>
-
-<!-- MODA ÍNTIMA -->
-<div id="modaintima">
-  <div class="categoria-titulo">👙 MODA ÍNTIMA</div>
-  <div class="categoria-linha"></div>
-  <div class="produtos">
-    <script>produtoPadrao()</script>
-    <script>produtoPadrao()</script>
-  </div>
-</div>
-
-</section>
-
-<footer>
-© 2026 Sexy Shop Jaguar — Todos os direitos reservados.
-</footer>
-
-<!-- ZOOM -->
-<div class="zoom-overlay" id="zoom" onclick="fecharZoom()">
-    <span onclick="fecharZoom()">✕</span>
-    <img id="zoom-img">
-</div>
-
-<script>
-function zoomImagem(el) {
-    document.getElementById("zoom").style.display = "flex";
-    document.getElementById("zoom-img").src = el.querySelector("img").src;
-}
-
-function fecharZoom() {
-    document.getElementById("zoom").style.display = "none";
-}
-</script>
-
-</body>
+.produto img{
+width:100%;
+height:260px;
+object-fit:contain;
+border-radius:12px;
 </html>
