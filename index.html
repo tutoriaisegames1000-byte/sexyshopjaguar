@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sexy Shop Jaguar</title>
-    
+
 <style>
 body {
     margin: 0;
@@ -12,82 +12,77 @@ body {
     background: #0b0b0b;
     color: #fff;
 }
+
+/* HEADER */
 header {
     background: linear-gradient(135deg, #A020F0, #ff0055);
     padding: 35px 20px;
     text-align: center;
 }
+
 header img {
     max-width: 140px;
     margin-bottom: 15px;
 }
-header h1 {
-    margin: 0;
-    font-size: 30px;
-    letter-spacing: 2px;
-}
+
 header p {
-    margin-top: 10px;
-    font-size: 15px;
+    font-size: 14px;
+    margin: 8px 0 15px;
 }
-.btn-whatsapp {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 4px 10px;
-    background: #25D366;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 30px;
-    font-weight: bold;
-}
- .btn-instagram {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 4px 10px;
-    background: #FF1493;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 30px;
-    font-weight: bold;
-}
- .btn-facebook {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 4px 10px;
-    background: #1E90FF;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 30px;
-    font-weight: bold;
-}
-.categorias-menu {
-    margin-top: 30px;
+
+/* BOTÕES REDES SOCIAIS */
+.redes {
     display: flex;
     justify-content: center;
+    gap: 10px;
     flex-wrap: wrap;
-    gap: 14px;
 }
-.categorias-menu a {
-    background: rgba(0,0,0,0.35);
-    padding: 12px 20px;
-    border-radius: 25px;
+
+.redes a {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
     text-decoration: none;
     color: #fff;
+}
+
+.whatsapp { background: #25D366; }
+.instagram { background: #FF1493; }
+.facebook { background: #1E90FF; }
+
+/* MENU CATEGORIAS */
+.categorias-menu {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.categorias-menu a {
+    background: rgba(0,0,0,0.35);
+    padding: 10px 18px;
+    border-radius: 20px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
     border: 1px solid rgba(255,255,255,0.25);
 }
+
+/* SEÇÕES */
 section {
-    padding: 60px 20px;
+    padding: 50px 20px;
     max-width: 1200px;
     margin: auto;
 }
-.categoria-bloco {
-    margin-bottom: 70px;
-}
+
 .categoria-titulo {
     text-align: center;
-    font-size: 34px;
+    font-size: 32px;
     color: #ff4d79;
 }
+
 .categoria-linha {
     width: 90px;
     height: 4px;
@@ -95,37 +90,56 @@ section {
     margin: 15px auto 40px;
     border-radius: 10px;
 }
+
+/* PRODUTOS */
 .produtos {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 22px;
 }
+
 @media (max-width: 900px) {
-    .produtos { grid-template-columns: repeat(2, 1fr); }
+    .produtos {
+        grid-template-columns: 1fr;
+    }
 }
+
 .produto {
     background: #1a1a1a;
-    border-radius: 16px;
+    border-radius: 18px;
     overflow: hidden;
 }
+
+/* IMAGEM COMPLETA */
 .produto img {
-  width: 100%;
-  height: 250px;
-  object-fit: contain;
-  background: #fff;
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    background: #fff;
 }
+
+/* BOTÃO PRODUTO */
 .produto-info {
-    padding: 12px;
+    padding: 14px;
     text-align: center;
 }
-.produto-info h3 {
+
+.btn-produto {
+    display: block;
+    background: #25D366;
+    color: #fff;
+    padding: 12px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: bold;
     font-size: 15px;
-    margin: 6px 0;
 }
+
+/* FOOTER */
 footer {
     background: #111;
     text-align: center;
-    padding: 20px;
+    padding: 18px;
     font-size: 13px;
     opacity: 0.7;
 }
@@ -135,11 +149,14 @@ footer {
 <body>
 
 <header>
-    <img src="imagens/fotos/logopng.png">
+    <img src="imagens/fotos/logopng.png" alt="Sexy Shop Jaguar">
     <p>LOJA LOCALIZADA EM JAGUAQUARA - BA</p>
-    <a class="btn-whatsapp" href="https://wa.me/5573998443608">WHATSAPP</a>
-    <a class="btn-instagram" href="https://www.instagram.com/sexyshopjaguar">INSTAGRAM</a>
-    <a class="btn-facebook" href="https://www.facebook.com/profile.php?id=61566510735510">FACEBOOK</a>
+
+    <div class="redes">
+        <a class="whatsapp" href="https://wa.me/5573998443608">WHATSAPP</a>
+        <a class="instagram" href="https://www.instagram.com/sexyshopjaguar">INSTAGRAM</a>
+        <a class="facebook" href="https://www.facebook.com/profile.php?id=61566510735510">FACEBOOK</a>
+    </div>
 
     <div class="categorias-menu">
         <a href="#acessorios">ACESSÓRIOS</a>
@@ -152,164 +169,47 @@ footer {
 <section>
 
 <!-- ACESSÓRIOS -->
-<div class="categoria-bloco" id="acessorios">
+<div id="acessorios">
+    <div class="categoria-titulo">😈 ACESSÓRIOS</div>
+    <div class="categoria-linha"></div>
 
-  <div class="categoria-titulo">😈 ACESSÓRIOS</div>
-  <div class="categoria-linha"></div>
+    <div class="produtos">
 
-  <div class="produtos">
+        <div class="produto">
+            <img src="acessorios/algemas.jpg" alt="Algemas">
+            <div class="produto-info">
+                <a class="btn-produto" href="https://wa.me/5573998443608?text=Quero%20esse%20produto:%20Algemas">
+                    QUERO ESSE!
+                </a>
+            </div>
+        </div>
 
-    <div class="produto">
-      <img src="acessorios/algemas.jpg" alt="Acessório 1">
-      <div class="produto-info">
-        <h3>QUERO ESSE!</h3>
-      </div>
+        <div class="produto">
+            <img src="acessorios/acessorio2.jpg" alt="Acessório 2">
+            <div class="produto-info">
+                <a class="btn-produto" href="https://wa.me/5573998443608?text=Quero%20esse%20produto:%20Acessório%202">
+                    QUERO ESSE!
+                </a>
+            </div>
+        </div>
+
+        <div class="produto">
+            <img src="acessorios/acessorio3.jpg" alt="Acessório 3">
+            <div class="produto-info">
+                <a class="btn-produto" href="https://wa.me/5573998443608?text=Quero%20esse%20produto:%20Acessório%203">
+                    QUERO ESSE!
+                </a>
+            </div>
+        </div>
+
     </div>
-
-    <div class="produto">
-      <img src="images/acessorios/acessorio2.jpg" alt="Acessório 2">
-      <div class="produto-info">
-        <h3>Acessório 2</h3>
-      </div>
-    </div>
-
-    <div class="produto">
-      <img src="images/acessorios/acessorio3.jpg" alt="Acessório 3">
-      <div class="produto-info">
-        <h3>Acessório 3</h3>
-      </div>
-    </div>
-
-    <div class="produto">
-      <img src="images/acessorios/acessorio4.jpg" alt="Acessório 4">
-      <div class="produto-info">
-        <h3>Acessório 4</h3>
-      </div>
-    </div>
-
-    <div class="produto">
-      <img src="images/acessorios/acessorio5.jpg" alt="Acessório 5">
-      <div class="produto-info">
-        <h3>Acessório 5</h3>
-      </div>
-    </div>
-
-    <div class="produto">
-      <img src="images/acessorios/acessorio6.jpg" alt="Acessório 6">
-      <div class="produto-info">
-        <h3>Acessório 6</h3>
-      </div>
-    </div>
-
-    <div class="produto">
-      <img src="images/acessorios/acessorio7.jpg" alt="Acessório 7">
-      <div class="produto-info">
-        <h3>Acessório 7</h3>
-      </div>
-    </div>
-
-    <div class="produto">
-      <img src="images/acessorios/acessorio8.jpg" alt="Acessório 8">
-      <div class="produto-info">
-        <h3>Acessório 8</h3>
-      </div>
-    </div>
-
-    <div class="produto">
-      <img src="images/acessorios/acessorio9.jpg" alt="Acessório 9">
-      <div class="produto-info">
-        <h3>Acessório 9</h3>
-      </div>
-    </div>
-
-    <div class="produto">
-      <img src="images/acessorios/acessorio10.jpg" alt="Acessório 10">
-      <div class="produto-info">
-        <h3>Acessório 10</h3>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-
-<!-- COSMÉTICOS (35) -->
-<div class="categoria-bloco" id="cosmeticos">
-<div class="categoria-titulo">💄 COSMÉTICOS</div>
-<div class="categoria-linha"></div>
-<div class="produtos">
-<script>
-for(let i=1;i<=40;i++){
-document.write(`
-<div class="produto">
-<img src="https://picsum.photos/400/400?co${i}">
-<div class="produto-info"><h3>Cosmético ${i}</h3></div>
-</div>`);
-}
-</script>
-</div>
-</div>
-
-<!-- JOGOS (4) -->
-<div class="categoria-bloco" id="jogos">
-<div class="categoria-titulo">🎲 JOGOS</div>
-<div class="categoria-linha"></div>
-<div class="produtos">
-<script>
-for(let i=1;i<=4;i++){
-document.write(`
-<div class="produto">
-<img src="https://picsum.photos/400/400?jo${i}">
-<div class="produto-info"><h3>Jogo ${i}</h3></div>
-</div>`);
-}
-</script>
-</div>
-</div>
-
-<!-- MODA ÍNTIMA (4) -->
-<div class="categoria-bloco" id="modaintima">
-<div class="categoria-titulo">👙 MODA ÍNTIMA</div>
-<div class="categoria-linha"></div>
-<div class="produtos">
-<script>
-for(let i=1;i<=4;i++){
-document.write(`
-<div class="produto">
-<img src="https://picsum.photos/400/400?mi${i}">
-<div class="produto-info"><h3>Lingerie ${i}</h3></div>
-</div>`);
-}
-</script>
-</div>
 </div>
 
 </section>
 
 <footer>
-© 2026 Copyright Sex Shop Jaguar. Todos os direitos reservados.
+© 2026 Sexy Shop Jaguar — Todos os direitos reservados.
 </footer>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
