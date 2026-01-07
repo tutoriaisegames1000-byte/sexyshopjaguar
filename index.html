@@ -195,15 +195,15 @@ footer{
 
 <section>
 
-<!-- ================= COSMÉTICOS ================= -->
+<!-- COSMÉTICOS -->
 <div class="categoria">
 <h2>💄 COSMÉTICOS</h2>
 <div class="linha"></div>
-
 <div class="carrossel">
+
 <script>
 const cosmeticos = [
-"apertadinha","batom-penis","bolinhasexplosivas","cremejapones",
+"apertadinha","batom penis","bolinhasexplosivas","cremejapones",
 "dessensibilizante","enegertico","excitantemasculino","gargantaprofunda",
 "gelanestesico","gelcorporal","geleletrizante","gelretardante",
 "geltermico","geltremetreme","gelvolumao","gotasdapaixao",
@@ -230,15 +230,16 @@ document.write(`
 `);
 });
 </script>
+
 </div>
 </div>
 
-<!-- ================= ACESSÓRIOS ================= -->
+<!-- ACESSÓRIOS -->
 <div class="categoria">
 <h2>😈 ACESSÓRIOS</h2>
 <div class="linha"></div>
-
 <div class="carrossel">
+
 <script>
 const acessorios = [
 "algemas","anelpeniano","bolinhadepompoar","bolinhatailandesa","bombapeniana",
@@ -265,6 +266,65 @@ document.write(`
 `);
 });
 </script>
+
+</div>
+</div>
+
+<!-- JOGOS -->
+<div class="categoria">
+<h2>🃏 JOGOS</h2>
+<div class="linha"></div>
+<div class="carrossel">
+
+<script>
+const jogos = ["baralhoerotico","dadoerotico","raspadinhas","roletas"];
+
+jogos.forEach(nome=>{
+document.write(`
+<div class="produto">
+  <div class="imagem-produto" onclick="zoom('jogos/${nome}.jpg')">
+    <img src="jogos/${nome}.jpg">
+  </div>
+  <div class="produto-info">
+    <a class="btn-produto" href="https://wa.me/5573998443608?text=Quero%20comprar:%20${nome}">
+      COMPRAR
+    </a>
+  </div>
+</div>
+`);
+});
+</script>
+
+</div>
+</div>
+
+<!-- MODA ÍNTIMA -->
+<div class="categoria">
+<h2>👙 MODA ÍNTIMA</h2>
+<div class="linha"></div>
+<div class="carrossel">
+
+<script>
+const modaintima = [
+"calcinhasousadascosta","calcinhasousadasfrente","conjuntos","lingerie","perneira"
+];
+
+modaintima.forEach(nome=>{
+document.write(`
+<div class="produto">
+  <div class="imagem-produto" onclick="zoom('modaintima/${nome}.jpg')">
+    <img src="modaintima/${nome}.jpg">
+  </div>
+  <div class="produto-info">
+    <a class="btn-produto" href="https://wa.me/5573998443608?text=Quero%20comprar:%20${nome}">
+      COMPRAR
+    </a>
+  </div>
+</div>
+`);
+});
+</script>
+
 </div>
 </div>
 
