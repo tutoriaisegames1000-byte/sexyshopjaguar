@@ -6,12 +6,12 @@
 <title>Sexy Shop Jaguar</title>
 
 <style>
-:root {
+:root{
   --roxo:#8a2be2;
   --rosa:#ff4d8d;
 }
 
-body {
+body{
   margin:0;
   font-family:Arial, Helvetica, sans-serif;
   background:radial-gradient(circle at top,#2a0033,#0b0b0b);
@@ -19,31 +19,22 @@ body {
 }
 
 /* HEADER */
-header {
+header{
   background:linear-gradient(135deg,var(--roxo),var(--rosa));
   padding:35px 20px;
   text-align:center;
 }
 
-header img {
-  max-width:140px;
-  margin-bottom:10px;
-}
+header img{max-width:140px;}
+header p{font-size:14px;margin:10px 0;}
 
-header p {
-  font-size:14px;
-  margin:8px 0 15px;
-}
-
-/* REDES */
-.redes {
+.redes{
   display:flex;
   justify-content:center;
   gap:10px;
   flex-wrap:wrap;
 }
-
-.redes a {
+.redes a{
   padding:6px 14px;
   border-radius:20px;
   font-size:13px;
@@ -51,43 +42,42 @@ header p {
   color:#fff;
   text-decoration:none;
 }
+.whatsapp{background:#25D366;}
+.instagram{background:#FF1493;}
+.facebook{background:#1E90FF;}
 
-.whatsapp {background:#25D366;}
-.instagram {background:#FF1493;}
-.facebook {background:#1E90FF;}
-
-/* INFO */
-.info {
-  background:rgba(0,0,0,0.35);
+.info{
+  margin-top:15px;
+  background:rgba(0,0,0,.35);
   padding:12px;
   border-radius:14px;
   font-size:13px;
   max-width:420px;
-  margin:18px auto 0;
+  margin-left:auto;
+  margin-right:auto;
 }
 
-/* SEÇÃO */
-section {
-  padding:40px 20px;
+/* SECTION */
+section{
   max-width:1200px;
   margin:auto;
+  padding:40px 20px;
 }
 
-/* CATEGORIA */
-.categoria {
-  background:rgba(255,255,255,0.05);
+.categoria{
+  background:rgba(255,255,255,.05);
   border-radius:22px;
   padding:30px 20px;
   margin-bottom:60px;
 }
 
-.categoria h2 {
+.categoria h2{
   text-align:center;
-  font-size:30px;
   color:var(--rosa);
+  font-size:30px;
 }
 
-.linha {
+.linha{
   width:90px;
   height:4px;
   background:linear-gradient(90deg,var(--roxo),var(--rosa));
@@ -96,24 +86,20 @@ section {
 }
 
 /* CARROSSEL */
-.carrossel {
+.carrossel{
   display:flex;
   gap:16px;
   overflow-x:auto;
   scroll-snap-type:x mandatory;
-  padding-bottom:10px;
 }
-
-.carrossel::-webkit-scrollbar {
-  height:6px;
-}
-.carrossel::-webkit-scrollbar-thumb {
+.carrossel::-webkit-scrollbar{height:6px;}
+.carrossel::-webkit-scrollbar-thumb{
   background:var(--rosa);
   border-radius:10px;
 }
 
 /* PRODUTO */
-.produto {
+.produto{
   min-width:220px;
   background:#1a1a1a;
   border-radius:18px;
@@ -121,8 +107,7 @@ section {
   scroll-snap-align:start;
 }
 
-/* IMAGEM */
-.imagem-produto {
+.imagem-produto{
   aspect-ratio:1/1;
   background:#fff;
   display:flex;
@@ -131,46 +116,56 @@ section {
   cursor:zoom-in;
 }
 
-.imagem-produto img {
+.imagem-produto img{
   max-width:100%;
   max-height:100%;
   object-fit:contain;
 }
 
-/* BOTÃO */
-.produto-info {
-  padding:12px;
-}
-
-.btn-produto {
+.produto-info{padding:12px;}
+.btn-produto{
   display:block;
   background:#25D366;
   padding:12px;
   border-radius:12px;
   text-align:center;
   color:#fff;
-  text-decoration:none;
   font-weight:bold;
+  text-decoration:none;
 }
 
 /* ZOOM */
-.zoom {
+.zoom{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,0.85);
+  background:rgba(0,0,0,.85);
   display:none;
   align-items:center;
   justify-content:center;
   z-index:999;
 }
-
-.zoom img {
+.zoom img{
   max-width:90%;
   max-height:90%;
 }
 
+/* BOTÃO FLUTUANTE */
+.whats-fixo{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25D366;
+  color:#fff;
+  padding:14px 18px;
+  border-radius:50px;
+  font-weight:bold;
+  text-decoration:none;
+  box-shadow:0 0 15px rgba(0,0,0,.4);
+  z-index:999;
+}
+
 /* FOOTER */
-footer {
+footer{
   background:#111;
   text-align:center;
   padding:18px;
@@ -193,87 +188,56 @@ footer {
   </div>
 
   <div class="info">
-    🔍 Arraste para o lado para ver os produtos.  
-    Toque na imagem para ampliar.
+    🔍 Arraste para o lado para ver os produtos<br>
+    Toque na imagem para ampliar
   </div>
 </header>
 
 <section>
 
-<!-- ACESSÓRIOS -->
 <div class="categoria">
 <h2>😈 ACESSÓRIOS</h2>
 <div class="linha"></div>
-<div class="carrossel">
-<!-- DUPLICAR PRODUTO -->
-<div class="produto">
-  <div class="imagem-produto" onclick="zoom('acessorios/algemas.jpg')">
-    <img src="acessorios/algemas.jpg">
-  </div>
-  <div class="produto-info">
-    <a class="btn-produto" href="https://wa.me/5573998443608?text=Quero%20comprar:%20Algema">
-      COMPRAR
-    </a>
-  </div>
-</div>
-</div>
-</div>
 
-<!-- COSMÉTICOS -->
-<div class="categoria">
-<h2>💄 COSMÉTICOS</h2>
-<div class="linha"></div>
-<div class="carrossel">
-<div class="produto">
-  <div class="imagem-produto" onclick="zoom('acessorios/algemas.jpg')">
-    <img src="acessorios/algemas.jpg">
-  </div>
-  <div class="produto-info">
-    <a class="btn-produto" href="https://wa.me/5573998443608?text=Quero%20comprar:%20Cosmético">
-      COMPRAR
-    </a>
-  </div>
-</div>
-</div>
-</div>
+<div class="carrossel" id="carrosselAcessorios">
+<!-- PRODUTO (modelo para duplicar) -->
+<script>
+const produtos = [
+"apertadinha","batompenis","bolinhasexplosivas","cremejapones",
+"dessensibilizante","energetico","excitantemasculino","gargantaprofunda",
+"gelanestesico","gelcorporal","geletrizante","gelretardante",
+"geltermico","geltremetreme","gelvolumao","gotasdapaixao",
+"hidratanteblow","japoneisinha","lambelambe","laminas",
+"lubrificantecomestivel","lubrificantelovelub","lubrificanterilex",
+"melzinho","oleodemassagem","oleodemassagemperfume","perfumeafrodisiaco",
+"perfumedecalcinha","perfumedecueca","piruladiaseguinte","podabruxa",
+"preservativoespeciais","preservativorilex","sabonete feminino",
+"sabonetemasculino","tadalafila","velaaromatizada",
+"velademasagem","viagra"
+];
 
-<!-- JOGOS -->
-<div class="categoria">
-<h2>🎲 JOGOS</h2>
-<div class="linha"></div>
-<div class="carrossel">
+produtos.forEach(nome=>{
+document.write(`
 <div class="produto">
-  <div class="imagem-produto" onclick="zoom('acessorios/algemas.jpg')">
-    <img src="acessorios/algemas.jpg">
+  <div class="imagem-produto" onclick="zoom('Cosmeticos/${nome}.jpg')">
+    <img src="Cosmeticos/${nome}.jpg">
   </div>
   <div class="produto-info">
-    <a class="btn-produto" href="https://wa.me/5573998443608?text=Quero%20comprar:%20Jogo">
-      COMPRAR
+    <a class="btn-produto"
+       href="https://wa.me/5573998443608?text=Quero%20comprar:%20${nome}">
+       COMPRAR
     </a>
   </div>
 </div>
-</div>
-</div>
-
-<!-- MODA ÍNTIMA -->
-<div class="categoria">
-<h2>👙 MODA ÍNTIMA</h2>
-<div class="linha"></div>
-<div class="carrossel">
-<div class="produto">
-  <div class="imagem-produto" onclick="zoom('acessorios/algemas.jpg')">
-    <img src="acessorios/algemas.jpg">
-  </div>
-  <div class="produto-info">
-    <a class="btn-produto" href="https://wa.me/5573998443608?text=Quero%20comprar:%20Moda%20Íntima">
-      COMPRAR
-    </a>
-  </div>
-</div>
+`);
+});
+</script>
 </div>
 </div>
 
 </section>
+
+<a class="whats-fixo" href="https://wa.me/5573998443608">💬 WhatsApp</a>
 
 <div class="zoom" id="zoom" onclick="fecharZoom()">
   <img id="zoomImg">
@@ -291,6 +255,15 @@ function zoom(src){
 function fecharZoom(){
   document.getElementById('zoom').style.display='none';
 }
+
+/* CARROSSEL AUTOMÁTICO */
+const carrossel = document.getElementById('carrosselAcessorios');
+let scroll = 0;
+setInterval(()=>{
+  scroll += 240;
+  if(scroll >= carrossel.scrollWidth) scroll = 0;
+  carrossel.scrollTo({left:scroll, behavior:'smooth'});
+}, 3000);
 </script>
 
 </body>
