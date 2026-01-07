@@ -25,24 +25,24 @@ font-size:28px;
 
 /* TEXTO INICIAL */
 .info{
-background:rgba(255,255,255,0.1);
+background:rgba(255,255,255,0.12);
 margin:15px;
 padding:15px;
-border-radius:12px;
+border-radius:14px;
 text-align:center;
 font-size:15px;
 }
 
 /* CATEGORIA */
 .categoria{
-margin:30px 15px;
-background:rgba(255,255,255,0.08);
-border-radius:16px;
-padding:20px;
+margin:35px 15px;
+background:rgba(255,255,255,0.10);
+border-radius:18px;
+padding:22px;
 }
 .categoria h2{
-font-size:24px;
-margin-bottom:15px;
+font-size:26px;
+margin-bottom:18px;
 text-align:center;
 }
 
@@ -50,7 +50,7 @@ text-align:center;
 .carrossel{
 display:flex;
 overflow-x:auto;
-gap:15px;
+gap:16px;
 scroll-snap-type:x mandatory;
 padding-bottom:10px;
 }
@@ -67,7 +67,7 @@ border-radius:10px;
 min-width:200px;
 max-width:200px;
 background:#fff;
-border-radius:14px;
+border-radius:16px;
 color:#000;
 scroll-snap-align:start;
 flex-shrink:0;
@@ -78,12 +78,13 @@ padding:10px;
 width:100%;
 height:200px;
 object-fit:contain;
-border-radius:10px;
+border-radius:12px;
 cursor:pointer;
+background:#fff;
 }
 .produto h3{
 font-size:14px;
-margin:8px 0;
+margin:10px 0;
 }
 
 /* BOTÃO */
@@ -91,8 +92,8 @@ margin:8px 0;
 display:block;
 background:#25d366;
 color:#fff;
-padding:10px;
-border-radius:8px;
+padding:11px;
+border-radius:10px;
 text-decoration:none;
 font-weight:bold;
 }
@@ -118,8 +119,9 @@ max-height:90%;
 position:absolute;
 top:20px;
 right:30px;
-font-size:30px;
+font-size:32px;
 cursor:pointer;
+color:#fff;
 }
 
 /* WHATSAPP FLUTUANTE */
@@ -128,9 +130,9 @@ position:fixed;
 bottom:20px;
 right:20px;
 background:#25d366;
-padding:15px;
+padding:16px;
 border-radius:50%;
-font-size:22px;
+font-size:24px;
 text-decoration:none;
 color:#fff;
 z-index:999;
@@ -162,7 +164,7 @@ const cosmeticos = [
 "lubrificantecomestivel","lubrificantelovelub","lubrificanterilex","melzinho",
 "oleodemassagem","oleodemassagemperfume","perfumeafrodisiaco","perfumedecalcinha",
 "perfumedecueca","piruladiaseguinte","podabruxa","preservativoespeciais",
-"preservativorilex","sabetenefeminino","sabonetemasculino","tadalafila",
+"preservativorilex","sabonetefeminino","sabonetemasculino","tadalafila",
 "velaaromatizada","velademassagem","viagra"
 ];
 
@@ -170,7 +172,7 @@ cosmeticos.forEach(p=>{
 document.write(`
 <div class="produto">
 <img src="Cosmeticos/${p}.jpg" onclick="zoom(this.src)">
-<h3>${p.replace(/([a-z])([A-Z])/g,'$1 $2')}</h3>
+<h3>${p}</h3>
 <a class="btn" href="https://wa.me/5573998443608?text=Olá, quero comprar o produto: ${p}" target="_blank">COMPRAR</a>
 </div>
 `);
@@ -197,7 +199,7 @@ const acessorios = [
 acessorios.forEach(p=>{
 document.write(`
 <div class="produto">
-<img src="Acessorios/${p}.jpg" onclick="zoom(this.src)">
+<img src="acessorios/${p}.jpg" onclick="zoom(this.src)">
 <h3>${p}</h3>
 <a class="btn" href="https://wa.me/5573998443608?text=Olá, quero comprar o produto: ${p}" target="_blank">COMPRAR</a>
 </div>
