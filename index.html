@@ -18,6 +18,7 @@ body{
   color:#fff;
 }
 
+/* HEADER */
 header{
   background:linear-gradient(135deg,var(--roxo),var(--rosa));
   padding:35px 20px;
@@ -52,9 +53,11 @@ header p{font-size:14px;margin:10px 0;}
   border-radius:14px;
   font-size:13px;
   max-width:420px;
-  margin:auto;
+  margin-left:auto;
+  margin-right:auto;
 }
 
+/* SECTION */
 section{
   max-width:1200px;
   margin:auto;
@@ -82,6 +85,7 @@ section{
   border-radius:10px;
 }
 
+/* CARROSSEL */
 .carrossel{
   display:flex;
   gap:16px;
@@ -94,6 +98,7 @@ section{
   border-radius:10px;
 }
 
+/* PRODUTO */
 .produto{
   min-width:220px;
   background:#1a1a1a;
@@ -118,7 +123,6 @@ section{
 }
 
 .produto-info{padding:12px;}
-
 .btn-produto{
   display:block;
   background:#25D366;
@@ -130,6 +134,7 @@ section{
   text-decoration:none;
 }
 
+/* ZOOM */
 .zoom{
   position:fixed;
   inset:0;
@@ -144,24 +149,22 @@ section{
   max-height:90%;
 }
 
+/* BOTÃO FLUTUANTE */
 .whats-fixo{
   position:fixed;
   bottom:20px;
   right:20px;
   background:#25D366;
-  width:56px;
-  height:56px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:28px;
   color:#fff;
+  padding:14px 18px;
+  border-radius:50px;
+  font-weight:bold;
   text-decoration:none;
   box-shadow:0 0 15px rgba(0,0,0,.4);
   z-index:999;
 }
 
+/* FOOTER */
 footer{
   background:#111;
   text-align:center;
@@ -219,7 +222,7 @@ document.write(`
     <img src="Cosmeticos/${nome}.jpg">
   </div>
   <div class="produto-info">
-    <a class="btn-produto" href="https://wa.me/5573998443608?text=Gostaria%20de%20comprar%20o%20produto%20${nome}.">
+    <a class="btn-produto" href="https://wa.me/5573998443608?text=Quero%20comprar:%20${nome}">
       COMPRAR
     </a>
   </div>
@@ -233,7 +236,7 @@ document.write(`
 
 <!-- ACESSÓRIOS -->
 <div class="categoria">
-<h2>🔥 ACESSÓRIOS</h2>
+<h2>😈 ACESSÓRIOS</h2>
 <div class="linha"></div>
 <div class="carrossel">
 
@@ -255,7 +258,65 @@ document.write(`
     <img src="acessorios/${nome}.jpg">
   </div>
   <div class="produto-info">
-    <a class="btn-produto" href="https://wa.me/5573998443608?text=Gostaria%20de%20comprar%20o%20produto%20${nome}.">
+    <a class="btn-produto" href="https://wa.me/5573998443608?text=Quero%20comprar:%20${nome}">
+      COMPRAR
+    </a>
+  </div>
+</div>
+`);
+});
+</script>
+
+</div>
+</div>
+
+<!-- JOGOS -->
+<div class="categoria">
+<h2>🎲 JOGOS</h2>
+<div class="linha"></div>
+<div class="carrossel">
+
+<script>
+const jogos = ["baralhoerotico","dadoerotico","raspadinhas","roletas"];
+
+jogos.forEach(nome=>{
+document.write(`
+<div class="produto">
+  <div class="imagem-produto" onclick="zoom('jogos/${nome}.jpg')">
+    <img src="jogos/${nome}.jpg">
+  </div>
+  <div class="produto-info">
+    <a class="btn-produto" href="https://wa.me/5573998443608?text=Quero%20comprar:%20${nome}">
+      COMPRAR
+    </a>
+  </div>
+</div>
+`);
+});
+</script>
+
+</div>
+</div>
+
+<!-- MODA ÍNTIMA -->
+<div class="categoria">
+<h2>👙 MODA ÍNTIMA</h2>
+<div class="linha"></div>
+<div class="carrossel">
+
+<script>
+const modaintima = [
+"calcinhasousadascosta","calcinhasousadasfrente","conjuntos","lingerie","perneira"
+];
+
+modaintima.forEach(nome=>{
+document.write(`
+<div class="produto">
+  <div class="imagem-produto" onclick="zoom('modaintima/${nome}.jpg')">
+    <img src="modaintima/${nome}.jpg">
+  </div>
+  <div class="produto-info">
+    <a class="btn-produto" href="https://wa.me/5573998443608?text=Quero%20comprar:%20${nome}">
       COMPRAR
     </a>
   </div>
@@ -269,7 +330,7 @@ document.write(`
 
 </section>
 
-<a class="whats-fixo" href="https://wa.me/5573998443608">🟢</a>
+<a class="whats-fixo" href="https://wa.me/5573998443608">💬 WhatsApp</a>
 
 <div class="zoom" id="zoom" onclick="fecharZoom()">
   <img id="zoomImg">
