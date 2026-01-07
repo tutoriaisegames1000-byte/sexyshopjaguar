@@ -22,15 +22,15 @@ header {
 
 header img {
     max-width: 140px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 header p {
     font-size: 14px;
-    margin: 8px 0 15px;
+    margin-bottom: 15px;
 }
 
-/* BOTÕES REDES SOCIAIS */
+/* REDES */
 .redes {
     display: flex;
     justify-content: center;
@@ -51,7 +51,7 @@ header p {
 .instagram { background: #FF1493; }
 .facebook { background: #1E90FF; }
 
-/* MENU CATEGORIAS */
+/* MENU */
 .categorias-menu {
     margin-top: 25px;
     display: flex;
@@ -70,7 +70,7 @@ header p {
     border: 1px solid rgba(255,255,255,0.25);
 }
 
-/* SEÇÕES */
+/* SEÇÃO */
 section {
     padding: 50px 20px;
     max-width: 1200px;
@@ -110,15 +110,24 @@ section {
     overflow: hidden;
 }
 
-/* IMAGEM COMPLETA */
-.produto img {
+/* IMAGEM */
+.imagem-produto {
     width: 100%;
-    height: 280px;
-    object-fit: cover;
+    aspect-ratio: 1 / 1;
     background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-in;
 }
 
-/* BOTÃO PRODUTO */
+.imagem-produto img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* BOTÃO */
 .produto-info {
     padding: 14px;
     text-align: center;
@@ -132,7 +141,30 @@ section {
     border-radius: 12px;
     text-decoration: none;
     font-weight: bold;
-    font-size: 15px;
+}
+
+/* ZOOM OVERLAY */
+.zoom-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.zoom-overlay img {
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.zoom-overlay span {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 30px;
+    cursor: pointer;
 }
 
 /* FOOTER */
@@ -160,15 +192,11 @@ footer {
 
     <div class="categorias-menu">
         <a href="#acessorios">ACESSÓRIOS</a>
-        <a href="#cosmeticos">COSMÉTICOS</a>
-        <a href="#jogos">JOGOS</a>
-        <a href="#modaintima">MODA ÍNTIMA</a>
     </div>
 </header>
 
 <section>
 
-<!-- ACESSÓRIOS -->
 <div id="acessorios">
     <div class="categoria-titulo">😈 ACESSÓRIOS</div>
     <div class="categoria-linha"></div>
@@ -176,28 +204,13 @@ footer {
     <div class="produtos">
 
         <div class="produto">
-            <img src="acessorios/algemas.jpg" alt="Algemas">
-            <div class="produto-info">
-                <a class="btn-produto" href="https://wa.me/5573998443608?text=Quero%20esse%20produto:%20Algemas">
-                    QUERO ESSE!
-                </a>
+            <div class="imagem-produto" onclick="zoomImagem(this)">
+                <img src="acessorios/algemas.jpg" alt="Algemas">
             </div>
-        </div>
-
-        <div class="produto">
-            <img src="acessorios/acessorio2.jpg" alt="Acessório 2">
             <div class="produto-info">
-                <a class="btn-produto" href="https://wa.me/5573998443608?text=Quero%20esse%20produto:%20Acessório%202">
-                    QUERO ESSE!
-                </a>
-            </div>
-        </div>
-
-        <div class="produto">
-            <img src="acessorios/acessorio3.jpg" alt="Acessório 3">
-            <div class="produto-info">
-                <a class="btn-produto" href="https://wa.me/5573998443608?text=Quero%20esse%20produto:%20Acessório%203">
-                    QUERO ESSE!
+                <a class="btn-produto"
+                   href="https://wa.me/5573998443608?text=Olá!%20Quero%20esse%20produto:%20Algemas">
+                   QUERO ESSE!
                 </a>
             </div>
         </div>
@@ -210,6 +223,23 @@ footer {
 <footer>
 © 2026 Sexy Shop Jaguar — Todos os direitos reservados.
 </footer>
+
+<!-- ZOOM -->
+<div class="zoom-overlay" id="zoom">
+    <span onclick="fecharZoom()">✕</span>
+    <img id="zoom-img">
+</div>
+
+<script>
+function zoomImagem(el) {
+    document.getElementById("zoom").style.display = "flex";
+    document.getElementById("zoom-img").src = el.querySelector("img").src;
+}
+
+function fecharZoom() {
+    document.getElementById("zoom").style.display = "none";
+}
+</script>
 
 </body>
 </html>
