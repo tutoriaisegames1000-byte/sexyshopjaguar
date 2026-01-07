@@ -18,7 +18,6 @@ body{
   color:#fff;
 }
 
-/* HEADER */
 header{
   background:linear-gradient(135deg,var(--roxo),var(--rosa));
   padding:35px 20px;
@@ -53,11 +52,9 @@ header p{font-size:14px;margin:10px 0;}
   border-radius:14px;
   font-size:13px;
   max-width:420px;
-  margin-left:auto;
-  margin-right:auto;
+  margin:auto;
 }
 
-/* SECTION */
 section{
   max-width:1200px;
   margin:auto;
@@ -85,7 +82,6 @@ section{
   border-radius:10px;
 }
 
-/* CARROSSEL */
 .carrossel{
   display:flex;
   gap:16px;
@@ -98,7 +94,6 @@ section{
   border-radius:10px;
 }
 
-/* PRODUTO */
 .produto{
   min-width:220px;
   background:#1a1a1a;
@@ -123,6 +118,7 @@ section{
 }
 
 .produto-info{padding:12px;}
+
 .btn-produto{
   display:block;
   background:#25D366;
@@ -134,7 +130,6 @@ section{
   text-decoration:none;
 }
 
-/* ZOOM */
 .zoom{
   position:fixed;
   inset:0;
@@ -149,28 +144,24 @@ section{
   max-height:90%;
 }
 
-/* BOTÃO FLUTUANTE */
 .whats-fixo{
   position:fixed;
   bottom:20px;
   right:20px;
+  background:#25D366;
   width:56px;
   height:56px;
-  background:#25D366;
   border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
+  font-size:28px;
+  color:#fff;
+  text-decoration:none;
   box-shadow:0 0 15px rgba(0,0,0,.4);
   z-index:999;
 }
-.whats-fixo svg{
-  width:28px;
-  height:28px;
-  fill:#fff;
-}
 
-/* FOOTER */
 footer{
   background:#111;
   text-align:center;
@@ -201,14 +192,15 @@ footer{
 
 <section>
 
+<!-- COSMÉTICOS -->
 <div class="categoria">
-<h2>🔥 ACESSÓRIOS</h2>
+<h2>💄 COSMÉTICOS</h2>
 <div class="linha"></div>
+<div class="carrossel">
 
-<div class="carrossel" id="carrosselAcessorios">
 <script>
-const produtos = [
-"apertadinha","batom-penis","bolinhasexplosivas","cremejapones",
+const cosmeticos = [
+"apertadinha","batom penis","bolinhasexplosivas","cremejapones",
 "dessensibilizante","enegertico","excitantemasculino","gargantaprofunda",
 "gelanestesico","gelcorporal","geleletrizante","gelretardante",
 "geltermico","geltremetreme","gelvolumao","gotasdapaixao",
@@ -217,37 +209,67 @@ const produtos = [
 "melzinho","oleodemassagem","oleodemassagemperfume","perfumeafrodisiaco",
 "perfumedecalcinha","perfumedecueca","piruladiaseguinte","podabruxa",
 "preservativoespeciais","preservativorilex","sabonetefeminino",
-"sabonetemasculino","tadalafila","velaaromatizada",
-"velademasagem","viagra"
+"sabonetemasculino","tadalafila","velaaromatizada","velademasagem","viagra"
 ];
 
-produtos.forEach(nome=>{
+cosmeticos.forEach(nome=>{
 document.write(`
 <div class="produto">
   <div class="imagem-produto" onclick="zoom('Cosmeticos/${nome}.jpg')">
     <img src="Cosmeticos/${nome}.jpg">
   </div>
   <div class="produto-info">
-    <a class="btn-produto"
-       href="https://wa.me/5573998443608?text=Gostaria%20de%20comprar%20o%20produto%20${nome}.">
-       COMPRAR
+    <a class="btn-produto" href="https://wa.me/5573998443608?text=Gostaria%20de%20comprar%20o%20produto%20${nome}.">
+      COMPRAR
     </a>
   </div>
 </div>
 `);
 });
 </script>
+
+</div>
+</div>
+
+<!-- ACESSÓRIOS -->
+<div class="categoria">
+<h2>🔥 ACESSÓRIOS</h2>
+<div class="linha"></div>
+<div class="carrossel">
+
+<script>
+const acessorios = [
+"algemas","anelpeniano","bolinhadepompoar","bolinhatailandesa","bombapeniana",
+"capapeniana","cassetete","chibatacommascara","chicote","cintapeniana","coleira",
+"corda","duchaintima","fantasias","gramposdemamilos","massageador","massageadordepes",
+"mastubadoranus","mastubadoregg","mastubadormasculino","mordaça","penisduplo",
+"penisgrande","penismedio","penisvibrador","pilhas","pluganal","plugescalonado",
+"sugador","testedegravidez","varinhamagica","venda","vibrador","vibradorbullet",
+"vibradorgolfinho","vibradormultivelocidade","vibradorrosa","vibradorrotativo"
+];
+
+acessorios.forEach(nome=>{
+document.write(`
+<div class="produto">
+  <div class="imagem-produto" onclick="zoom('acessorios/${nome}.jpg')">
+    <img src="acessorios/${nome}.jpg">
+  </div>
+  <div class="produto-info">
+    <a class="btn-produto" href="https://wa.me/5573998443608?text=Gostaria%20de%20comprar%20o%20produto%20${nome}.">
+      COMPRAR
+    </a>
+  </div>
+</div>
+`);
+});
+</script>
+
 </div>
 </div>
 
 </section>
 
-<a class="whats-fixo" href="https://wa.me/5573998443608" aria-label="WhatsApp">
-  <svg viewBox="0 0 32 32">
-    <path d="M19.11 17.44c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.15-.42-2.19-1.34-.81-.72-1.35-1.61-1.51-1.88-.16-.27-.02-.42.12-.56.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.01-.22-.53-.45-.46-.61-.47h-.52c-.18 0-.48.07-.73.34-.25.27-.96.93-.96 2.27s.98 2.64 1.12 2.82c.14.18 1.93 2.95 4.68 4.13.65.28 1.16.45 1.56.58.66.21 1.26.18 1.74.11.53-.08 1.6-.65 1.83-1.27.23-.61.23-1.13.16-1.24-.07-.11-.25-.18-.52-.32z"/>
-    <path d="M16 2.67C8.64 2.67 2.67 8.64 2.67 16c0 2.6.74 5.02 2.02 7.07L2 30l7.1-2.66c1.98 1.08 4.26 1.7 6.9 1.7 7.36 0 13.33-5.97 13.33-13.33S23.36 2.67 16 2.67zm0 23.73c-2.43 0-4.7-.7-6.62-1.9l-.47-.29-4.21 1.58 1.6-4.1-.31-.5c-1.25-1.96-1.97-4.28-1.97-6.78 0-6.76 5.51-12.27 12.27-12.27s12.27 5.51 12.27 12.27-5.51 12.27-12.27 12.27z"/>
-  </svg>
-</a>
+<a class="whats-fixo" href="https://wa.me/5573998443608">🟢</a>
 
 <div class="zoom" id="zoom" onclick="fecharZoom()">
   <img id="zoomImg">
@@ -265,14 +287,6 @@ function zoom(src){
 function fecharZoom(){
   document.getElementById('zoom').style.display='none';
 }
-
-const carrossel = document.getElementById('carrosselAcessorios');
-let scroll = 0;
-setInterval(()=>{
-  scroll += 240;
-  if(scroll >= carrossel.scrollWidth) scroll = 0;
-  carrossel.scrollTo({left:scroll, behavior:'smooth'});
-}, 3000);
 </script>
 
 </body>
