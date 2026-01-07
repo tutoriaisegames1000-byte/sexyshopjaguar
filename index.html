@@ -7,176 +7,175 @@
 
 <style>
 :root {
-  --roxo: #8a2be2;
-  --rosa: #ff4d8d;
+  --roxo:#8a2be2;
+  --rosa:#ff4d8d;
 }
 
 body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background: radial-gradient(circle at top, #2a0033, #0b0b0b);
-  color: #fff;
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  background:radial-gradient(circle at top,#2a0033,#0b0b0b);
+  color:#fff;
 }
 
 /* HEADER */
 header {
-  background: linear-gradient(135deg, var(--roxo), var(--rosa));
-  padding: 35px 20px;
-  text-align: center;
+  background:linear-gradient(135deg,var(--roxo),var(--rosa));
+  padding:35px 20px;
+  text-align:center;
 }
 
 header img {
-  max-width: 140px;
-  margin-bottom: 10px;
+  max-width:140px;
+  margin-bottom:10px;
 }
 
 header p {
-  font-size: 14px;
-  margin: 8px 0 15px;
+  font-size:14px;
+  margin:8px 0 15px;
 }
 
 /* REDES */
 .redes {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 15px;
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
 }
 
 .redes a {
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: bold;
-  text-decoration: none;
-  color: #fff;
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:13px;
+  font-weight:bold;
+  color:#fff;
+  text-decoration:none;
 }
 
-.whatsapp { background: #25D366; }
-.instagram { background: #FF1493; }
-.facebook { background: #1E90FF; }
+.whatsapp {background:#25D366;}
+.instagram {background:#FF1493;}
+.facebook {background:#1E90FF;}
 
 /* INFO */
-.info-zoom {
-  background: rgba(0,0,0,0.35);
-  padding: 12px;
-  border-radius: 14px;
-  font-size: 13px;
-  max-width: 420px;
-  margin: auto;
+.info {
+  background:rgba(0,0,0,0.35);
+  padding:12px;
+  border-radius:14px;
+  font-size:13px;
+  max-width:420px;
+  margin:18px auto 0;
 }
 
 /* SEÇÃO */
 section {
-  padding: 40px 20px;
-  max-width: 1200px;
-  margin: auto;
+  padding:40px 20px;
+  max-width:1200px;
+  margin:auto;
 }
 
-/* BLOCO CATEGORIA */
-.categoria-bloco {
-  background: rgba(255,255,255,0.05);
-  border-radius: 22px;
-  padding: 30px 20px;
-  margin-bottom: 60px;
+/* CATEGORIA */
+.categoria {
+  background:rgba(255,255,255,0.05);
+  border-radius:22px;
+  padding:30px 20px;
+  margin-bottom:60px;
 }
 
-.categoria-titulo {
-  text-align: center;
-  font-size: 30px;
-  color: var(--rosa);
+.categoria h2 {
+  text-align:center;
+  font-size:30px;
+  color:var(--rosa);
 }
 
-.categoria-linha {
-  width: 90px;
-  height: 4px;
-  background: linear-gradient(90deg, var(--roxo), var(--rosa));
-  margin: 15px auto 25px;
-  border-radius: 10px;
+.linha {
+  width:90px;
+  height:4px;
+  background:linear-gradient(90deg,var(--roxo),var(--rosa));
+  margin:15px auto 25px;
+  border-radius:10px;
 }
 
 /* CARROSSEL */
 .carrossel {
-  display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding-bottom: 10px;
+  display:flex;
+  gap:16px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  padding-bottom:10px;
 }
 
 .carrossel::-webkit-scrollbar {
-  height: 6px;
+  height:6px;
 }
 .carrossel::-webkit-scrollbar-thumb {
-  background: var(--rosa);
-  border-radius: 10px;
+  background:var(--rosa);
+  border-radius:10px;
 }
 
 /* PRODUTO */
 .produto {
-  min-width: 220px;
-  background: #1a1a1a;
-  border-radius: 18px;
-  overflow: hidden;
-  scroll-snap-align: start;
+  min-width:220px;
+  background:#1a1a1a;
+  border-radius:18px;
+  overflow:hidden;
+  scroll-snap-align:start;
 }
 
 /* IMAGEM */
 .imagem-produto {
-  aspect-ratio: 1/1;
-  background: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: zoom-in;
+  aspect-ratio:1/1;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:zoom-in;
 }
 
 .imagem-produto img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
 }
 
 /* BOTÃO */
 .produto-info {
-  padding: 12px;
+  padding:12px;
 }
 
 .btn-produto {
-  display: block;
-  background: #25D366;
-  color: #fff;
-  padding: 12px;
-  border-radius: 12px;
-  text-decoration: none;
-  font-weight: bold;
-  text-align: center;
+  display:block;
+  background:#25D366;
+  padding:12px;
+  border-radius:12px;
+  text-align:center;
+  color:#fff;
+  text-decoration:none;
+  font-weight:bold;
 }
 
 /* ZOOM */
 .zoom {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.85);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
 }
 
 .zoom img {
-  max-width: 90%;
-  max-height: 90%;
+  max-width:90%;
+  max-height:90%;
 }
 
 /* FOOTER */
 footer {
-  background: #111;
-  text-align: center;
-  padding: 18px;
-  font-size: 13px;
-  opacity: 0.7;
+  background:#111;
+  text-align:center;
+  padding:18px;
+  font-size:13px;
+  opacity:.7;
 }
 </style>
 </head>
@@ -184,7 +183,7 @@ footer {
 <body>
 
 <header>
-  <img src="imagens/fotos/logopng.png" alt="Sexy Shop Jaguar">
+  <img src="imagens/fotos/logopng.png">
   <p>LOJA LOCALIZADA EM JAGUAQUARA - BA</p>
 
   <div class="redes">
@@ -193,89 +192,89 @@ footer {
     <a class="facebook" href="https://www.facebook.com/profile.php?id=61566510735510">FACEBOOK</a>
   </div>
 
-  <div class="info-zoom">
-    🔍 Arraste para o lado para ver mais produtos. Toque na imagem para ampliar.
+  <div class="info">
+    🔍 Arraste para o lado para ver os produtos.  
+    Toque na imagem para ampliar.
   </div>
 </header>
 
 <section>
 
 <!-- ACESSÓRIOS -->
-<div class="categoria-bloco" id="acessorios">
-  <div class="categoria-titulo">😈 ACESSÓRIOS</div>
-  <div class="categoria-linha"></div>
-
-  <div class="carrossel">
-
-    <!-- 38 PRODUTOS -->
-    <!-- COPIE O BLOCO E TROQUE O NOME DEPOIS SE QUISER -->
-    <!-- PRODUTO 1 -->
-    <!-- Repete até 38 -->
-    <!-- ================= -->
-    <!-- INÍCIO LOOP MANUAL -->
-    <!-- ================= -->
-
-    <!-- PRODUTO -->
-    <!-- Use o mesmo modelo -->
-    <!-- Exemplo abaixo -->
-    <!-- ================= -->
-
-    <!-- GERADOS MANUALMENTE -->
-    <!-- NÃO USA SCRIPT -->
-
-    <!-- PRODUTOS -->
-    <!-- 1 a 38 -->
-    <!-- Apenas altere o número no nome -->
-
-    <!-- START -->
-    <!-- Você pode duplicar facilmente depois -->
-
-    <!-- Produto -->
-    <!-- (vou colocar vários já prontos) -->
-
-    <!-- PRODUTOS -->
-    <!-- ========= -->
-    <!-- GERADO -->
-    <!-- ========= -->
-
-    <!-- PRODUTO 1 -->
-    <div class="produto">
-      <div class="imagem-produto" onclick="zoom('acessorios/algemas.jpg')">
-        <img src="acessorios/algemas.jpg" alt="Algema 1">
-      </div>
-      <div class="produto-info">
-        <a class="btn-produto"
-        href="https://wa.me/5573998443608?text=Quero%20comprar:%20Algema%201">
-        COMPRAR
-        </a>
-      </div>
-    </div>
-
-    <!-- DUPLICADO ATÉ 38 -->
-    <!-- (exemplo abaixo, continue o padrão) -->
-
-    <!-- PRODUTO 2 -->
-    <div class="produto">
-      <div class="imagem-produto" onclick="zoom('acessorios/algemas.jpg')">
-        <img src="acessorios/algemas.jpg" alt="Algema 2">
-      </div>
-      <div class="produto-info">
-        <a class="btn-produto"
-        href="https://wa.me/5573998443608?text=Quero%20comprar:%20Algema%202">
-        COMPRAR
-        </a>
-      </div>
-    </div>
-
-    <!-- PRODUTO 3 até 38 -->
-    <!-- 👉 basta duplicar e trocar o número -->
-
+<div class="categoria">
+<h2>😈 ACESSÓRIOS</h2>
+<div class="linha"></div>
+<div class="carrossel">
+<!-- DUPLICAR PRODUTO -->
+<div class="produto">
+  <div class="imagem-produto" onclick="zoom('acessorios/algemas.jpg')">
+    <img src="acessorios/algemas.jpg">
   </div>
+  <div class="produto-info">
+    <a class="btn-produto" href="https://wa.me/5573998443608?text=Quero%20comprar:%20Algema">
+      COMPRAR
+    </a>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- COSMÉTICOS -->
+<div class="categoria">
+<h2>💄 COSMÉTICOS</h2>
+<div class="linha"></div>
+<div class="carrossel">
+<div class="produto">
+  <div class="imagem-produto" onclick="zoom('acessorios/algemas.jpg')">
+    <img src="acessorios/algemas.jpg">
+  </div>
+  <div class="produto-info">
+    <a class="btn-produto" href="https://wa.me/5573998443608?text=Quero%20comprar:%20Cosmético">
+      COMPRAR
+    </a>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- JOGOS -->
+<div class="categoria">
+<h2>🎲 JOGOS</h2>
+<div class="linha"></div>
+<div class="carrossel">
+<div class="produto">
+  <div class="imagem-produto" onclick="zoom('acessorios/algemas.jpg')">
+    <img src="acessorios/algemas.jpg">
+  </div>
+  <div class="produto-info">
+    <a class="btn-produto" href="https://wa.me/5573998443608?text=Quero%20comprar:%20Jogo">
+      COMPRAR
+    </a>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- MODA ÍNTIMA -->
+<div class="categoria">
+<h2>👙 MODA ÍNTIMA</h2>
+<div class="linha"></div>
+<div class="carrossel">
+<div class="produto">
+  <div class="imagem-produto" onclick="zoom('acessorios/algemas.jpg')">
+    <img src="acessorios/algemas.jpg">
+  </div>
+  <div class="produto-info">
+    <a class="btn-produto" href="https://wa.me/5573998443608?text=Quero%20comprar:%20Moda%20Íntima">
+      COMPRAR
+    </a>
+  </div>
+</div>
+</div>
 </div>
 
 </section>
 
-<!-- ZOOM -->
 <div class="zoom" id="zoom" onclick="fecharZoom()">
   <img id="zoomImg">
 </div>
@@ -285,12 +284,12 @@ footer {
 </footer>
 
 <script>
-function zoom(src) {
-  document.getElementById('zoom').style.display = 'flex';
-  document.getElementById('zoomImg').src = src;
+function zoom(src){
+  document.getElementById('zoom').style.display='flex';
+  document.getElementById('zoomImg').src=src;
 }
-function fecharZoom() {
-  document.getElementById('zoom').style.display = 'none';
+function fecharZoom(){
+  document.getElementById('zoom').style.display='none';
 }
 </script>
 
