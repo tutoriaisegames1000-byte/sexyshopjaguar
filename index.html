@@ -8,27 +8,27 @@
 <style>
 body {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #0b0b0b;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(180deg, #12001a, #2a0036, #12001a);
     color: #fff;
 }
 
 /* HEADER */
 header {
-    background: linear-gradient(135deg, #A020F0, #ff0055);
-    padding: 30px 20px;
+    background: linear-gradient(135deg, #7b1fa2, #e91e63);
+    padding: 35px 20px 30px;
     text-align: center;
 }
 
 header img {
-    max-width: 150px;
-    margin-bottom: 10px;
+    max-width: 160px;
+    margin-bottom: 12px;
 }
 
 header p {
     font-size: 14px;
-    margin: 6px 0 16px;
-    opacity: 0.9;
+    margin: 8px 0 18px;
+    opacity: 0.95;
 }
 
 /* REDES */
@@ -37,23 +37,23 @@ header p {
     justify-content: center;
     gap: 10px;
     flex-wrap: wrap;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
 }
 
 .redes a {
-    padding: 8px 16px;
-    border-radius: 25px;
+    padding: 8px 18px;
+    border-radius: 30px;
     font-size: 13px;
-    font-weight: bold;
+    font-weight: 600;
     text-decoration: none;
     color: #fff;
 }
 
 .whatsapp { background: #25D366; }
-.instagram { background: #FF1493; }
-.facebook { background: #1E90FF; }
+.instagram { background: #d6249f; }
+.facebook { background: #1877f2; }
 
-/* CATEGORIAS MENU */
+/* MENU */
 .categorias-menu {
     display: flex;
     justify-content: center;
@@ -62,33 +62,36 @@ header p {
 }
 
 .categorias-menu a {
-    background: rgba(0,0,0,0.35);
-    padding: 10px 20px;
-    border-radius: 25px;
+    background: rgba(255,255,255,0.15);
+    padding: 10px 22px;
+    border-radius: 30px;
     color: #fff;
     text-decoration: none;
     font-size: 13px;
     border: 1px solid rgba(255,255,255,0.3);
+    backdrop-filter: blur(4px);
 }
 
 /* SEÇÃO */
 section {
-    padding: 45px 15px;
+    padding: 50px 16px;
     max-width: 1200px;
     margin: auto;
 }
 
+/* TÍTULOS */
 .categoria-titulo {
     text-align: center;
-    font-size: 30px;
-    color: #ff4d79;
+    font-size: 32px;
+    color: #ff80ab;
+    margin-bottom: 10px;
 }
 
 .categoria-linha {
-    width: 90px;
+    width: 100px;
     height: 4px;
-    background: linear-gradient(90deg, #ff0055, #ff7aa2);
-    margin: 12px auto 35px;
+    background: linear-gradient(90deg, #ff4081, #ce93d8);
+    margin: 0 auto 40px;
     border-radius: 10px;
 }
 
@@ -96,10 +99,9 @@ section {
 .produtos {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 22px;
 }
 
-/* CELULAR: 2 POR LINHA */
 @media (max-width: 900px) {
     .produtos {
         grid-template-columns: repeat(2, 1fr);
@@ -107,12 +109,13 @@ section {
 }
 
 .produto {
-    background: #1a1a1a;
-    border-radius: 18px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 20px;
     overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
 }
 
-/* IMAGEM SEM CORTAR */
+/* IMAGEM */
 .imagem-produto {
     width: 100%;
     aspect-ratio: 1 / 1;
@@ -131,16 +134,16 @@ section {
 
 /* BOTÃO */
 .produto-info {
-    padding: 12px;
+    padding: 14px;
     text-align: center;
 }
 
 .btn-produto {
     display: block;
-    background: #25D366;
+    background: linear-gradient(135deg, #25D366, #1ebe5d);
     color: #fff;
-    padding: 10px;
-    border-radius: 12px;
+    padding: 12px;
+    border-radius: 14px;
     text-decoration: none;
     font-weight: bold;
     font-size: 14px;
@@ -151,32 +154,32 @@ section {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.9);
+    background: rgba(0,0,0,0.92);
     justify-content: center;
     align-items: center;
     z-index: 9999;
 }
 
 .zoom-overlay img {
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 92%;
+    max-height: 92%;
 }
 
 .zoom-overlay span {
     position: absolute;
     top: 20px;
     right: 25px;
-    font-size: 32px;
+    font-size: 34px;
     cursor: pointer;
 }
 
 /* FOOTER */
 footer {
-    background: #111;
+    background: #0d0014;
     text-align: center;
     padding: 18px;
     font-size: 13px;
-    opacity: 0.7;
+    opacity: 0.75;
 }
 </style>
 </head>
@@ -195,33 +198,70 @@ footer {
 
     <div class="categorias-menu">
         <a href="#acessorios">ACESSÓRIOS</a>
+        <a href="#cosmeticos">COSMÉTICOS</a>
+        <a href="#jogos">JOGOS</a>
+        <a href="#modaintima">MODA ÍNTIMA</a>
     </div>
 </header>
 
 <section>
 
+<!-- FUNÇÃO PARA CATEGORIA -->
+<script>
+function produtoPadrao(categoria) {
+document.write(`
+<div class="produto">
+  <div class="imagem-produto" onclick="zoomImagem(this)">
+    <img src="acessorios/algemas.jpg" alt="Produto exemplo">
+  </div>
+  <div class="produto-info">
+    <a class="btn-produto" href="https://wa.me/5573998443608?text=Olá!%20Quero%20esse%20produto">
+      QUERO ESSE!
+    </a>
+  </div>
+</div>
+`);
+}
+</script>
+
 <!-- ACESSÓRIOS -->
 <div id="acessorios">
-    <div class="categoria-titulo">😈 ACESSÓRIOS</div>
-    <div class="categoria-linha"></div>
+  <div class="categoria-titulo">😈 ACESSÓRIOS</div>
+  <div class="categoria-linha"></div>
+  <div class="produtos">
+    <script>produtoPadrao()</script>
+    <script>produtoPadrao()</script>
+  </div>
+</div>
 
-    <div class="produtos">
+<!-- COSMÉTICOS -->
+<div id="cosmeticos">
+  <div class="categoria-titulo">💄 COSMÉTICOS</div>
+  <div class="categoria-linha"></div>
+  <div class="produtos">
+    <script>produtoPadrao()</script>
+    <script>produtoPadrao()</script>
+  </div>
+</div>
 
-        <div class="produto">
-            <div class="imagem-produto" onclick="zoomImagem(this)">
-                <img src="acessorios/algemas.jpg" alt="Algemas">
-            </div>
-            <div class="produto-info">
-                <a class="btn-produto"
-                   href="https://wa.me/5573998443608?text=Olá!%20Quero%20esse%20produto:%20Algemas">
-                   QUERO ESSE!
-                </a>
-            </div>
-        </div>
+<!-- JOGOS -->
+<div id="jogos">
+  <div class="categoria-titulo">🎲 JOGOS</div>
+  <div class="categoria-linha"></div>
+  <div class="produtos">
+    <script>produtoPadrao()</script>
+    <script>produtoPadrao()</script>
+  </div>
+</div>
 
-        <!-- DUPLIQUE ESTE BLOCO PARA MAIS PRODUTOS -->
-
-    </div>
+<!-- MODA ÍNTIMA -->
+<div id="modaintima">
+  <div class="categoria-titulo">👙 MODA ÍNTIMA</div>
+  <div class="categoria-linha"></div>
+  <div class="produtos">
+    <script>produtoPadrao()</script>
+    <script>produtoPadrao()</script>
+  </div>
 </div>
 
 </section>
@@ -231,7 +271,7 @@ footer {
 </footer>
 
 <!-- ZOOM -->
-<div class="zoom-overlay" id="zoom">
+<div class="zoom-overlay" id="zoom" onclick="fecharZoom()">
     <span onclick="fecharZoom()">✕</span>
     <img id="zoom-img">
 </div>
