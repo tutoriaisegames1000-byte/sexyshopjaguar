@@ -176,6 +176,32 @@ section{
   font-weight:bold;
 }
 
+/* MODAL CARRINHO */
+#modal-carrinho{
+  position:fixed;
+  bottom:70px;
+  right:20px;
+  background:#111;
+  color:#fff;
+  padding:12px 16px;
+  border-radius:12px;
+  max-width:300px;
+  display:none;
+  flex-direction:column;
+  gap:8px;
+  z-index:1000;
+  box-shadow:0 0 10px #000;
+}
+#modal-carrinho button{
+  background:#FFD700;
+  color:#000;
+  border:none;
+  border-radius:12px;
+  padding:10px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
 /* ZOOM */
 .zoom{
   position:fixed;
@@ -271,6 +297,9 @@ footer{
   🛒 <span id="contador"></span>
 </div>
 
+<!-- MODAL CARRINHO -->
+<div id="modal-carrinho"></div>
+
 <!-- ZOOM FUNCIONAL -->
 <div class="zoom" id="zoom" onclick="fecharZoom()">
   <span class="fechar-zoom" onclick="fecharZoom()">×</span>
@@ -343,12 +372,13 @@ const dados = [
 const area=document.getElementById("categorias");
 const carrinhoFlutuante = document.getElementById("carrinho-flutuante");
 const contador = document.getElementById("contador");
+const modalCarrinho = document.getElementById("modal-carrinho");
 let carrinho = [];
 
 // Inicia oculto
 carrinhoFlutuante.style.display = "none";
 
-// Renderização dos produtos
+// Renderiza produtos
 dados.forEach(cat=>{
   const div=document.createElement("div");
   div.className="categoria";
@@ -386,17 +416,32 @@ dados.forEach(cat=>{
         contador.textContent=carrinho.length;
       } else {
         carrinhoFlutuante.style.display="none";
+        modalCarrinho.style.display="none";
       }
     });
   });
 });
 
-// Clique no carrinho abre WhatsApp
+// Clique no carrinho abre lista
 carrinhoFlutuante.addEventListener('click',()=>{
   if(carrinho.length>0){
-    const numero = "5573998443608";
-    const mensagem = encodeURIComponent("Olá, gostaria de adquirir esses produtos: " + carrinho.join(", "));
-    window.open(`https://wa.me/${numero}?text=${mensagem}`, "_blank");
+    modalCarrinho.innerHTML = ""; // limpa
+    carrinho.forEach(item=>{
+      const p = document.createElement('p');
+      p.textContent = "• " + item;
+      modalCarrinho.appendChild(p);
+    });
+    const btnFinalizar = document.createElement('button');
+    btnFinalizar.textContent = "Finalizar Compra";
+    btnFinalizar.addEventListener('click',()=>{
+      const numero = "5573998443608";
+      const mensagem = encodeURIComponent("Olá, gostaria de adquirir esses produtos: " + carrinho.join(", "));
+      window.open(`https://wa.me/${numero}?text=${mensagem}`, "_blank");
+    });
+    modalCarrinho.appendChild(btnFinalizar);
+
+    modalCarrinho.style.display = "flex";
+    modalCarrinho.style.flexDirection = "column";
   }
 });
 
