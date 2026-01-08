@@ -53,8 +53,7 @@ header p{font-size:14px;margin:10px 0;}
   border-radius:14px;
   font-size:13px;
   max-width:420px;
-  margin-left:auto;
-  margin-right:auto;
+  margin:auto;
 }
 
 /* SECTION */
@@ -123,6 +122,7 @@ section{
 }
 
 .produto-info{padding:12px;}
+
 .btn-produto{
   display:block;
   background:#25D366;
@@ -134,34 +134,52 @@ section{
   text-decoration:none;
 }
 
-/* ZOOM */
+/* ===== ZOOM PREMIUM ===== */
 .zoom{
   position:fixed;
   inset:0;
   background:rgba(0,0,0,.85);
-  display:none;
+  backdrop-filter:blur(6px);
+  display:flex;
   align-items:center;
   justify-content:center;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .35s ease;
   z-index:999;
 }
+
+.zoom.ativo{
+  opacity:1;
+  pointer-events:auto;
+}
+
 .zoom img{
   max-width:90%;
   max-height:90%;
+  transform:scale(.85);
+  opacity:0;
+  transition:all .4s ease;
 }
 
-/* BOTÃO FLUTUANTE */
-.whats-fixo{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:#25D366;
+.zoom.ativo img{
+  transform:scale(1);
+  opacity:1;
+}
+
+.zoom .fechar{
+  position:absolute;
+  top:20px;
+  right:25px;
+  font-size:34px;
   color:#fff;
-  padding:14px 18px;
-  border-radius:50px;
+  cursor:pointer;
   font-weight:bold;
-  text-decoration:none;
-  box-shadow:0 0 15px rgba(0,0,0,.4);
-  z-index:999;
+  opacity:.8;
+}
+
+.zoom .fechar:hover{
+  opacity:1;
 }
 
 /* FOOTER */
@@ -218,105 +236,11 @@ const cosmeticos = [
 cosmeticos.forEach(nome=>{
 document.write(`
 <div class="produto">
-  <div class="imagem-produto" onclick="zoom('Cosmeticos/${nome}.jpg')">
+  <div class="imagem-produto" onclick="abrirZoom('Cosmeticos/${nome}.jpg')">
     <img src="Cosmeticos/${nome}.jpg">
   </div>
   <div class="produto-info">
-    <a class="btn-produto" href="https://wa.me/5573998443608?text=Quero%20comprar:%20${nome}">
-      COMPRAR
-    </a>
-  </div>
-</div>
-`);
-});
-</script>
-
-</div>
-</div>
-
-<!-- ACESSÓRIOS -->
-<div class="categoria">
-<h2>😈 ACESSÓRIOS</h2>
-<div class="linha"></div>
-<div class="carrossel">
-
-<script>
-const acessorios = [
-"algemas","anelpeniano","bolinhadepompoar","bolinhatailandesa","bombapeniana",
-"capapeniana","cassetete","chibatacommascara","chicote","cintapeniana","coleira",
-"corda","duchaintima","fantasias","gramposdemamilos","massageador","massageadordepes",
-"mastubadoranus","mastubadoregg","mastubadormasculino","mordaça","penisduplo",
-"penisgrande","penismedio","penisvibrador","pilhas","pluganal","plugescalonado",
-"sugador","testedegravidez","varinhamagica","venda","vibrador","vibradorbullet",
-"vibradorgolfinho","vibradormultivelocidade","vibradorrosa","vibradorrotativo"
-];
-
-acessorios.forEach(nome=>{
-document.write(`
-<div class="produto">
-  <div class="imagem-produto" onclick="zoom('acessorios/${nome}.jpg')">
-    <img src="acessorios/${nome}.jpg">
-  </div>
-  <div class="produto-info">
-    <a class="btn-produto" href="https://wa.me/5573998443608?text=Quero%20comprar:%20${nome}">
-      COMPRAR
-    </a>
-  </div>
-</div>
-`);
-});
-</script>
-
-</div>
-</div>
-
-<!-- JOGOS -->
-<div class="categoria">
-<h2>🎲 JOGOS</h2>
-<div class="linha"></div>
-<div class="carrossel">
-
-<script>
-const jogos = ["baralhoerotico","dadoerotico","raspadinhas","roletas"];
-
-jogos.forEach(nome=>{
-document.write(`
-<div class="produto">
-  <div class="imagem-produto" onclick="zoom('jogos/${nome}.jpg')">
-    <img src="jogos/${nome}.jpg">
-  </div>
-  <div class="produto-info">
-    <a class="btn-produto" href="https://wa.me/5573998443608?text=Quero%20comprar:%20${nome}">
-      COMPRAR
-    </a>
-  </div>
-</div>
-`);
-});
-</script>
-
-</div>
-</div>
-
-<!-- MODA ÍNTIMA -->
-<div class="categoria">
-<h2>👙 MODA ÍNTIMA</h2>
-<div class="linha"></div>
-<div class="carrossel">
-
-<script>
-const modaintima = [
-"calcinhasousadascosta","calcinhasousadasfrente","conjuntos","lingerie","perneira"
-];
-
-modaintima.forEach(nome=>{
-document.write(`
-<div class="produto">
-  <div class="imagem-produto" onclick="zoom('modaintima/${nome}.jpg')">
-    <img src="modaintima/${nome}.jpg">
-  </div>
-  <div class="produto-info">
-    <a class="btn-produto" href="https://wa.me/5573998443608?text=Quero%20comprar:%20${nome}">
+    <a class="btn-produto" href="https://wa.me/5573998443608?text=Gostaria%20de%20comprar%20o%20produto%20${nome}.">
       COMPRAR
     </a>
   </div>
@@ -330,24 +254,29 @@ document.write(`
 
 </section>
 
+<!-- ZOOM -->
 <div class="zoom" id="zoom" onclick="fecharZoom()">
+  <span class="fechar">×</span>
   <img id="zoomImg">
 </div>
 
 <footer>
-© 2026 Sexy Shop Jaguar — Todos os direitos reservados.
+© 2026 Sex Shop Jaguar - Todos os direitos reservados.
 </footer>
 
 <script>
-function zoom(src){
-  document.getElementById('zoom').style.display='flex';
-  document.getElementById('zoomImg').src=src;
+const zoom = document.getElementById('zoom');
+const zoomImg = document.getElementById('zoomImg');
+
+function abrirZoom(src){
+  zoomImg.src = src;
+  zoom.classList.add('ativo');
 }
+
 function fecharZoom(){
-  document.getElementById('zoom').style.display='none';
+  zoom.classList.remove('ativo');
 }
 </script>
 
 </body>
 </html>
-
