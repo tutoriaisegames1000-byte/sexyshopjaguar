@@ -4,454 +4,184 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sexy Shop Jaguar</title>
-<link rel="icon" type="image/png" href="logomarca64x64.png">
 
 <style>
 :root{
-  --roxo:#8a2be2;
-  --rosa:#ff4d8d;
-  --amarelo:#FFD700; /* botão carrinho nos produtos */
-  --carrinho:#DC143C; /* cor do carrinho flutuante */
+  --carrinho:#DC143C;
+  --amarelo:#FFD700;
 }
 
-body{
-  margin:0;
-  font-family:Arial, Helvetica, sans-serif;
-  background:radial-gradient(circle at top,#2a0033,#0b0b0b);
-  color:#fff;
-  position: relative;
-}
-
-/* HEADER */
-header{
-  background:linear-gradient(135deg,var(--roxo),var(--rosa));
-  padding:10px;
-  text-align:center;
-}
-
-header img{max-width:140px;}
-
-.redes{
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  flex-wrap:wrap;
-}
-.redes a{
-  padding:6px 14px;
-  border-radius:20px;
-  font-size:13px;
-  font-weight:bold;
-  color:#fff;
-  text-decoration:none;
-}
-.whatsapp{background:#25D366;}
-.instagram{background:#FF1493;}
-.facebook{background:#1E90FF;}
-
-.info{
-  margin-top:15px;
-  background:rgba(0,0,0,.35);
-  padding:12px;
-  border-radius:14px;
-  font-size:13px;
-  max-width:420px;
-  margin-left:auto;
-  margin-right:auto;
-}
-
-/* SECTION */
-section{
-  max-width:1200px;
-  margin:auto;
-  padding:40px 20px;
-}
-
-.categoria{
-  background:rgba(255,255,255,.05);
-  border-radius:22px;
-  padding:30px 20px;
-  margin-bottom:60px;
-}
-
-.categoria h2{
-  text-align:center;
-  color:var(--rosa);
-  font-size:30px;
-}
-
-.linha{
-  width:90px;
-  height:4px;
-  background:linear-gradient(90deg,var(--roxo),var(--rosa));
-  margin:15px auto 25px;
-  border-radius:10px;
-}
-
-/* CARROSSEL */
-.carrossel{
-  display:flex;
-  gap:16px;
-  overflow-x:auto;
-  scroll-snap-type:x mandatory;
-  padding-bottom:8px;
-}
-
-.carrossel::-webkit-scrollbar{
-  height:6px;
-}
-.carrossel::-webkit-scrollbar-thumb{
-  background:var(--rosa);
-  border-radius:10px;
-}
-.carrossel::-webkit-scrollbar-track{
-  background:rgba(255,255,255,.15);
-  border-radius:10px;
-}
-
-/* PRODUTO */
-.produto{
-  min-width:220px;
-  background:#1a1a1a;
-  border-radius:18px;
-  overflow:hidden;
-  scroll-snap-align:start;
-}
-
-.imagem-produto{
-  aspect-ratio:1/1;
-  background:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:zoom-in;
-}
-
-.imagem-produto img{
-  max-width:100%;
-  max-height:100%;
-  object-fit:contain;
-}
-
-.produto-info{padding:12px;}
-.btn-produto{
-  display:block;
-  background:#25D366; /* Verde original */
-  padding:12px;
-  border-radius:12px;
-  text-align:center;
-  color:#fff;
-  font-weight:bold;
-  text-decoration:none;
-  cursor:pointer;
-  width:100%; /* Mantém tamanho do botão */
-  box-sizing:border-box;
-  transition:0.3s;
-}
-
-/* CARRINHO FLUTUANTE */
+/* ================= CARRINHO FLUTUANTE ================= */
 #carrinho-flutuante{
   position:fixed;
   bottom:20px;
   right:20px;
   background:var(--carrinho);
   color:#fff;
-  font-weight:bold;
-  padding:12px 16px;
+  padding:14px 18px;
   border-radius:50px;
   cursor:pointer;
-  display:none; /* inicia oculto */
-  z-index:1000;
-  display:flex;
+  display:none;
   align-items:center;
   gap:8px;
+  font-weight:bold;
+  z-index:1000;
+  transition:transform .2s;
 }
 
-#carrinho-flutuante span{
+#carrinho-flutuante.pop{
+  transform:scale(1.25);
+}
+
+#contador{
   background:#fff;
   color:var(--carrinho);
   border-radius:50%;
-  padding:2px 6px;
-  font-size:14px;
-  font-weight:bold;
+  padding:2px 7px;
 }
 
-/* MODAL CARRINHO */
+/* ================= MODAL DO CARRINHO ================= */
 #modal-carrinho{
   position:fixed;
-  bottom:70px;
+  bottom:90px;
   right:20px;
   background:#111;
   color:#fff;
-  padding:12px 16px;
-  border-radius:12px;
-  max-width:300px;
+  padding:14px;
+  border-radius:14px;
+  width:260px;
   display:none;
   flex-direction:column;
-  gap:8px;
+  gap:6px;
   z-index:1000;
-  box-shadow:0 0 10px #000;
+  box-shadow:0 0 15px #000;
 }
-#modal-carrinho button{
-  background:#FFD700;
-  color:#000;
+
+#modal-carrinho p{
+  margin:4px 0;
+  font-size:14px;
+}
+
+#modal-carrinho button.finalizar{
+  background:var(--amarelo);
   border:none;
   border-radius:12px;
   padding:10px;
   font-weight:bold;
   cursor:pointer;
+  margin-top:8px;
 }
 
-/* ZOOM */
-.zoom{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.70);
-  display:none;
+#fechar-carrinho{
+  position:absolute;
+  top:-12px;
+  right:-12px;
+  background:#ff0000;
+  color:#fff;
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  display:flex;
   align-items:center;
   justify-content:center;
-  z-index:999;
-}
-
-.zoom img{
-  max-width:90%;
-  max-height:90%;
-}
-
-.fechar-zoom{
-  position:absolute;
-  top:20px;
-  right:25px;
-  font-size:32px;
   font-weight:bold;
   cursor:pointer;
-  z-index:1000;
-  color:#fff;
-}
-
-/* FOOTER */
-footer{
-  background:#111;
-  padding:35px 20px;
-  font-size:14px;
-}
-
-.footer-grid{
-  max-width:1200px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:25px;
-  text-align:center;
-}
-
-.footer-box h3{
-  color:var(--rosa);
-  margin-bottom:6px;
-  font-size:15px;
-}
-
-.footer-box a{
-  color:#fff;
-  text-decoration:none;
-  font-weight:bold;
-}
-
-.footer-copy{
-  margin-top:30px;
-  text-align:center;
-  font-size:13px;
-  opacity:.8;
-}
-
-@media (max-width:768px){
-  .footer-grid{
-    grid-template-columns:1fr;
-    gap:18px;
-  }
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <img src="imagens/logopng.png" width="100" height="100">
-
-  <div class="redes">
-    <a class="whatsapp" href="https://wa.me/5573998443608">WHATSAPP</a>
-    <a class="instagram" href="https://www.instagram.com/sexyshopjaguar">INSTAGRAM</a>
-    <a class="facebook" href="https://www.facebook.com/thais.santos.459169/">FACEBOOK</a>
-  </div>
-
-  <div class="info">
-    🔍 Arraste para o lado para ver os produtos<br>
-    Toque na imagem para ampliar
-  </div>
-</header>
-
-<section id="categorias"></section>
-
 <!-- CARRINHO FLUTUANTE -->
 <div id="carrinho-flutuante">
   🛒 <span id="contador"></span>
 </div>
 
-<!-- MODAL CARRINHO -->
-<div id="modal-carrinho"></div>
-
-<!-- ZOOM FUNCIONAL -->
-<div class="zoom" id="zoom" onclick="fecharZoom()">
-  <span class="fechar-zoom" onclick="fecharZoom()">×</span>
-  <img id="zoomImg" onclick="event.stopPropagation()">
+<!-- MODAL -->
+<div id="modal-carrinho">
+  <div id="fechar-carrinho">✕</div>
 </div>
 
-<footer>
-  <div class="footer-grid">
-
-    <div class="footer-box">
-      <h3>REGIÕES ATENDIDAS:</h3>
-      Jaguaquara • Baixão De Ipiúna • Itiúba • Entrocamento • Itiruçu • Itaquara • Santa Inês • Lagedo do Tabocal
-    </div>
-
-    <div class="footer-box">
-      <h3>HORÁRIO DE ATENDIMENTO:</h3>
-      Segunda a Domingo das 8h às 22hs.
-    </div>
-
-    <div class="footer-box">
-      <h3>FORMAS DE PAGAMENTO:</h3>
-      Dinheiro, Pix, Cartão Crédito/Débito.
-    </div>
-
-    <div class="footer-box">
-      <h3>REDES SOCIAIS:</h3>
-      <a href="https://www.instagram.com/sexyshopjaguar">Instagram: @sexyshopjaguar</a><br>
-      <a href="https://www.facebook.com/profile.php?id=61566510735510">Facebook: Sex Shop Jaguar</a><br>
-      <a href="https://wa.me/5573998443608">Whatsapp: (73) 99844-3608</a>
-    </div>
-
-  </div>
-
-  <div class="footer-copy">
-    © 2026 Sexy Shop Jaguar — Todos os direitos reservados.
-  </div>
-</footer>
-
 <script>
-const dados = [
-  {titulo:"💋 COSMÉTICOS", pasta:"cosmeticos", itens:[
-    "Apertadinha","Batom Pênis","Bolinhas Explosivas","Creme Japonês",
-    "Dessensibilizante Anal","Energético Estimulante","Excitante Masculino","Garganta Profunda",
-    "Gel Anestésico","Gel Corporal","Gel Eletrizante","Gel Retardante",
-    "Gel Térmico","Gel Treme Treme","Gel Volumão","Gotas da Paixão",
-    "Hidratante Blow Girl","Pomada Excitante","Lambe Lambe","Laminas",
-    "Lubrificante Comestível","Lubrificante Love Lub","Lubrificante Rilex",
-    "Melzinho do Amor","Óleo de Massagem","Óleo de Massagem Índia e Maldivas","Perfume Afrodisíaco",
-    "Perfume de Calcinha","Perfume de Cueca","Pirula do Dia Seguinte","Pó da Bruxa",
-    "Preservativos Especiais","Preservativo Rilex","Sabonete Feminino",
-    "Sabonete Masculino","Tadalafila","Vela Aromatizada","Vela de Massagem","Viagra"
-  ]},
-  {titulo:"🔥 ACESSÓRIOS", pasta:"acessorios", itens:[
-    "Algemas","Anel Peniano","Bolinha de Pompoar","Bolinha Tailandesa","Bomba Peniana",
-    "Capa Peniana","Cassetete","Chibata e Máscara","Chicote","Cinta Peniana","Coleira",
-    "Corda","Ducha Íntima","Fantasias","Grampos de Mamilos","Massageador","Massageador De Pés",
-    "Mastubador Anus","Mastubador Egg","Mastubador Masculino","Mordaça","Pênis Duplo",
-    "Pênis Grande","Pênis Médio","Pênis Com Vibrador","Pilhas","Plug Anal","Plug Escalonado",
-    "Sugador Clitoriano","Teste de Gravidez","Varinha Mágica","Venda","Vibrador Batom","Vibrador Bullet",
-    "Vibrador Golfinho","Vibrador Multivelocidades","Vibrador Rosa","Vibrador Rotativo"
-  ]},
-  {titulo:"🎲 JOGOS", pasta:"jogos", itens:[
-    "Baralho Erótico","Dado Erótico","Raspadinhas","Roletas"
-  ]},
-  {titulo:"👙 MODA ÍNTIMA", pasta:"modaintima", itens:[
-    "Calcinha Ousada","Calcinhas Ousadas","Conjuntos","Lingerie","Perneira"
-  ]}
-];
-
-const area=document.getElementById("categorias");
 const carrinhoFlutuante = document.getElementById("carrinho-flutuante");
 const contador = document.getElementById("contador");
 const modalCarrinho = document.getElementById("modal-carrinho");
+const fecharCarrinho = document.getElementById("fechar-carrinho");
+
 let carrinho = [];
+let aberto = false;
 
-// Inicia oculto
-carrinhoFlutuante.style.display = "none";
+/* ================= FUNÇÕES ================= */
 
-// Renderiza produtos
-dados.forEach(cat=>{
-  const div=document.createElement("div");
-  div.className="categoria";
-  div.innerHTML=`<h2>${cat.titulo}</h2><div class="linha"></div><div class="carrossel"></div>`;
-  const car=div.querySelector(".carrossel");
-  area.appendChild(div);
+function atualizarCarrinho(){
+  if(carrinho.length > 0){
+    carrinhoFlutuante.style.display="flex";
+    contador.textContent = carrinho.length;
 
-  cat.itens.forEach(n=>{
-    const produtoDiv = document.createElement("div");
-    produtoDiv.className="produto";
-    produtoDiv.innerHTML = `
-      <div class="imagem-produto" onclick="abrirZoom('${cat.pasta}/${n}.jpg')">
-        <img src="${cat.pasta}/${n}.jpg" loading="lazy" alt="${n}">
-      </div>
-      <div class="produto-info">
-        <button class="btn-produto">COMPRAR</button>
-      </div>`;
-    car.appendChild(produtoDiv);
+    // animação POP
+    carrinhoFlutuante.classList.add("pop");
+    setTimeout(()=>carrinhoFlutuante.classList.remove("pop"),200);
+  }else{
+    carrinhoFlutuante.style.display="none";
+    modalCarrinho.style.display="none";
+    aberto = false;
+  }
+}
 
-    const botao = produtoDiv.querySelector(".btn-produto");
-    botao.addEventListener('click',()=>{
-      const index = carrinho.indexOf(n);
-      if(index === -1){
-        carrinho.push(n);
-        botao.style.background="#FFD700"; // amarelo
-        botao.textContent="CARRINHO";
-      } else {
-        carrinho.splice(index,1);
-        botao.style.background="#25D366"; // verde original
-        botao.textContent="COMPRAR";
-      }
-
-      if(carrinho.length>0){
-        carrinhoFlutuante.style.display="flex";
-        contador.textContent=carrinho.length;
-      } else {
-        carrinhoFlutuante.style.display="none";
-        modalCarrinho.style.display="none";
-      }
+function abrirOuFecharCarrinho(){
+  if(!aberto){
+    modalCarrinho.innerHTML = '<div id="fechar-carrinho">✕</div>';
+    carrinho.forEach(p=>{
+      const item = document.createElement("p");
+      item.textContent = "• " + p;
+      modalCarrinho.appendChild(item);
     });
-  });
-});
 
-// Clique no carrinho abre lista
-carrinhoFlutuante.addEventListener('click',()=>{
-  if(carrinho.length>0){
-    modalCarrinho.innerHTML = ""; // limpa
-    carrinho.forEach(item=>{
-      const p = document.createElement('p');
-      p.textContent = "• " + item;
-      modalCarrinho.appendChild(p);
-    });
-    const btnFinalizar = document.createElement('button');
-    btnFinalizar.textContent = "Finalizar Compra";
-    btnFinalizar.addEventListener('click',()=>{
-      const numero = "5573998443608";
-      const mensagem = encodeURIComponent("Olá, gostaria de adquirir esses produtos: " + carrinho.join(", "));
-      window.open(`https://wa.me/${numero}?text=${mensagem}`, "_blank");
-    });
-    modalCarrinho.appendChild(btnFinalizar);
+    const btn = document.createElement("button");
+    btn.className="finalizar";
+    btn.textContent="Finalizar Compra";
+    btn.onclick = ()=>{
+      const numero="5573998443608";
+      const msg = encodeURIComponent(
+        "Olá gostaria de adquirir esses produtos: " + carrinho.join(", ")
+      );
+      window.open(`https://wa.me/${numero}?text=${msg}`,"_blank");
+    };
 
-    modalCarrinho.style.display = "flex";
-    modalCarrinho.style.flexDirection = "column";
+    modalCarrinho.appendChild(btn);
+    modalCarrinho.style.display="flex";
+    aberto = true;
+  }else{
+    modalCarrinho.style.display="none";
+    aberto = false;
+  }
+}
+
+/* ================= EVENTOS ================= */
+
+carrinhoFlutuante.onclick = abrirOuFecharCarrinho;
+
+document.addEventListener("click", e=>{
+  if(e.target.id === "fechar-carrinho"){
+    modalCarrinho.style.display="none";
+    aberto=false;
   }
 });
 
-function abrirZoom(src){
-  zoomImg.src = src;
-  zoom.style.display = "flex";
-}
-
-function fecharZoom(){
-  zoom.style.display = "none";
+/* ================= EXEMPLO DE BOTÃO PRODUTO ================= */
+/* use isso nos botões COMPRAR */
+function adicionarProduto(nome, botao){
+  const i = carrinho.indexOf(nome);
+  if(i === -1){
+    carrinho.push(nome);
+    botao.style.background = "var(--amarelo)";
+    botao.textContent = "CARRINHO";
+  }else{
+    carrinho.splice(i,1);
+    botao.style.background = "#25D366";
+    botao.textContent = "COMPRAR";
+  }
+  atualizarCarrinho();
 }
 </script>
 
