@@ -22,7 +22,7 @@ body{
 /* HEADER */
 header{
   background:linear-gradient(135deg,var(--roxo),var(--rosa));
-  padding:10px 10px 10px 10px; /* 10px topo, 10px embaixo, 10px laterais */
+  padding:10px 10px 10px 10px;
   text-align:center;
 }
 
@@ -216,7 +216,7 @@ footer{
 <body>
 
 <header>
-  <img src="imagens/fotos/logopng.png" width="100" height="100">
+  <img src="imagens/fotos/logopng.png" width="100" height="100" loading="lazy">
 
   <div class="redes">
     <a class="whatsapp" href="https://wa.me/5573998443608">WHATSAPP</a>
@@ -271,6 +271,7 @@ footer{
 </footer>
 
 <script>
+// DADOS DOS PRODUTOS
 const dados = [
   {titulo:"💋 COSMÉTICOS", pasta:"Cosmeticos", itens:[
     "apertadinha","batom penis","bolinhasexplosivas","cremejapones",
@@ -303,27 +304,60 @@ const dados = [
 
 const area=document.getElementById("categorias");
 
+// FUNÇÃO PARA CRIAR CARROSSEL VIRTUAL
 dados.forEach(cat=>{
   const div=document.createElement("div");
   div.className="categoria";
   div.innerHTML=`<h2>${cat.titulo}</h2><div class="linha"></div><div class="carrossel"></div>`;
   const car=div.querySelector(".carrossel");
+  area.appendChild(div);
 
-  cat.itens.forEach(n=>{
-    car.innerHTML+=`
-    <div class="produto">
-      <div class="imagem-produto" onclick="abrirZoom('${cat.pasta}/${n}.jpg')">
-        <img src="${cat.pasta}/${n}.jpg" loading="lazy">
-      </div>
-      <div class="produto-info">
-        <a class="btn-produto" href="https://wa.me/5573998443608?text=Gostaria de comprar o produto ${n}">
-          COMPRAR
-        </a>
-      </div>
-    </div>`;
+  // Renderiza apenas os 5 primeiros produtos, o resto carrega quando rolar
+  const produtosVisiveis = 5;
+  cat.itens.forEach((n,i)=>{
+    const produtoDiv = document.createElement("div");
+    produtoDiv.className="produto";
+    if(i<produtosVisiveis){
+      produtoDiv.innerHTML = `
+        <div class="imagem-produto" onclick="abrirZoom('${cat.pasta}/${n}.jpg')">
+          <picture>
+            <source srcset="${cat.pasta}/${n}.webp" type="image/webp">
+            <img src="${cat.pasta}/${n}.jpg" loading="lazy" alt="${n}">
+          </picture>
+        </div>
+        <div class="produto-info">
+          <a class="btn-produto" href="https://wa.me/5573998443608?text=Gostaria de comprar o produto ${n}">
+            COMPRAR
+          </a>
+        </div>`;
+    } else {
+      produtoDiv.dataset.produto = n; // só guarda o nome
+    }
+    car.appendChild(produtoDiv);
   });
 
-  area.appendChild(div);
+  // Lazy load adicional ao rolar
+  car.addEventListener('scroll',()=>{
+    const filhos = car.querySelectorAll('.produto');
+    filhos.forEach(f=>{
+      if(f.dataset.produto && f.getBoundingClientRect().right < window.innerWidth + 100){
+        const n = f.dataset.produto;
+        f.innerHTML = `
+          <div class="imagem-produto" onclick="abrirZoom('${cat.pasta}/${n}.jpg')">
+            <picture>
+              <source srcset="${cat.pasta}/${n}.webp" type="image/webp">
+              <img src="${cat.pasta}/${n}.jpg" loading="lazy" alt="${n}">
+            </picture>
+          </div>
+          <div class="produto-info">
+            <a class="btn-produto" href="https://wa.me/5573998443608?text=Gostaria de comprar o produto ${n}">
+              COMPRAR
+            </a>
+          </div>`;
+        delete f.dataset.produto;
+      }
+    });
+  });
 });
 
 function abrirZoom(src){
@@ -338,13 +372,3 @@ function fecharZoom(){
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
