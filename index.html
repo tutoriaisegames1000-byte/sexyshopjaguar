@@ -10,7 +10,8 @@
 :root{
   --roxo:#8a2be2;
   --rosa:#ff4d8d;
-  --amarelo:#FFD700; /* Amarelo para botão carrinho */
+  --amarelo:#FFD700; /* botão carrinho nos produtos */
+  --carrinho:#DC143C; /* cor do carrinho flutuante */
 }
 
 body{
@@ -143,7 +144,7 @@ section{
   font-weight:bold;
   text-decoration:none;
   cursor:pointer;
-  width:100%; /* Mantém o tamanho do botão igual */
+  width:100%; /* Mantém tamanho do botão */
   box-sizing:border-box;
   transition:0.3s;
 }
@@ -153,13 +154,13 @@ section{
   position:fixed;
   bottom:20px;
   right:20px;
-  background:var(--amarelo);
-  color:#000;
+  background:var(--carrinho);
+  color:#fff;
   font-weight:bold;
   padding:12px 16px;
   border-radius:50px;
   cursor:pointer;
-  display:none;
+  display:none; /* inicia oculto */
   z-index:1000;
   display:flex;
   align-items:center;
@@ -167,8 +168,8 @@ section{
 }
 
 #carrinho-flutuante span{
-  background:#000;
-  color:var(--amarelo);
+  background:#fff;
+  color:var(--carrinho);
   border-radius:50%;
   padding:2px 6px;
   font-size:14px;
@@ -267,7 +268,7 @@ footer{
 
 <!-- CARRINHO FLUTUANTE -->
 <div id="carrinho-flutuante">
-  🛒 <span id="contador">0</span>
+  🛒 <span id="contador"></span>
 </div>
 
 <!-- ZOOM FUNCIONAL -->
@@ -344,6 +345,9 @@ const carrinhoFlutuante = document.getElementById("carrinho-flutuante");
 const contador = document.getElementById("contador");
 let carrinho = [];
 
+// Inicia oculto
+carrinhoFlutuante.style.display = "none";
+
 // Renderização dos produtos
 dados.forEach(cat=>{
   const div=document.createElement("div");
@@ -373,7 +377,7 @@ dados.forEach(cat=>{
         botao.textContent="CARRINHO";
       } else {
         carrinho.splice(index,1);
-        botao.style.background="#25D366";
+        botao.style.background="#25D366"; // verde original
         botao.textContent="COMPRAR";
       }
 
