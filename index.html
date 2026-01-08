@@ -26,7 +26,6 @@ header{
 }
 
 header img{max-width:140px;}
-header p{font-size:14px;margin:10px 0;}
 
 .redes{
   display:flex;
@@ -92,11 +91,6 @@ section{
   overflow-x:auto;
   scroll-snap-type:x mandatory;
 }
-.carrossel::-webkit-scrollbar{height:6px;}
-.carrossel::-webkit-scrollbar-thumb{
-  background:var(--rosa);
-  border-radius:10px;
-}
 
 /* PRODUTO */
 .produto{
@@ -104,7 +98,6 @@ section{
   background:#1a1a1a;
   border-radius:18px;
   overflow:hidden;
-  scroll-snap-align:start;
 }
 
 .imagem-produto{
@@ -148,14 +141,48 @@ section{
   max-width:90%;
   max-height:90%;
 }
+.fechar-zoom{
+  position:absolute;
+  top:20px;
+  right:25px;
+  font-size:32px;
+  font-weight:bold;
+  cursor:pointer;
+}
 
 /* FOOTER */
 footer{
   background:#111;
+  padding:35px 20px;
+  font-size:14px;
+}
+
+.footer-grid{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:25px;
   text-align:center;
-  padding:18px;
+}
+
+.footer-box h3{
+  color:var(--rosa);
+  margin-bottom:6px;
+  font-size:15px;
+}
+
+.footer-box a{
+  color:#fff;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+.footer-copy{
+  margin-top:30px;
+  text-align:center;
   font-size:13px;
-  opacity:.7;
+  opacity:.8;
 }
 </style>
 </head>
@@ -163,8 +190,8 @@ footer{
 <body>
 
 <header>
-  <img src="imagens/fotos/logopng.png" loading="eager" decoding="async" width="100" height="100">
-  <p></p>
+  <img src="imagens/fotos/logopng.png" width="100" height="100">
+
   <div class="redes">
     <a class="whatsapp" href="https://wa.me/5573998443608">WHATSAPP</a>
     <a class="instagram" href="https://www.instagram.com/sexyshopjaguar">INSTAGRAM</a>
@@ -177,144 +204,10 @@ footer{
   </div>
 </header>
 
-<section>
-
-<!-- COSMÉTICOS -->
-<div class="categoria">
-<h2>💄 COSMÉTICOS</h2>
-<div class="linha"></div>
-<div class="carrossel">
-
-<script>
-const cosmeticos = [
-"apertadinha","batom penis","bolinhasexplosivas","cremejapones",
-"dessensibilizante","enegertico","excitantemasculino","gargantaprofunda",
-"gelanestesico","gelcorporal","geleletrizante","gelretardante",
-"geltermico","geltremetreme","gelvolumao","gotasdapaixao",
-"hidratanteblow","japoneisinha","lambelambe","laminas",
-"lubrificantecomestivel","lubrificantelovelub","lubrificanterilex",
-"melzinho","oleodemassagem","oleodemassagemperfume","perfumeafrodisiaco",
-"perfumedecalcinha","perfumedecueca","piruladiaseguinte","podabruxa",
-"preservativoespeciais","preservativorilex","sabonetefeminino",
-"sabonetemasculino","tadalafila","velaaromatizada","velademasagem","viagra"
-];
-
-cosmeticos.forEach(nome=>{
-document.write(`
-<div class="produto">
-  <div class="imagem-produto" onclick="zoom('Cosmeticos/${nome}.jpg')">
-    <img src="Cosmeticos/${nome}.jpg" loading="lazy" decoding="async" width="400" height="400">
-  </div>
-  <div class="produto-info">
-    <a class="btn-produto" href="https://wa.me/5573998443608?text=Gostaria de comprar o produto: {nome}">
-      COMPRAR
-    </a>
-  </div>
-</div>
-`);
-});
-</script>
-
-</div>
-</div>
-
-<!-- ACESSÓRIOS -->
-<div class="categoria">
-<h2>😈 ACESSÓRIOS</h2>
-<div class="linha"></div>
-<div class="carrossel">
-
-<script>
-const acessorios = [
-"algemas","anelpeniano","bolinhadepompoar","bolinhatailandesa","bombapeniana",
-"capapeniana","cassetete","chibatacommascara","chicote","cintapeniana","coleira",
-"corda","duchaintima","fantasias","gramposdemamilos","massageador","massageadordepes",
-"mastubadoranus","mastubadoregg","mastubadormasculino","mordaça","penisduplo",
-"penisgrande","penismedio","penisvibrador","pilhas","pluganal","plugescalonado",
-"sugador","testedegravidez","varinhamagica","venda","vibrador","vibradorbullet",
-"vibradorgolfinho","vibradormultivelocidade","vibradorrosa","vibradorrotativo"
-];
-
-acessorios.forEach(nome=>{
-document.write(`
-<div class="produto">
-  <div class="imagem-produto" onclick="zoom('acessorios/${nome}.jpg')">
-    <img src="acessorios/${nome}.jpg" loading="lazy" decoding="async" width="400" height="400">
-  </div>
-  <div class="produto-info">
-    <a class="btn-produto" href="https://wa.me/5573998443608?text=Gostaria de comprar o produto {nome}">
-      COMPRAR
-    </a>
-  </div>
-</div>
-`);
-});
-</script>
-
-</div>
-</div>
-
-<!-- JOGOS -->
-<div class="categoria">
-<h2>🎲 JOGOS</h2>
-<div class="linha"></div>
-<div class="carrossel">
-
-<script>
-const jogos = ["baralhoerotico","dadoerotico","raspadinhas","roletas"];
-
-jogos.forEach(nome=>{
-document.write(`
-<div class="produto">
-  <div class="imagem-produto" onclick="zoom('jogos/${nome}.jpg')">
-    <img src="jogos/${nome}.jpg" loading="lazy" decoding="async" width="400" height="400">
-  </div>
-  <div class="produto-info">
-    <a class="btn-produto" href="https://wa.me/5573998443608?text=Gostaria de comprar o produto: {nome}">
-      COMPRAR
-    </a>
-  </div>
-</div>
-`);
-});
-</script>
-
-</div>
-</div>
-
-<!-- MODA ÍNTIMA -->
-<div class="categoria">
-<h2>👙 MODA ÍNTIMA</h2>
-<div class="linha"></div>
-<div class="carrossel">
-
-<script>
-const modaintima = [
-"calcinhasousadascosta","calcinhasousadasfrente","conjuntos","lingerie","perneira"
-];
-
-modaintima.forEach(nome=>{
-document.write(`
-<div class="produto">
-  <div class="imagem-produto" onclick="zoom('modaintima/${nome}.jpg')">
-    <img src="modaintima/${nome}.jpg" loading="lazy" decoding="async" width="400" height="400">
-  </div>
-  <div class="produto-info">
-    <a class="btn-produto" href="https://wa.me/5573998443608?text=Gostaria de comprar o produto: {nome}">
-      COMPRAR
-    </a>
-  </div>
-</div>
-`);
-});
-</script>
-
-</div>
-</div>
-
-</section>
+<section id="categorias"></section>
 
 <div class="zoom" id="zoom" onclick="fecharZoom()">
+  <span class="fechar-zoom" onclick="fecharZoom()">×</span>
   <img id="zoomImg">
 </div>
 
@@ -323,11 +216,11 @@ document.write(`
 
     <div class="footer-box">
       <h3>REGIÕES ATENDIDAS:</h3>
-      Jaguaquara • Baixão De Ipiúna • Itiúba • Entrocamento • Itiruçu • Itaquara • Santa Inês •  Lagedo do Tabocal.
+      Jaguaquara • Baixão De Ipiúna • Itiúba • Entrocamento • Itiruçu • Itaquara • Santa Inês • Lagedo do Tabocal
     </div>
 
     <div class="footer-box">
-      <h3>Horário de atendimento:</h3>
+      <h3>HORÁRIO DE ATENDIMENTO:</h3>
       Segunda a Domingo das 8h às 22hs.
     </div>
 
@@ -337,10 +230,10 @@ document.write(`
     </div>
 
     <div class="footer-box">
-      <h3>Redes Sociais:</h3>
-      Instagram: @sexyshopjaguar<br>
-      Facebook: Sex Shop Jaguar
-      Whatsapp: (73) 99844-3608
+      <h3>REDES SOCIAIS:</h3>
+      <a href="https://www.instagram.com/sexyshopjaguar">Instagram: @sexyshopjaguar</a><br>
+      <a href="https://www.facebook.com/profile.php?id=61566510735510">Facebook: Sex Shop Jaguar</a><br>
+      <a href="https://wa.me/5573998443608">Whatsapp: (73) 99844-3608</a>
     </div>
 
   </div>
@@ -351,16 +244,69 @@ document.write(`
 </footer>
 
 <script>
+const dados = [
+  {titulo:"💄 COSMÉTICOS", pasta:"Cosmeticos", itens:[
+    "apertadinha","batom penis","bolinhasexplosivas","cremejapones",
+    "dessensibilizante","enegertico","excitantemasculino","gargantaprofunda",
+    "gelanestesico","gelcorporal","geleletrizante","gelretardante",
+    "geltermico","geltremetreme","gelvolumao","gotasdapaixao",
+    "hidratanteblow","japoneisinha","lambelambe","laminas",
+    "lubrificantecomestivel","lubrificantelovelub","lubrificanterilex",
+    "melzinho","oleodemassagem","oleodemassagemperfume","perfumeafrodisiaco",
+    "perfumedecalcinha","perfumedecueca","piruladiaseguinte","podabruxa",
+    "preservativoespeciais","preservativorilex","sabonetefeminino",
+    "sabonetemasculino","tadalafila","velaaromatizada","velademasagem","viagra"
+  ]},
+  {titulo:"😈 ACESSÓRIOS", pasta:"acessorios", itens:[
+    "algemas","anelpeniano","bolinhadepompoar","bolinhatailandesa","bombapeniana",
+    "capapeniana","cassetete","chibatacommascara","chicote","cintapeniana","coleira",
+    "corda","duchaintima","fantasias","gramposdemamilos","massageador","massageadordepes",
+    "mastubadoranus","mastubadoregg","mastubadormasculino","mordaça","penisduplo",
+    "penisgrande","penismedio","penisvibrador","pilhas","pluganal","plugescalonado",
+    "sugador","testedegravidez","varinhamagica","venda","vibrador","vibradorbullet",
+    "vibradorgolfinho","vibradormultivelocidade","vibradorrosa","vibradorrotativo"
+  ]},
+  {titulo:"🎲 JOGOS", pasta:"jogos", itens:[
+    "baralhoerotico","dadoerotico","raspadinhas","roletas"
+  ]},
+  {titulo:"👙 MODA ÍNTIMA", pasta:"modaintima", itens:[
+    "calcinhasousadascosta","calcinhasousadasfrente","conjuntos","lingerie","perneira"
+  ]}
+];
+
+const area=document.getElementById("categorias");
+
+dados.forEach(cat=>{
+  const div=document.createElement("div");
+  div.className="categoria";
+  div.innerHTML=`<h2>${cat.titulo}</h2><div class="linha"></div><div class="carrossel"></div>`;
+  const car=div.querySelector(".carrossel");
+
+  cat.itens.forEach(n=>{
+    car.innerHTML+=`
+    <div class="produto">
+      <div class="imagem-produto" onclick="zoom('${cat.pasta}/${n}.jpg')">
+        <img src="${cat.pasta}/${n}.jpg" loading="lazy">
+      </div>
+      <div class="produto-info">
+        <a class="btn-produto" href="https://wa.me/5573998443608?text=Gostaria de comprar o produto: ${n}">
+          COMPRAR
+        </a>
+      </div>
+    </div>`;
+  });
+
+  area.appendChild(div);
+});
+
 function zoom(src){
-  document.getElementById('zoom').style.display='flex';
-  document.getElementById('zoomImg').src=src;
+  zoomImg.src=src;
+  zoom.style.display="flex";
 }
 function fecharZoom(){
-  document.getElementById('zoom').style.display='none';
+  zoom.style.display="none";
 }
 </script>
 
 </body>
 </html>
-
-
