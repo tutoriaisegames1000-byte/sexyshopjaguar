@@ -151,10 +151,12 @@ section{
   justify-content:center;
   z-index:999;
 }
+
 .zoom img{
   max-width:90%;
   max-height:90%;
 }
+
 .fechar-zoom{
   position:absolute;
   top:20px;
@@ -162,6 +164,8 @@ section{
   font-size:32px;
   font-weight:bold;
   cursor:pointer;
+  z-index:1000;
+  color:#fff;
 }
 
 /* FOOTER */
@@ -199,7 +203,6 @@ footer{
   opacity:.8;
 }
 
-/* MOBILE FOOTER */
 @media (max-width:768px){
   .footer-grid{
     grid-template-columns:1fr;
@@ -228,9 +231,10 @@ footer{
 
 <section id="categorias"></section>
 
+<!-- ZOOM FUNCIONAL -->
 <div class="zoom" id="zoom" onclick="fecharZoom()">
   <span class="fechar-zoom" onclick="fecharZoom()">×</span>
-  <img id="zoomImg">
+  <img id="zoomImg" onclick="event.stopPropagation()">
 </div>
 
 <footer>
@@ -307,7 +311,7 @@ dados.forEach(cat=>{
   cat.itens.forEach(n=>{
     car.innerHTML+=`
     <div class="produto">
-      <div class="imagem-produto" onclick="zoom('${cat.pasta}/${n}.jpg')">
+      <div class="imagem-produto" onclick="abrirZoom('${cat.pasta}/${n}.jpg')">
         <img src="${cat.pasta}/${n}.jpg" loading="lazy">
       </div>
       <div class="produto-info">
@@ -321,12 +325,13 @@ dados.forEach(cat=>{
   area.appendChild(div);
 });
 
-function zoom(src){
-  zoomImg.src=src;
-  zoom.style.display="flex";
+function abrirZoom(src){
+  zoomImg.src = src;
+  zoom.style.display = "flex";
 }
+
 function fecharZoom(){
-  zoom.style.display="none";
+  zoom.style.display = "none";
 }
 </script>
 
