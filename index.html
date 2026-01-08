@@ -92,17 +92,13 @@ section{
   scroll-snap-type:x mandatory;
   padding-bottom:8px;
 }
-
-.carrossel::-webkit-scrollbar{
-  height:6px;
-}
+.carrossel::-webkit-scrollbar{height:6px;}
 .carrossel::-webkit-scrollbar-thumb{
   background:var(--rosa);
   border-radius:10px;
 }
 .carrossel::-webkit-scrollbar-track{
   background:rgba(255,255,255,.15);
-  border-radius:10px;
 }
 
 /* PRODUTO */
@@ -145,7 +141,7 @@ section{
 .zoom{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.85);
+  background:rgba(0,0,0,.65); /* MAIS CLARO */
   display:none;
   align-items:center;
   justify-content:center;
@@ -164,7 +160,6 @@ section{
   font-size:32px;
   font-weight:bold;
   cursor:pointer;
-  z-index:1000;
   color:#fff;
 }
 
@@ -203,11 +198,8 @@ footer{
   opacity:.8;
 }
 
-@media (max-width:768px){
-  .footer-grid{
-    grid-template-columns:1fr;
-    gap:18px;
-  }
+@media(max-width:768px){
+  .footer-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -231,7 +223,6 @@ footer{
 
 <section id="categorias"></section>
 
-<!-- ZOOM FUNCIONAL -->
 <div class="zoom" id="zoom" onclick="fecharZoom()">
   <span class="fechar-zoom" onclick="fecharZoom()">×</span>
   <img id="zoomImg" onclick="event.stopPropagation()">
@@ -243,97 +234,3 @@ footer{
     <div class="footer-box">
       <h3>REGIÕES ATENDIDAS:</h3>
       Jaguaquara • Baixão De Ipiúna • Itiúba • Entrocamento • Itiruçu • Itaquara • Santa Inês • Lagedo do Tabocal
-    </div>
-
-    <div class="footer-box">
-      <h3>HORÁRIO DE ATENDIMENTO:</h3>
-      Segunda a Domingo das 8h às 22hs.
-    </div>
-
-    <div class="footer-box">
-      <h3>FORMAS DE PAGAMENTO:</h3>
-      Dinheiro, Pix, Cartão Crédito/Débito.
-    </div>
-
-    <div class="footer-box">
-      <h3>REDES SOCIAIS:</h3>
-      <a href="https://www.instagram.com/sexyshopjaguar">Instagram: @sexyshopjaguar</a><br>
-      <a href="https://www.facebook.com/profile.php?id=61566510735510">Facebook: Sex Shop Jaguar</a><br>
-      <a href="https://wa.me/5573998443608">Whatsapp: (73) 99844-3608</a>
-    </div>
-
-  </div>
-
-  <div class="footer-copy">
-    © 2026 Sexy Shop Jaguar — Todos os direitos reservados.
-  </div>
-</footer>
-
-<script>
-const dados = [
-  {titulo:"💄 COSMÉTICOS", pasta:"Cosmeticos", itens:[
-    "apertadinha","batom penis","bolinhasexplosivas","cremejapones",
-    "dessensibilizante","enegertico","excitantemasculino","gargantaprofunda",
-    "gelanestesico","gelcorporal","geleletrizante","gelretardante",
-    "geltermico","geltremetreme","gelvolumao","gotasdapaixao",
-    "hidratanteblow","japoneisinha","lambelambe","laminas",
-    "lubrificantecomestivel","lubrificantelovelub","lubrificanterilex",
-    "melzinho","oleodemassagem","oleodemassagemperfume","perfumeafrodisiaco",
-    "perfumedecalcinha","perfumedecueca","piruladiaseguinte","podabruxa",
-    "preservativoespeciais","preservativorilex","sabonetefeminino",
-    "sabonetemasculino","tadalafila","velaaromatizada","velademasagem","viagra"
-  ]},
-  {titulo:"😈 ACESSÓRIOS", pasta:"acessorios", itens:[
-    "algemas","anelpeniano","bolinhadepompoar","bolinhatailandesa","bombapeniana",
-    "capapeniana","cassetete","chibatacommascara","chicote","cintapeniana","coleira",
-    "corda","duchaintima","fantasias","gramposdemamilos","massageador","massageadordepes",
-    "mastubadoranus","mastubadoregg","mastubadormasculino","mordaça","penisduplo",
-    "penisgrande","penismedio","penisvibrador","pilhas","pluganal","plugescalonado",
-    "sugador","testedegravidez","varinhamagica","venda","vibrador","vibradorbullet",
-    "vibradorgolfinho","vibradormultivelocidade","vibradorrosa","vibradorrotativo"
-  ]},
-  {titulo:"🎲 JOGOS", pasta:"jogos", itens:[
-    "baralhoerotico","dadoerotico","raspadinhas","roletas"
-  ]},
-  {titulo:"👙 MODA ÍNTIMA", pasta:"modaintima", itens:[
-    "calcinhasousadascosta","calcinhasousadasfrente","conjuntos","lingerie","perneira"
-  ]}
-];
-
-const area=document.getElementById("categorias");
-
-dados.forEach(cat=>{
-  const div=document.createElement("div");
-  div.className="categoria";
-  div.innerHTML=`<h2>${cat.titulo}</h2><div class="linha"></div><div class="carrossel"></div>`;
-  const car=div.querySelector(".carrossel");
-
-  cat.itens.forEach(n=>{
-    car.innerHTML+=`
-    <div class="produto">
-      <div class="imagem-produto" onclick="abrirZoom('${cat.pasta}/${n}.jpg')">
-        <img src="${cat.pasta}/${n}.jpg" loading="lazy">
-      </div>
-      <div class="produto-info">
-        <a class="btn-produto" href="https://wa.me/5573998443608?text=Gostaria de comprar o produto: ${n}">
-          COMPRAR
-        </a>
-      </div>
-    </div>`;
-  });
-
-  area.appendChild(div);
-});
-
-function abrirZoom(src){
-  zoomImg.src = src;
-  zoom.style.display = "flex";
-}
-
-function fecharZoom(){
-  zoom.style.display = "none";
-}
-</script>
-
-</body>
-</html>
