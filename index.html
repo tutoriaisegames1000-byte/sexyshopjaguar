@@ -7,11 +7,125 @@
 
 <style>
 :root{
+  --roxo:#8a2be2;
+  --rosa:#ff4d8d;
+  --verde:#25D366;
   --carrinho:#DC143C;
   --amarelo:#FFD700;
 }
 
-/* ================= CARRINHO FLUTUANTE ================= */
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  background:radial-gradient(circle at top,#2a0033,#0b0b0b);
+  color:#fff;
+}
+
+/* HEADER */
+header{
+  background:linear-gradient(135deg,var(--roxo),var(--rosa));
+  padding:10px;
+  text-align:center;
+}
+
+.redes{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.redes a{
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:13px;
+  font-weight:bold;
+  color:#fff;
+  text-decoration:none;
+}
+
+.whatsapp{background:#25D366;}
+.instagram{background:#FF1493;}
+.facebook{background:#1E90FF;}
+
+.info{
+  margin-top:15px;
+  background:rgba(0,0,0,.35);
+  padding:12px;
+  border-radius:14px;
+  font-size:13px;
+  max-width:420px;
+  margin:auto;
+}
+
+/* SECTION */
+section{
+  max-width:1200px;
+  margin:auto;
+  padding:40px 20px;
+}
+
+.categoria{
+  background:rgba(255,255,255,.05);
+  border-radius:22px;
+  padding:30px 20px;
+  margin-bottom:60px;
+}
+
+.categoria h2{
+  text-align:center;
+  color:var(--rosa);
+}
+
+.linha{
+  width:90px;
+  height:4px;
+  background:linear-gradient(90deg,var(--roxo),var(--rosa));
+  margin:15px auto 25px;
+  border-radius:10px;
+}
+
+.carrossel{
+  display:flex;
+  gap:16px;
+  overflow-x:auto;
+}
+
+.produto{
+  min-width:220px;
+  background:#1a1a1a;
+  border-radius:18px;
+  overflow:hidden;
+}
+
+.imagem-produto{
+  aspect-ratio:1/1;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.imagem-produto img{
+  max-width:100%;
+  object-fit:contain;
+}
+
+.produto-info{padding:12px;}
+
+.btn-produto{
+  display:block;
+  background:var(--verde);
+  padding:12px;
+  border-radius:12px;
+  text-align:center;
+  color:#fff;
+  font-weight:bold;
+  cursor:pointer;
+  user-select:none;
+}
+
+/* CARRINHO FLUTUANTE */
 #carrinho-flutuante{
   position:fixed;
   bottom:20px;
@@ -20,13 +134,13 @@
   color:#fff;
   padding:14px 18px;
   border-radius:50px;
-  cursor:pointer;
   display:none;
   align-items:center;
   gap:8px;
   font-weight:bold;
+  cursor:pointer;
   z-index:1000;
-  transition:transform .2s;
+  transition:.2s;
 }
 
 #carrinho-flutuante.pop{
@@ -40,13 +154,12 @@
   padding:2px 7px;
 }
 
-/* ================= MODAL DO CARRINHO ================= */
+/* MODAL */
 #modal-carrinho{
   position:fixed;
   bottom:90px;
   right:20px;
   background:#111;
-  color:#fff;
   padding:14px;
   border-radius:14px;
   width:260px;
@@ -54,37 +167,28 @@
   flex-direction:column;
   gap:6px;
   z-index:1000;
-  box-shadow:0 0 15px #000;
 }
 
-#modal-carrinho p{
-  margin:4px 0;
-  font-size:14px;
-}
-
-#modal-carrinho button.finalizar{
+#modal-carrinho button{
   background:var(--amarelo);
   border:none;
   border-radius:12px;
   padding:10px;
   font-weight:bold;
   cursor:pointer;
-  margin-top:8px;
 }
 
 #fechar-carrinho{
   position:absolute;
   top:-12px;
   right:-12px;
-  background:#ff0000;
-  color:#fff;
+  background:red;
   width:28px;
   height:28px;
   border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-weight:bold;
   cursor:pointer;
 }
 </style>
@@ -92,96 +196,101 @@
 
 <body>
 
-<!-- CARRINHO FLUTUANTE -->
-<div id="carrinho-flutuante">
-  🛒 <span id="contador"></span>
-</div>
+<header>
+  <img src="imagens/logopng.png" width="100">
+  <div class="redes">
+    <a class="whatsapp">WHATSAPP</a>
+    <a class="instagram">INSTAGRAM</a>
+    <a class="facebook">FACEBOOK</a>
+  </div>
+  <div class="info">
+    🔍 Arraste para o lado para ver os produtos
+  </div>
+</header>
 
-<!-- MODAL -->
-<div id="modal-carrinho">
-  <div id="fechar-carrinho">✕</div>
-</div>
+<section id="categorias"></section>
+
+<div id="carrinho-flutuante">🛒 <span id="contador"></span></div>
+<div id="modal-carrinho"></div>
 
 <script>
-const carrinhoFlutuante = document.getElementById("carrinho-flutuante");
-const contador = document.getElementById("contador");
-const modalCarrinho = document.getElementById("modal-carrinho");
-const fecharCarrinho = document.getElementById("fechar-carrinho");
+const dados=[
+ {titulo:"💋 COSMÉTICOS", pasta:"cosmeticos", itens:["Apertadinha","Batom Pênis","Gel Retardante"]},
+ {titulo:"🔥 ACESSÓRIOS", pasta:"acessorios", itens:["Algemas","Anel Peniano","Plug Anal"]}
+];
 
-let carrinho = [];
-let aberto = false;
+const area=document.getElementById("categorias");
+const carrinho=[];
+const carrinhoBtn=document.getElementById("carrinho-flutuante");
+const contador=document.getElementById("contador");
+const modal=document.getElementById("modal-carrinho");
+let aberto=false;
 
-/* ================= FUNÇÕES ================= */
+dados.forEach(cat=>{
+  const div=document.createElement("div");
+  div.className="categoria";
+  div.innerHTML=`<h2>${cat.titulo}</h2><div class="linha"></div><div class="carrossel"></div>`;
+  const car=div.querySelector(".carrossel");
 
-function atualizarCarrinho(){
-  if(carrinho.length > 0){
-    carrinhoFlutuante.style.display="flex";
-    contador.textContent = carrinho.length;
+  cat.itens.forEach(n=>{
+    const btnId=n.replace(/\s/g,"");
+    car.innerHTML+=`
+    <div class="produto">
+      <div class="imagem-produto">
+        <img src="${cat.pasta}/${n}.jpg" loading="lazy">
+      </div>
+      <div class="produto-info">
+        <div class="btn-produto" id="${btnId}" onclick="toggleProduto('${n}',this)">COMPRAR</div>
+      </div>
+    </div>`;
+  });
 
-    // animação POP
-    carrinhoFlutuante.classList.add("pop");
-    setTimeout(()=>carrinhoFlutuante.classList.remove("pop"),200);
-  }else{
-    carrinhoFlutuante.style.display="none";
-    modalCarrinho.style.display="none";
-    aberto = false;
-  }
-}
-
-function abrirOuFecharCarrinho(){
-  if(!aberto){
-    modalCarrinho.innerHTML = '<div id="fechar-carrinho">✕</div>';
-    carrinho.forEach(p=>{
-      const item = document.createElement("p");
-      item.textContent = "• " + p;
-      modalCarrinho.appendChild(item);
-    });
-
-    const btn = document.createElement("button");
-    btn.className="finalizar";
-    btn.textContent="Finalizar Compra";
-    btn.onclick = ()=>{
-      const numero="5573998443608";
-      const msg = encodeURIComponent(
-        "Olá gostaria de adquirir esses produtos: " + carrinho.join(", ")
-      );
-      window.open(`https://wa.me/${numero}?text=${msg}`,"_blank");
-    };
-
-    modalCarrinho.appendChild(btn);
-    modalCarrinho.style.display="flex";
-    aberto = true;
-  }else{
-    modalCarrinho.style.display="none";
-    aberto = false;
-  }
-}
-
-/* ================= EVENTOS ================= */
-
-carrinhoFlutuante.onclick = abrirOuFecharCarrinho;
-
-document.addEventListener("click", e=>{
-  if(e.target.id === "fechar-carrinho"){
-    modalCarrinho.style.display="none";
-    aberto=false;
-  }
+  area.appendChild(div);
 });
 
-/* ================= EXEMPLO DE BOTÃO PRODUTO ================= */
-/* use isso nos botões COMPRAR */
-function adicionarProduto(nome, botao){
-  const i = carrinho.indexOf(nome);
-  if(i === -1){
+function toggleProduto(nome,btn){
+  const i=carrinho.indexOf(nome);
+  if(i===-1){
     carrinho.push(nome);
-    botao.style.background = "var(--amarelo)";
-    botao.textContent = "CARRINHO";
+    btn.style.background="var(--amarelo)";
+    btn.textContent="CARRINHO";
   }else{
     carrinho.splice(i,1);
-    botao.style.background = "#25D366";
-    botao.textContent = "COMPRAR";
+    btn.style.background="var(--verde)";
+    btn.textContent="COMPRAR";
   }
-  atualizarCarrinho();
+  atualizar();
+}
+
+function atualizar(){
+  if(carrinho.length){
+    carrinhoBtn.style.display="flex";
+    contador.textContent=carrinho.length;
+    carrinhoBtn.classList.add("pop");
+    setTimeout(()=>carrinhoBtn.classList.remove("pop"),200);
+  }else{
+    carrinhoBtn.style.display="none";
+    modal.style.display="none";
+    aberto=false;
+  }
+}
+
+carrinhoBtn.onclick=()=>{
+  if(!aberto){
+    modal.innerHTML='<div id="fechar-carrinho" onclick="modal.style.display=\'none\';aberto=false;">✕</div>';
+    carrinho.forEach(p=>modal.innerHTML+=`<p>• ${p}</p>`);
+    modal.innerHTML+=`<button onclick="finalizar()">Finalizar Compra</button>`;
+    modal.style.display="flex";
+    aberto=true;
+  }else{
+    modal.style.display="none";
+    aberto=false;
+  }
+}
+
+function finalizar(){
+  const msg=encodeURIComponent("Olá gostaria de adquirir esses produtos: "+carrinho.join(", "));
+  window.open("https://wa.me/5573998443608?text="+msg);
 }
 </script>
 
