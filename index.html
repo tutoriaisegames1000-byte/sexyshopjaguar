@@ -26,7 +26,6 @@ header{
 }
 
 header img{max-width:140px;}
-header p{font-size:14px;margin:10px 0;}
 
 .redes{
   display:flex;
@@ -92,11 +91,6 @@ section{
   overflow-x:auto;
   scroll-snap-type:x mandatory;
 }
-.carrossel::-webkit-scrollbar{height:6px;}
-.carrossel::-webkit-scrollbar-thumb{
-  background:var(--rosa);
-  border-radius:10px;
-}
 
 /* PRODUTO */
 .produto{
@@ -104,7 +98,6 @@ section{
   background:#1a1a1a;
   border-radius:18px;
   overflow:hidden;
-  scroll-snap-align:start;
 }
 
 .imagem-produto{
@@ -155,16 +148,35 @@ section{
   font-size:32px;
   font-weight:bold;
   cursor:pointer;
-  z-index:1000;
 }
 
 /* FOOTER */
 footer{
   background:#111;
+  padding:30px 20px;
+  font-size:14px;
+}
+
+.footer-grid{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:25px;
   text-align:center;
-  padding:18px;
+}
+
+.footer-box h3{
+  color:var(--rosa);
+  margin-bottom:6px;
+  font-size:15px;
+}
+
+.footer-copy{
+  margin-top:30px;
+  text-align:center;
   font-size:13px;
-  opacity:.7;
+  opacity:.8;
 }
 </style>
 </head>
@@ -194,7 +206,35 @@ footer{
 </div>
 
 <footer>
-© 2026 Sexy Shop Jaguar — Todos os direitos reservados.
+  <div class="footer-grid">
+
+    <div class="footer-box">
+      <h3>ATENDIMENTO:</h3>
+      Para comprar ou tirar dúvidas<br>
+      Whatsapp: (73) 99844-3608
+    </div>
+
+    <div class="footer-box">
+      <h3>Horário de atendimento:</h3>
+      Segunda a Domingo das 8h às 22hs.
+    </div>
+
+    <div class="footer-box">
+      <h3>FORMAS DE PAGAMENTO:</h3>
+      Dinheiro, Pix, Cartão Crédito/Débito.
+    </div>
+
+    <div class="footer-box">
+      <h3>Redes Sociais:</h3>
+      Instagram: @sexyshopjaguar<br>
+      Facebook: Sex Shop Jaguar
+    </div>
+
+  </div>
+
+  <div class="footer-copy">
+    © 2026 Sexy Shop Jaguar — Todos os direitos reservados.
+  </div>
 </footer>
 
 <script>
@@ -264,4 +304,3 @@ function fecharZoom(){
 
 </body>
 </html>
-
