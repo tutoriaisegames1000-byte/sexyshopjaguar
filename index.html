@@ -90,6 +90,19 @@ section{
   gap:16px;
   overflow-x:auto;
   scroll-snap-type:x mandatory;
+  padding-bottom:8px;
+}
+
+.carrossel::-webkit-scrollbar{
+  height:6px;
+}
+.carrossel::-webkit-scrollbar-thumb{
+  background:var(--rosa);
+  border-radius:10px;
+}
+.carrossel::-webkit-scrollbar-track{
+  background:rgba(255,255,255,.15);
+  border-radius:10px;
 }
 
 /* PRODUTO */
@@ -98,6 +111,7 @@ section{
   background:#1a1a1a;
   border-radius:18px;
   overflow:hidden;
+  scroll-snap-align:start;
 }
 
 .imagem-produto{
@@ -183,6 +197,14 @@ footer{
   text-align:center;
   font-size:13px;
   opacity:.8;
+}
+
+/* MOBILE FOOTER */
+@media (max-width:768px){
+  .footer-grid{
+    grid-template-columns:1fr;
+    gap:18px;
+  }
 }
 </style>
 </head>
