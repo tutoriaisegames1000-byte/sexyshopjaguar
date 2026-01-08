@@ -149,21 +149,6 @@ section{
   max-height:90%;
 }
 
-/* BOTÃO FLUTUANTE */
-.whats-fixo{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:#25D366;
-  color:#fff;
-  padding:14px 18px;
-  border-radius:50px;
-  font-weight:bold;
-  text-decoration:none;
-  box-shadow:0 0 15px rgba(0,0,0,.4);
-  z-index:999;
-}
-
 /* FOOTER */
 footer{
   background:#111;
@@ -178,7 +163,7 @@ footer{
 <body>
 
 <header>
-  <img src="imagens/fotos/logopng.png">
+  <img src="imagens/fotos/logopng.png" loading="eager" decoding="async" width="140" height="140">
   <p>LOJA LOCALIZADA EM JAGUAQUARA - BA</p>
 
   <div class="redes">
@@ -219,7 +204,7 @@ cosmeticos.forEach(nome=>{
 document.write(`
 <div class="produto">
   <div class="imagem-produto" onclick="zoom('Cosmeticos/${nome}.jpg')">
-    <img src="Cosmeticos/${nome}.jpg">
+    <img src="Cosmeticos/${nome}.jpg" loading="lazy" decoding="async" width="400" height="400">
   </div>
   <div class="produto-info">
     <a class="btn-produto" href="https://wa.me/5573998443608?text=Quero%20comprar:%20${nome}">
@@ -255,7 +240,7 @@ acessorios.forEach(nome=>{
 document.write(`
 <div class="produto">
   <div class="imagem-produto" onclick="zoom('acessorios/${nome}.jpg')">
-    <img src="acessorios/${nome}.jpg">
+    <img src="acessorios/${nome}.jpg" loading="lazy" decoding="async" width="400" height="400">
   </div>
   <div class="produto-info">
     <a class="btn-produto" href="https://wa.me/5573998443608?text=Quero%20comprar:%20${nome}">
@@ -283,7 +268,7 @@ jogos.forEach(nome=>{
 document.write(`
 <div class="produto">
   <div class="imagem-produto" onclick="zoom('jogos/${nome}.jpg')">
-    <img src="jogos/${nome}.jpg">
+    <img src="jogos/${nome}.jpg" loading="lazy" decoding="async" width="400" height="400">
   </div>
   <div class="produto-info">
     <a class="btn-produto" href="https://wa.me/5573998443608?text=Quero%20comprar:%20${nome}">
@@ -313,7 +298,7 @@ modaintima.forEach(nome=>{
 document.write(`
 <div class="produto">
   <div class="imagem-produto" onclick="zoom('modaintima/${nome}.jpg')">
-    <img src="modaintima/${nome}.jpg">
+    <img src="modaintima/${nome}.jpg" loading="lazy" decoding="async" width="400" height="400">
   </div>
   <div class="produto-info">
     <a class="btn-produto" href="https://wa.me/5573998443608?text=Quero%20comprar:%20${nome}">
