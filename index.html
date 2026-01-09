@@ -406,7 +406,7 @@ function atualizarCarrinho(){
     li.innerHTML=`<span class="remover-item" onclick="removerItem(${index})">×</span><span>${item}</span>`;
     lista.appendChild(li);
   });
-  carrinho.length>=11?lista.classList.add("scroll-ativo"):lista.classList.remove("scroll-ativo");
+  carrinho.length>=8?lista.classList.add("scroll-ativo"):lista.classList.remove("scroll-ativo");
 }
 
 function removerItem(i){
@@ -439,4 +439,5 @@ function fecharZoom(){zoom.style.display="none";}
 
 </body>
 </html>
+
 
