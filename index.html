@@ -436,8 +436,14 @@ carrinhoBtn.onclick=()=>{
 
 function fecharPopup(){popup.style.display="none";}
 function finalizarCompra(){
-  const msg=encodeURIComponent("Olá, gostaria de adquirir esses produtos: "+carrinho.join(", "));
-  window.open("https://wa.me/5573998443608?text="+msg,"_blank");
+  let texto = "Gostaria de adquirir esses produtos:\n";
+
+  carrinho.forEach(produto => {
+    texto += "• " + produto + "\n";
+  });
+
+  const msg = encodeURIComponent(texto);
+  window.open("https://wa.me/5573998443608?text=" + msg, "_blank");
 }
 function abrirZoom(src){zoomImg.src=src;zoom.style.display="flex";}
 function fecharZoom(){zoom.style.display="none";}
@@ -445,4 +451,5 @@ function fecharZoom(){zoom.style.display="none";}
 
 </body>
 </html>
+
 
