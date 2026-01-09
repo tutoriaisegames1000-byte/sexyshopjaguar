@@ -229,6 +229,7 @@ section{
   margin-left:18px;
 }
 
+/* SCROLL A PARTIR DE 11 ITENS */
 #listaCarrinho.scroll-ativo{
   max-height:260px;
   overflow-y:auto;
@@ -405,16 +406,23 @@ function atualizarCarrinho(){
     li.innerHTML=`<span class="remover-item" onclick="removerItem(${index})">×</span><span>${item}</span>`;
     lista.appendChild(li);
   });
-  carrinho.length>10?lista.classList.add("scroll-ativo"):lista.classList.remove("scroll-ativo");
+
+  if(carrinho.length >= 11){
+    lista.classList.add("scroll-ativo");
+  }else{
+    lista.classList.remove("scroll-ativo");
+  }
 }
 
 function removerItem(i){
   const item=carrinho[i];
   carrinho.splice(i,1);
+
   if(botoes[item]){
     botoes[item].textContent="COMPRAR";
     botoes[item].style.background="var(--verde)";
   }
+
   contador.textContent=carrinho.length;
   carrinhoBtn.style.display=carrinho.length?"flex":"none";
   atualizarCarrinho();
