@@ -149,7 +149,6 @@ section{
   align-items:center;
   gap:8px;
 }
-
 #carrinho-flutuante span{
   background:#fff;
   color:var(--carrinho);
@@ -157,7 +156,6 @@ section{
   padding:2px 6px;
 }
 
-/* POP */
 .pop{animation:pop 0.3s ease;}
 @keyframes pop{
   0%{transform:scale(1);}
@@ -208,20 +206,37 @@ section{
 }
 
 /* LISTA CARRINHO */
-#listaCarrinho{list-style:none;padding:0;}
+#listaCarrinho{
+  list-style:none;
+  padding:0;
+}
+
 #listaCarrinho li{
   display:flex;
   align-items:center;
-  margin-bottom:14px;
+  margin-bottom:18px;
+  line-height:1.6;
 }
+
 .remover-item{
   cursor:pointer;
   font-size:18px;
   font-weight:bold;
 }
+
 #listaCarrinho li span:last-child{
   font-size:18px;
-  margin-left:16px; /* ESPAÇAMENTO MAIOR */
+  margin-left:18px;
+}
+
+#listaCarrinho.scroll-ativo{
+  max-height:260px;
+  overflow-y:auto;
+}
+#listaCarrinho.scroll-ativo::-webkit-scrollbar{width:8px;}
+#listaCarrinho.scroll-ativo::-webkit-scrollbar-thumb{
+  background:var(--roxo-scroll);
+  border-radius:10px;
 }
 
 .finalizar{
@@ -267,7 +282,7 @@ footer{
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:30px;
 }
-.footer-box h3{color:var(--rosa);}
+.footer-box h3{color:var(--rosa);margin-bottom:6px;}
 .footer-box a{color:#fff;text-decoration:none;}
 .footer-copy{text-align:center;margin-top:30px;opacity:.85;}
 
@@ -341,12 +356,6 @@ const zoomImg=document.getElementById("zoomImg");
 let carrinho=[];
 let botoes={};
 
-function popCarrinho(){
-  carrinhoBtn.classList.remove("pop");
-  void carrinhoBtn.offsetWidth;
-  carrinhoBtn.classList.add("pop");
-}
-
 dados.forEach(cat=>{
   const div=document.createElement("div");
   div.className="categoria";
@@ -382,7 +391,9 @@ dados.forEach(cat=>{
       }
       contador.textContent=carrinho.length;
       carrinhoBtn.style.display=carrinho.length?"flex":"none";
-      popCarrinho();
+      carrinhoBtn.classList.remove("pop");
+      void carrinhoBtn.offsetWidth;
+      carrinhoBtn.classList.add("pop");
     };
   });
 });
@@ -394,25 +405,20 @@ function atualizarCarrinho(){
     li.innerHTML=`<span class="remover-item" onclick="removerItem(${index})">×</span><span>${item}</span>`;
     lista.appendChild(li);
   });
+  carrinho.length>10?lista.classList.add("scroll-ativo"):lista.classList.remove("scroll-ativo");
 }
 
 function removerItem(i){
   const item=carrinho[i];
   carrinho.splice(i,1);
-
   if(botoes[item]){
     botoes[item].textContent="COMPRAR";
     botoes[item].style.background="var(--verde)";
   }
-
   contador.textContent=carrinho.length;
   carrinhoBtn.style.display=carrinho.length?"flex":"none";
-  popCarrinho();
   atualizarCarrinho();
-
-  if(carrinho.length===0){
-    fecharPopup();
-  }
+  if(carrinho.length===0) fecharPopup();
 }
 
 carrinhoBtn.onclick=()=>{
