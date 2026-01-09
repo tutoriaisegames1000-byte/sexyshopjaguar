@@ -57,6 +57,15 @@ header img{max-width:140px;}
   font-size:13px;
   max-width:420px;
   margin:auto;
+  animation:balancoPop 3s infinite;
+}
+@keyframes balancoPop{
+  0%{transform:scale(1);}
+  15%{transform:scale(1.05) rotate(-2deg);}
+  30%{transform:scale(1.05) rotate(2deg);}
+  45%{transform:scale(1.05) rotate(-2deg);}
+  60%{transform:scale(1);}
+  100%{transform:scale(1);}
 }
 
 /* SECTION */
@@ -187,7 +196,6 @@ section{
   text-align:center;
   color:var(--rosa);
   font-size:26px;
-  margin-bottom:15px;
 }
 
 .fechar-popup{
@@ -201,35 +209,28 @@ section{
   width:32px;
   height:32px;
   font-size:18px;
-  font-weight:bold;
   cursor:pointer;
 }
 
-/* LISTA CARRINHO */
+/* LISTA */
 #listaCarrinho{
   list-style:none;
   padding:0;
 }
-
 #listaCarrinho li{
   display:flex;
   align-items:center;
   margin-bottom:18px;
-  line-height:1.6;
 }
-
 .remover-item{
   cursor:pointer;
   font-size:18px;
   font-weight:bold;
 }
-
 #listaCarrinho li span:last-child{
   font-size:18px;
   margin-left:18px;
 }
-
-/* SCROLL A PARTIR DE 11 ITENS */
 #listaCarrinho.scroll-ativo{
   max-height:260px;
   overflow-y:auto;
@@ -267,7 +268,6 @@ section{
   top:20px;
   right:25px;
   font-size:36px;
-  font-weight:bold;
   cursor:pointer;
 }
 
@@ -302,7 +302,6 @@ footer{
     <a class="instagram" href="https://www.instagram.com/sexyshopjaguar">INSTAGRAM</a>
     <a class="facebook" href="https://www.facebook.com/profile.php?id=61566510735510">FACEBOOK</a>
   </div>
-  <br>
   <div class="info">➡️Arraste para o lado para ver os produtos<br>🔍Toque na imagem para da zoom</div>
 </header>
 
@@ -339,6 +338,7 @@ footer{
 </footer>
 
 <script>
+/* ===== CATEGORIAS (ORIGINAIS) ===== */
 const dados=[
   {titulo:"💋 COSMÉTICOS",pasta:"cosmeticos",itens:["Apertadinha","Batom Pênis","Bolinhas Explosivas","Creme Japonês","Dessensibilizante Anal","Energético Estimulante","Excitante Masculino","Garganta Profunda","Gel Anestésico","Gel Corporal","Gel Eletrizante","Gel Retardante","Gel Térmico","Gel Treme Treme","Gel Volumão","Gotas da Paixão","Hidratante Blow Girl","Pomada Excitante","Lambe Lambe","Laminas","Lubrificante Comestível","Lubrificante Love Lub","Lubrificante Rilex","Melzinho do Amor","Óleo de Massagem","Óleo de Massagem Índia e Maldivas","Perfume Afrodisíaco","Perfume de Calcinha","Perfume de Cueca","Pirula do Dia Seguinte","Pó da Bruxa","Preservativos Especiais","Preservativo Rilex","Sabonete Feminino","Sabonete Masculino","Tadalafila","Vela Aromatizada","Vela de Massagem","Viagra"]},
   {titulo:"🔥 ACESSÓRIOS",pasta:"acessorios",itens:["Algemas","Anel Peniano","Bolinha de Pompoar","Bolinha Tailandesa","Bomba Peniana","Capa Peniana","Cassetete","Chibata e Máscara","Chicote","Cinta Peniana","Coleira","Corda","Ducha Íntima","Fantasias","Grampos de Mamilos","Massageador","Massageador De Pés","Mastubador Anus","Mastubador Egg","Mastubador Masculino","Mordaça","Pênis Duplo","Pênis Grande","Pênis Médio","Pênis Com Vibrador","Pilhas","Plug Anal","Plug Escalonado","Sugador Clitoriano","Teste de Gravidez","Varinha Mágica","Venda","Vibrador Batom","Vibrador Bullet","Vibrador Golfinho","Vibrador Multivelocidades","Vibrador Rosa","Vibrador Rotativo"]},
@@ -392,9 +392,8 @@ dados.forEach(cat=>{
       }
       contador.textContent=carrinho.length;
       carrinhoBtn.style.display=carrinho.length?"flex":"none";
-      carrinhoBtn.classList.remove("pop");
-      void carrinhoBtn.offsetWidth;
       carrinhoBtn.classList.add("pop");
+      setTimeout(()=>carrinhoBtn.classList.remove("pop"),300);
     };
   });
 });
@@ -406,23 +405,16 @@ function atualizarCarrinho(){
     li.innerHTML=`<span class="remover-item" onclick="removerItem(${index})">×</span><span>${item}</span>`;
     lista.appendChild(li);
   });
-
-  if(carrinho.length >= 8){
-    lista.classList.add("scroll-ativo");
-  }else{
-    lista.classList.remove("scroll-ativo");
-  }
+  carrinho.length>=11?lista.classList.add("scroll-ativo"):lista.classList.remove("scroll-ativo");
 }
 
 function removerItem(i){
   const item=carrinho[i];
   carrinho.splice(i,1);
-
   if(botoes[item]){
     botoes[item].textContent="COMPRAR";
     botoes[item].style.background="var(--verde)";
   }
-
   contador.textContent=carrinho.length;
   carrinhoBtn.style.display=carrinho.length?"flex":"none";
   atualizarCarrinho();
@@ -436,14 +428,9 @@ carrinhoBtn.onclick=()=>{
 
 function fecharPopup(){popup.style.display="none";}
 function finalizarCompra(){
-  let texto = "Gostaria de adquirir esses produtos:\n";
-
-  carrinho.forEach(produto => {
-    texto += "• " + produto + "\n";
-  });
-
-  const msg = encodeURIComponent(texto);
-  window.open("https://wa.me/5573998443608?text=" + msg, "_blank");
+  let texto="Gostaria de adquirir esses produtos:\n";
+  carrinho.forEach(p=>texto+="• "+p+"\n");
+  window.open("https://wa.me/5573998443608?text="+encodeURIComponent(texto),"_blank");
 }
 function abrirZoom(src){zoomImg.src=src;zoom.style.display="flex";}
 function fecharZoom(){zoom.style.display="none";}
@@ -451,5 +438,3 @@ function fecharZoom(){zoom.style.display="none";}
 
 </body>
 </html>
-
-
