@@ -113,7 +113,6 @@ section{
   display:flex;
   align-items:center;
   justify-content:center;
-  cursor:pointer;
 }
 
 .imagem-produto img{
@@ -132,11 +131,10 @@ section{
   text-align:center;
   color:#fff;
   font-weight:bold;
-  cursor:pointer;
   width:100%;
 }
 
-/* FOOTER */
+/* FOOTER RESPONSIVO */
 footer{
   background:#0b0b0b;
   padding:40px 20px;
@@ -148,21 +146,38 @@ footer{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:30px;
-  text-align:left;
+}
+
+.footer-box{
+  font-size:14px;
+  line-height:1.6;
 }
 
 .footer-box h3{
   color:var(--rosa);
-  margin-bottom:10px;
   font-size:16px;
+  margin-bottom:10px;
 }
 
 .footer-box a{
   color:#fff;
   text-decoration:none;
+  display:inline-block;
+  margin-bottom:6px;
 }
+
 .footer-box a:hover{
   text-decoration:underline;
+}
+
+/* MOBILE AJUSTES */
+@media (max-width:600px){
+  footer{
+    text-align:center;
+  }
+  .footer-container{
+    gap:25px;
+  }
 }
 </style>
 </head>
@@ -201,8 +216,8 @@ footer{
 
     <div class="footer-box">
       <h3>REDES SOCIAIS:</h3>
-      <a href="https://www.instagram.com/sexyshopjaguar">Instagram: @sexyshopjaguar</a><br>
-      <a href="https://www.facebook.com/profile.php?id=61566510735510">Facebook: Sex Shop Jaguar</a><br>
+      <a href="https://www.instagram.com/sexyshopjaguar">Instagram: @sexyshopjaguar</a>
+      <a href="https://www.facebook.com/profile.php?id=61566510735510">Facebook: Sex Shop Jaguar</a>
       <a href="https://wa.me/5573998443608">Whatsapp: (73) 99844-3608</a>
     </div>
 
@@ -210,11 +225,13 @@ footer{
 </footer>
 
 <script>
-/* JS ORIGINAL – NÃO ALTERADO */
-const dados=[{titulo:"💋 COSMÉTICOS",pasta:"cosmeticos",itens:["Apertadinha","Batom Pênis","Bolinhas Explosivas","Creme Japonês","Dessensibilizante Anal","Energético Estimulante","Excitante Masculino","Garganta Profunda","Gel Anestésico","Gel Corporal","Gel Eletrizante","Gel Retardante","Gel Térmico","Gel Treme Treme","Gel Volumão","Gotas da Paixão","Hidratante Blow Girl","Pomada Excitante","Lambe Lambe","Laminas","Lubrificante Comestível","Lubrificante Love Lub","Lubrificante Rilex","Melzinho do Amor","Óleo de Massagem","Óleo de Massagem Índia e Maldivas","Perfume Afrodisíaco","Perfume de Calcinha","Perfume de Cueca","Pirula do Dia Seguinte","Pó da Bruxa","Preservativos Especiais","Preservativo Rilex","Sabonete Feminino","Sabonete Masculino","Tadalafila","Vela Aromatizada","Vela de Massagem","Viagra"]},
+/* JS ORIGINAL PRESERVADO */
+const dados=[
+{titulo:"💋 COSMÉTICOS",pasta:"cosmeticos",itens:["Apertadinha","Batom Pênis","Bolinhas Explosivas","Creme Japonês","Dessensibilizante Anal","Energético Estimulante","Excitante Masculino","Garganta Profunda","Gel Anestésico","Gel Corporal","Gel Eletrizante","Gel Retardante","Gel Térmico","Gel Treme Treme","Gel Volumão","Gotas da Paixão","Hidratante Blow Girl","Pomada Excitante","Lambe Lambe","Laminas","Lubrificante Comestível","Lubrificante Love Lub","Lubrificante Rilex","Melzinho do Amor","Óleo de Massagem","Óleo de Massagem Índia e Maldivas","Perfume Afrodisíaco","Perfume de Calcinha","Perfume de Cueca","Pirula do Dia Seguinte","Pó da Bruxa","Preservativos Especiais","Preservativo Rilex","Sabonete Feminino","Sabonete Masculino","Tadalafila","Vela Aromatizada","Vela de Massagem","Viagra"]},
 {titulo:"🔥 ACESSÓRIOS",pasta:"acessorios",itens:["Algemas","Anel Peniano","Bolinha de Pompoar","Bolinha Tailandesa","Bomba Peniana","Capa Peniana","Cassetete","Chibata e Máscara","Chicote","Cinta Peniana","Coleira","Corda","Ducha Íntima","Fantasias","Grampos de Mamilos","Massageador","Massageador De Pés","Mastubador Anus","Mastubador Egg","Mastubador Masculino","Mordaça","Pênis Duplo","Pênis Grande","Pênis Médio","Pênis Com Vibrador","Pilhas","Plug Anal","Plug Escalonado","Sugador Clitoriano","Teste de Gravidez","Varinha Mágica","Venda","Vibrador Batom","Vibrador Bullet","Vibrador Golfinho","Vibrador Multivelocidades","Vibrador Rosa","Vibrador Rotativo"]},
 {titulo:"🎲 JOGOS",pasta:"jogos",itens:["Baralho Erótico","Dado Erótico","Raspadinhas","Roletas"]},
-{titulo:"👙 MODA ÍNTIMA",pasta:"modaintima",itens:["Calcinha Ousada","Calcinhas Ousadas","Conjuntos","Lingerie","Perneira"]}];
+{titulo:"👙 MODA ÍNTIMA",pasta:"modaintima",itens:["Calcinha Ousada","Calcinhas Ousadas","Conjuntos","Lingerie","Perneira"]}
+];
 
 const area=document.getElementById("categorias");
 dados.forEach(cat=>{
