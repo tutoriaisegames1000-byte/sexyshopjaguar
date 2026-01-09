@@ -389,12 +389,12 @@ dados.forEach(cat=>{
       const i=carrinho.indexOf(n);
       if(i===-1){
         carrinho.push(n);
-        btn.textContent="NO CARRINHO";
+        btn.textContent="REMOVER DO CARRINHO";
         btn.style.background="var(--amarelo)";
         som.currentTime=0; som.play();
       }else{
         carrinho.splice(i,1);
-        btn.textContent="COMPRAR";
+        btn.textContent="ADICIONAR NO CARRINHO";
         btn.style.background="var(--verde)";
         som.currentTime=0; som.play();
       }
@@ -447,6 +447,7 @@ function fecharZoom(){zoom.style.display="none";}
 
 </body>
 </html>
+
 
 
 
