@@ -207,15 +207,11 @@ section{
   padding:0;
 }
 
-/* barra só aparece quando tiver mais de 10 itens */
 #listaCarrinho.scroll-ativo{
   max-height:260px;
   overflow-y:auto;
 }
-
-#listaCarrinho.scroll-ativo::-webkit-scrollbar{
-  width:8px;
-}
+#listaCarrinho.scroll-ativo::-webkit-scrollbar{width:8px;}
 #listaCarrinho.scroll-ativo::-webkit-scrollbar-thumb{
   background:var(--roxo-scroll);
   border-radius:10px;
@@ -246,17 +242,15 @@ section{
   max-width:90%;
   max-height:90%;
 }
+
+/* X DO ZOOM (SEM FUNDO) */
 .fechar-zoom{
   position:absolute;
   top:20px;
   right:25px;
-  background:#DC143C;
+  font-size:36px;
+  font-weight:bold;
   color:#fff;
-  border:none;
-  border-radius:50%;
-  width:40px;
-  height:40px;
-  font-size:22px;
   cursor:pointer;
 }
 
@@ -275,6 +269,14 @@ footer{
 .footer-box h3{color:var(--rosa);}
 .footer-box a{color:#fff;text-decoration:none;}
 .footer-box a:hover{text-decoration:underline;}
+
+.footer-copy{
+  text-align:center;
+  margin-top:30px;
+  font-size:14px;
+  opacity:.85;
+}
+
 @media(max-width:600px){
   footer{text-align:center;}
 }
@@ -309,7 +311,7 @@ footer{
 </div>
 
 <div id="zoom" onclick="fecharZoom()">
-  <button class="fechar-zoom" onclick="fecharZoom()">×</button>
+  <span class="fechar-zoom" onclick="fecharZoom()">×</span>
   <img id="zoomImg">
 </div>
 
@@ -334,8 +336,10 @@ footer{
       <a href="https://wa.me/5573998443608">Whatsapp: (73) 99844-3608</a>
     </div>
   </div>
-  <br>
-  © 2026 Sexy Shop Jaguar — Todos os direitos reservados.
+
+  <div class="footer-copy">
+    © 2026 Sexy Shop Jaguar — Todos os direitos reservados.
+  </div>
 </footer>
 
 <script>
@@ -431,4 +435,3 @@ function fecharZoom(){
 
 </body>
 </html>
-
