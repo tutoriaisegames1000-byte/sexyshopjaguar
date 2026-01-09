@@ -207,16 +207,22 @@ section{
   cursor:pointer;
 }
 
-/* LISTA */
+/* LISTA CARRINHO */
 #listaCarrinho{list-style:none;padding:0;}
 #listaCarrinho li{
   display:flex;
   align-items:center;
-  gap:10px;
-  margin-bottom:12px;
+  margin-bottom:14px;
 }
-#listaCarrinho li span:last-child{font-size:18px;}
-.remover-item{cursor:pointer;font-size:18px;font-weight:bold;}
+.remover-item{
+  cursor:pointer;
+  font-size:18px;
+  font-weight:bold;
+}
+#listaCarrinho li span:last-child{
+  font-size:18px;
+  margin-left:16px; /* ESPAÇAMENTO MAIOR */
+}
 
 .finalizar{
   margin-top:15px;
