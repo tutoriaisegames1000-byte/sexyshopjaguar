@@ -166,7 +166,7 @@ section{
   100%{transform:scale(1);}
 }
 
-/* POPUP CARRINHO */
+/* POPUP */
 #popup-carrinho{
   position:fixed;
   inset:0;
@@ -201,11 +201,24 @@ section{
   cursor:pointer;
 }
 
+/* LISTA DO CARRINHO */
 #listaCarrinho{
-  max-height:260px;
-  overflow-y:auto;
   list-style:none;
   padding:0;
+}
+
+/* barra só aparece quando tiver mais de 10 itens */
+#listaCarrinho.scroll-ativo{
+  max-height:260px;
+  overflow-y:auto;
+}
+
+#listaCarrinho.scroll-ativo::-webkit-scrollbar{
+  width:8px;
+}
+#listaCarrinho.scroll-ativo::-webkit-scrollbar-thumb{
+  background:var(--roxo-scroll);
+  border-radius:10px;
 }
 
 .finalizar{
@@ -277,8 +290,7 @@ footer{
     <a class="instagram" href="https://www.instagram.com/sexyshopjaguar">INSTAGRAM</a>
     <a class="facebook" href="https://www.facebook.com/profile.php?id=61566510735510">FACEBOOK</a>
   </div>
-  <br/>
-  <div class="info">➡️Arraste para o lado para ver os produtos<br>
+    <div class="info">➡️Arraste para o lado para ver os produtos<br>
     🔍Toque na imagem para da zoom</div>
 </header>
 
@@ -289,7 +301,7 @@ footer{
 <div id="popup-carrinho" onclick="fecharPopup()">
   <div class="popup-box" onclick="event.stopPropagation()">
     <button class="fechar-popup" onclick="fecharPopup()">×</button>
-    <h3>       CARRINHO</h3>
+    <h3>CARRINHO</h3>
     <ul id="listaCarrinho"></ul>
     <button class="finalizar" onclick="finalizarCompra()">FINALIZAR COMPRA</button>
   </div>
@@ -306,17 +318,14 @@ footer{
       <h3>REGIÕES ATENDIDAS:</h3>
       Jaguaquara • Baixão De Ipiúna • Itiúba • Entrocamento • Itiruçu • Itaquara • Santa Inês • Lagedo do Tabocal
     </div>
-
     <div class="footer-box">
       <h3>HORÁRIO DE ATENDIMENTO:</h3>
       Segunda a Domingo das 8h às 22hs.
     </div>
-
     <div class="footer-box">
       <h3>FORMAS DE PAGAMENTO:</h3>
       Dinheiro, Pix, Cartão Crédito/Débito.
     </div>
-
     <div class="footer-box">
       <h3>REDES SOCIAIS:</h3>
       <a href="https://www.instagram.com/sexyshopjaguar">Instagram: @sexyshopjaguar</a><br>
@@ -324,33 +333,14 @@ footer{
       <a href="https://wa.me/5573998443608">Whatsapp: (73) 99844-3608</a>
     </div>
   </div>
-    <br>
+  <br>
   © 2026 Sexy Shop Jaguar — Todos os direitos reservados.
 </footer>
 
 <script>
 const dados = [
-  {titulo:"💋 COSMÉTICOS", pasta:"cosmeticos", itens:[
-    "Apertadinha","Batom Pênis","Bolinhas Explosivas","Creme Japonês",
-    "Dessensibilizante Anal","Energético Estimulante","Excitante Masculino","Garganta Profunda",
-    "Gel Anestésico","Gel Corporal","Gel Eletrizante","Gel Retardante","Gel Térmico",
-    "Gel Treme Treme","Gel Volumão","Gotas da Paixão","Hidratante Blow Girl","Pomada Excitante",
-    "Lambe Lambe","Laminas","Lubrificante Comestível","Lubrificante Love Lub","Lubrificante Rilex",
-    "Melzinho do Amor","Óleo de Massagem","Óleo de Massagem Índia e Maldivas","Perfume Afrodisíaco",
-    "Perfume de Calcinha","Perfume de Cueca","Pirula do Dia Seguinte","Pó da Bruxa",
-    "Preservativos Especiais","Preservativo Rilex","Sabonete Feminino","Sabonete Masculino",
-    "Tadalafila","Vela Aromatizada","Vela de Massagem","Viagra"
-  ]},
-  {titulo:"🔥 ACESSÓRIOS", pasta:"acessorios", itens:[
-    "Algemas","Anel Peniano","Bolinha de Pompoar","Bolinha Tailandesa","Bomba Peniana",
-    "Capa Peniana","Cassetete","Chibata e Máscara","Chicote","Cinta Peniana","Coleira",
-    "Corda","Ducha Íntima","Fantasias","Grampos de Mamilos","Massageador","Massageador De Pés",
-    "Mastubador Anus","Mastubador Egg","Mastubador Masculino","Mordaça","Pênis Duplo",
-    "Pênis Grande","Pênis Médio","Pênis Com Vibrador","Pilhas","Plug Anal","Plug Escalonado",
-    "Sugador Clitoriano","Teste de Gravidez","Varinha Mágica","Venda","Vibrador Batom",
-    "Vibrador Bullet","Vibrador Golfinho","Vibrador Multivelocidades","Vibrador Rosa",
-    "Vibrador Rotativo"
-  ]},
+  {titulo:"💋 COSMÉTICOS", pasta:"cosmeticos", itens:["Apertadinha","Batom Pênis","Bolinhas Explosivas","Creme Japonês","Dessensibilizante Anal","Energético Estimulante","Excitante Masculino","Garganta Profunda","Gel Anestésico","Gel Corporal","Gel Eletrizante","Gel Retardante","Gel Térmico","Gel Treme Treme","Gel Volumão","Gotas da Paixão","Hidratante Blow Girl","Pomada Excitante","Lambe Lambe","Laminas","Lubrificante Comestível","Lubrificante Love Lub","Lubrificante Rilex","Melzinho do Amor","Óleo de Massagem","Óleo de Massagem Índia e Maldivas","Perfume Afrodisíaco","Perfume de Calcinha","Perfume de Cueca","Pirula do Dia Seguinte","Pó da Bruxa","Preservativos Especiais","Preservativo Rilex","Sabonete Feminino","Sabonete Masculino","Tadalafila","Vela Aromatizada","Vela de Massagem","Viagra"]},
+  {titulo:"🔥 ACESSÓRIOS", pasta:"acessorios", itens:["Algemas","Anel Peniano","Bolinha de Pompoar","Bolinha Tailandesa","Bomba Peniana","Capa Peniana","Cassetete","Chibata e Máscara","Chicote","Cinta Peniana","Coleira","Corda","Ducha Íntima","Fantasias","Grampos de Mamilos","Massageador","Massageador De Pés","Mastubador Anus","Mastubador Egg","Mastubador Masculino","Mordaça","Pênis Duplo","Pênis Grande","Pênis Médio","Pênis Com Vibrador","Pilhas","Plug Anal","Plug Escalonado","Sugador Clitoriano","Teste de Gravidez","Varinha Mágica","Venda","Vibrador Batom","Vibrador Bullet","Vibrador Golfinho","Vibrador Multivelocidades","Vibrador Rosa","Vibrador Rotativo"]},
   {titulo:"🎲 JOGOS", pasta:"jogos", itens:["Baralho Erótico","Dado Erótico","Raspadinhas","Roletas"]},
   {titulo:"👙 MODA ÍNTIMA", pasta:"modaintima", itens:["Calcinha Ousada","Calcinhas Ousadas","Conjuntos","Lingerie","Perneira"]}
 ];
@@ -396,6 +386,7 @@ dados.forEach(cat=>{
         btn.textContent="COMPRAR";
         btn.style.background="var(--verde)";
       }
+
       contador.textContent=carrinho.length;
       carrinhoBtn.style.display=carrinho.length?"flex":"none";
       carrinhoBtn.classList.add("pop");
@@ -411,6 +402,13 @@ carrinhoBtn.onclick=()=>{
     li.textContent="• "+i;
     lista.appendChild(li);
   });
+
+  if(carrinho.length > 10){
+    lista.classList.add("scroll-ativo");
+  }else{
+    lista.classList.remove("scroll-ativo");
+  }
+
   popup.style.display="flex";
 };
 
@@ -432,4 +430,3 @@ function fecharZoom(){
 
 </body>
 </html>
-
