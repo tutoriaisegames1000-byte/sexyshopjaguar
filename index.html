@@ -187,22 +187,12 @@ section{
   position:relative;
 }
 
-/* ===== AJUSTES SOLICITADOS ===== */
 .popup-box h3{
   text-align:center;
   color:var(--rosa);
   font-size:26px;
   margin-bottom:15px;
 }
-
-#listaCarrinho li{
-  font-size:16px;
-}
-
-.finalizar{
-  font-size:16px;
-}
-/* =============================== */
 
 .fechar-popup{
   position:absolute;
@@ -232,11 +222,17 @@ section{
   margin-bottom:6px;
 }
 
+/* ===== ALTERAÇÃO SOLICITADA ===== */
+#listaCarrinho li span:last-child{
+  font-size:18px;
+}
+
 .remover-item{
   cursor:pointer;
   font-size:18px;
   font-weight:bold;
 }
+/* ================================ */
 
 #listaCarrinho.scroll-ativo{
   max-height:260px;
@@ -257,6 +253,7 @@ section{
   background:#25D366;
   color:#fff;
   font-weight:bold;
+  font-size:16px;
 }
 
 /* ZOOM */
@@ -344,7 +341,7 @@ footer{
 </footer>
 
 <script>
-/* JS original mantido 100% sem alterações */
+/* JS original mantido sem alterações */
 const dados=[{titulo:"💋 COSMÉTICOS",pasta:"cosmeticos",itens:["Apertadinha","Batom Pênis","Bolinhas Explosivas","Creme Japonês","Dessensibilizante Anal","Energético Estimulante","Excitante Masculino","Garganta Profunda","Gel Anestésico","Gel Corporal","Gel Eletrizante","Gel Retardante","Gel Térmico","Gel Treme Treme","Gel Volumão","Gotas da Paixão","Hidratante Blow Girl","Pomada Excitante","Lambe Lambe","Laminas","Lubrificante Comestível","Lubrificante Love Lub","Lubrificante Rilex","Melzinho do Amor","Óleo de Massagem","Óleo de Massagem Índia e Maldivas","Perfume Afrodisíaco","Perfume de Calcinha","Perfume de Cueca","Pirula do Dia Seguinte","Pó da Bruxa","Preservativos Especiais","Preservativo Rilex","Sabonete Feminino","Sabonete Masculino","Tadalafila","Vela Aromatizada","Vela de Massagem","Viagra"]},{titulo:"🔥 ACESSÓRIOS",pasta:"acessorios",itens:["Algemas","Anel Peniano","Bolinha de Pompoar","Bolinha Tailandesa","Bomba Peniana","Capa Peniana","Cassetete","Chibata e Máscara","Chicote","Cinta Peniana","Coleira","Corda","Ducha Íntima","Fantasias","Grampos de Mamilos","Massageador","Massageador De Pés","Mastubador Anus","Mastubador Egg","Mastubador Masculino","Mordaça","Pênis Duplo","Pênis Grande","Pênis Médio","Pênis Com Vibrador","Pilhas","Plug Anal","Plug Escalonado","Sugador Clitoriano","Teste de Gravidez","Varinha Mágica","Venda","Vibrador Batom","Vibrador Bullet","Vibrador Golfinho","Vibrador Multivelocidades","Vibrador Rosa","Vibrador Rotativo"]},{titulo:"🎲 JOGOS",pasta:"jogos",itens:["Baralho Erótico","Dado Erótico","Raspadinhas","Roletas"]},{titulo:"👙 MODA ÍNTIMA",pasta:"modaintima",itens:["Calcinha Ousada","Calcinhas Ousadas","Conjuntos","Lingerie","Perneira"]}];
 
 const area=document.getElementById("categorias");
