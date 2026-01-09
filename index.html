@@ -15,6 +15,7 @@
   --verde:#25D366;
   --carrinho:#DC143C;
 }
+
 body{
   margin:0;
   font-family:Arial, Helvetica, sans-serif;
@@ -29,6 +30,7 @@ header{
   text-align:center;
 }
 header img{max-width:140px;}
+
 .redes{
   display:flex;
   justify-content:center;
@@ -46,6 +48,7 @@ header img{max-width:140px;}
 .whatsapp{background:#25D366;}
 .instagram{background:#FF1493;}
 .facebook{background:#1E90FF;}
+
 .info{
   margin-top:15px;
   background:rgba(0,0,0,.35);
@@ -62,17 +65,20 @@ section{
   margin:auto;
   padding:40px 20px;
 }
+
 .categoria{
   background:rgba(255,255,255,.05);
   border-radius:22px;
   padding:30px 20px;
   margin-bottom:60px;
 }
+
 .categoria h2{
   text-align:center;
   color:var(--rosa);
   font-size:30px;
 }
+
 .linha{
   width:90px;
   height:4px;
@@ -80,6 +86,7 @@ section{
   margin:15px auto 25px;
   border-radius:10px;
 }
+
 .carrossel{
   display:flex;
   gap:16px;
@@ -98,6 +105,7 @@ section{
   border-radius:18px;
   overflow:hidden;
 }
+
 .imagem-produto{
   aspect-ratio:1/1;
   background:#fff;
@@ -111,7 +119,9 @@ section{
   max-height:100%;
   object-fit:contain;
 }
+
 .produto-info{padding:12px;}
+
 .btn-produto{
   background:var(--verde);
   padding:12px;
@@ -139,11 +149,22 @@ section{
   align-items:center;
   gap:8px;
 }
+
 #carrinho-flutuante span{
   background:#fff;
   color:var(--carrinho);
   border-radius:50%;
   padding:2px 6px;
+}
+
+/* POP */
+.pop{
+  animation:pop 0.3s ease;
+}
+@keyframes pop{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.25);}
+  100%{transform:scale(1);}
 }
 
 /* POPUP */
@@ -156,6 +177,7 @@ section{
   justify-content:center;
   z-index:2000;
 }
+
 .popup-box{
   background:#1a1a1a;
   border-radius:18px;
@@ -164,6 +186,7 @@ section{
   max-width:420px;
   position:relative;
 }
+
 .fechar-popup{
   position:absolute;
   top:10px;
@@ -178,19 +201,26 @@ section{
   font-weight:bold;
   cursor:pointer;
 }
+
+/* LISTA CARRINHO */
 #listaCarrinho{
   list-style:none;
   padding:0;
 }
+
 #listaCarrinho li{
   display:flex;
-  justify-content:space-between;
+  align-items:center;
+  gap:10px;
   margin-bottom:6px;
 }
+
 .remover-item{
   cursor:pointer;
+  font-size:18px;
   font-weight:bold;
 }
+
 #listaCarrinho.scroll-ativo{
   max-height:260px;
   overflow-y:auto;
@@ -200,6 +230,7 @@ section{
   background:var(--roxo-scroll);
   border-radius:10px;
 }
+
 .finalizar{
   margin-top:15px;
   width:100%;
@@ -258,7 +289,9 @@ footer{
     <a class="instagram" href="https://www.instagram.com/sexyshopjaguar">INSTAGRAM</a>
     <a class="facebook" href="https://www.facebook.com/profile.php?id=61566510735510">FACEBOOK</a>
   </div>
-  <div class="info">➡️ Arraste para o lado • 🔍 Toque na imagem para dar zoom</div>
+  <br/>
+  <div class="info">➡️Arraste para o lado para ver os produtos<br>
+    🔍Toque na imagem para da zoom</div>
 </header>
 
 <section id="categorias"></section>
@@ -347,6 +380,8 @@ dados.forEach(cat=>{
       }
       contador.textContent=carrinho.length;
       carrinhoBtn.style.display=carrinho.length?"flex":"none";
+      carrinhoBtn.classList.add("pop");
+      setTimeout(()=>carrinhoBtn.classList.remove("pop"),300);
     };
   });
 });
@@ -355,7 +390,7 @@ function atualizarCarrinho(){
   lista.innerHTML="";
   carrinho.forEach((item,index)=>{
     const li=document.createElement("li");
-    li.innerHTML=`<span>• ${item}</span><span class="remover-item" onclick="removerItem(${index})">×</span>`;
+    li.innerHTML=`<span class="remover-item" onclick="removerItem(${index})">×</span><span>${item}</span>`;
     lista.appendChild(li);
   });
   carrinho.length>10?lista.classList.add("scroll-ativo"):lista.classList.remove("scroll-ativo");
@@ -370,6 +405,8 @@ function removerItem(i){
   }
   contador.textContent=carrinho.length;
   carrinhoBtn.style.display=carrinho.length?"flex":"none";
+  carrinhoBtn.classList.add("pop");
+  setTimeout(()=>carrinhoBtn.classList.remove("pop"),300);
   atualizarCarrinho();
 }
 
@@ -377,6 +414,7 @@ carrinhoBtn.onclick=()=>{
   atualizarCarrinho();
   popup.style.display="flex";
 };
+
 function fecharPopup(){popup.style.display="none";}
 function finalizarCompra(){
   const msg=encodeURIComponent("Olá, gostaria de adquirir esses produtos: "+carrinho.join(", "));
