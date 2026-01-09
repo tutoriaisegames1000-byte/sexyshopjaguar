@@ -28,7 +28,6 @@ header{
   padding:10px;
   text-align:center;
 }
-
 header img{max-width:140px;}
 
 .redes{
@@ -91,13 +90,12 @@ section{
   display:flex;
   gap:16px;
   overflow-x:auto;
-  scroll-snap-type:x mandatory;
 }
-
-/* SCROLL CARROSSEL */
 .carrossel::-webkit-scrollbar{height:8px;}
-.carrossel::-webkit-scrollbar-track{background:#1a1a1a;border-radius:10px;}
-.carrossel::-webkit-scrollbar-thumb{background:var(--roxo-scroll);border-radius:10px;}
+.carrossel::-webkit-scrollbar-thumb{
+  background:var(--roxo-scroll);
+  border-radius:10px;
+}
 
 /* PRODUTO */
 .produto{
@@ -113,8 +111,8 @@ section{
   display:flex;
   align-items:center;
   justify-content:center;
+  cursor:pointer;
 }
-
 .imagem-produto img{
   max-width:100%;
   max-height:100%;
@@ -124,22 +122,89 @@ section{
 .produto-info{padding:12px;}
 
 .btn-produto{
-  display:block;
   background:#25D366;
   padding:12px;
   border-radius:12px;
-  text-align:center;
+  width:100%;
+  border:none;
   color:#fff;
   font-weight:bold;
-  width:100%;
+  cursor:pointer;
 }
 
-/* FOOTER RESPONSIVO */
+/* CARRINHO */
+#carrinho-flutuante{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:var(--carrinho);
+  color:#fff;
+  font-weight:bold;
+  padding:14px 18px;
+  border-radius:50px;
+  cursor:pointer;
+  display:none;
+  z-index:1000;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+#carrinho-flutuante span{
+  background:#fff;
+  color:var(--carrinho);
+  border-radius:50%;
+  padding:2px 6px;
+}
+
+/* POP só no carrinho */
+.pop{
+  animation:pop 0.3s ease;
+}
+@keyframes pop{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.2);}
+  100%{transform:scale(1);}
+}
+
+/* POPUP */
+#popup-carrinho{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.7);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:2000;
+}
+.popup-box{
+  background:#1a1a1a;
+  border-radius:18px;
+  padding:25px;
+  width:90%;
+  max-width:420px;
+}
+#listaCarrinho{
+  max-height:260px;
+  overflow-y:auto;
+  list-style:none;
+  padding:0;
+}
+.finalizar{
+  margin-top:15px;
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:14px;
+  background:#25D366;
+  color:#fff;
+  font-weight:bold;
+}
+
+/* FOOTER */
 footer{
   background:#0b0b0b;
   padding:40px 20px;
 }
-
 .footer-container{
   max-width:1200px;
   margin:auto;
@@ -147,37 +212,9 @@ footer{
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:30px;
 }
-
-.footer-box{
-  font-size:14px;
-  line-height:1.6;
-}
-
-.footer-box h3{
-  color:var(--rosa);
-  font-size:16px;
-  margin-bottom:10px;
-}
-
-.footer-box a{
-  color:#fff;
-  text-decoration:none;
-  display:inline-block;
-  margin-bottom:6px;
-}
-
-.footer-box a:hover{
-  text-decoration:underline;
-}
-
-/* MOBILE AJUSTES */
-@media (max-width:600px){
-  footer{
-    text-align:center;
-  }
-  .footer-container{
-    gap:25px;
-  }
+.footer-box h3{color:var(--rosa);}
+@media(max-width:600px){
+  footer{text-align:center;}
 }
 </style>
 </head>
@@ -185,55 +222,85 @@ footer{
 <body>
 
 <header>
-  <img src="imagens/logopng.png" width="100" height="100">
+  <img src="imagens/logopng.png" width="100">
   <div class="redes">
     <a class="whatsapp" href="https://wa.me/5573998443608">WHATSAPP</a>
     <a class="instagram" href="https://www.instagram.com/sexyshopjaguar">INSTAGRAM</a>
-    <a class="facebook" href="https://www.facebook.com/thais.santos.459169/">FACEBOOK</a>
+    <a class="facebook" href="https://www.facebook.com/profile.php?id=61566510735510">FACEBOOK</a>
   </div>
-  <div class="info">🔍 Arraste para o lado • Toque na imagem para ampliar</div>
+  <br/>
+  <div class="info">➡️Arraste para o lado 🔍Toque na imagem para ampliar</div>
 </header>
 
 <section id="categorias"></section>
 
+<div id="carrinho-flutuante">🛒 <span id="contador">0</span></div>
+
+<div id="popup-carrinho">
+  <div class="popup-box">
+    <h3>CARRINHO</h3>
+    <ul id="listaCarrinho"></ul>
+    <button class="finalizar" onclick="finalizarCompra()">FINALIZAR COMPRA</button>
+  </div>
+</div>
+
 <footer>
   <div class="footer-container">
-
     <div class="footer-box">
       <h3>REGIÕES ATENDIDAS:</h3>
       Jaguaquara • Baixão De Ipiúna • Itiúba • Entrocamento • Itiruçu • Itaquara • Santa Inês • Lagedo do Tabocal
     </div>
-
     <div class="footer-box">
       <h3>HORÁRIO DE ATENDIMENTO:</h3>
       Segunda a Domingo das 8h às 22hs.
     </div>
-
     <div class="footer-box">
       <h3>FORMAS DE PAGAMENTO:</h3>
       Dinheiro, Pix, Cartão Crédito/Débito.
     </div>
-
     <div class="footer-box">
       <h3>REDES SOCIAIS:</h3>
-      <a href="https://www.instagram.com/sexyshopjaguar">Instagram: @sexyshopjaguar</a>
-      <a href="https://www.facebook.com/profile.php?id=61566510735510">Facebook: Sex Shop Jaguar</a>
+      <a href="https://www.instagram.com/sexyshopjaguar">Instagram: @sexyshopjaguar</a><br>
+      <a href="https://www.facebook.com/profile.php?id=61566510735510">Facebook: Sex Shop Jaguar</a><br>
       <a href="https://wa.me/5573998443608">Whatsapp: (73) 99844-3608</a>
     </div>
-
   </div>
 </footer>
 
 <script>
-/* JS ORIGINAL PRESERVADO */
-const dados=[
-{titulo:"💋 COSMÉTICOS",pasta:"cosmeticos",itens:["Apertadinha","Batom Pênis","Bolinhas Explosivas","Creme Japonês","Dessensibilizante Anal","Energético Estimulante","Excitante Masculino","Garganta Profunda","Gel Anestésico","Gel Corporal","Gel Eletrizante","Gel Retardante","Gel Térmico","Gel Treme Treme","Gel Volumão","Gotas da Paixão","Hidratante Blow Girl","Pomada Excitante","Lambe Lambe","Laminas","Lubrificante Comestível","Lubrificante Love Lub","Lubrificante Rilex","Melzinho do Amor","Óleo de Massagem","Óleo de Massagem Índia e Maldivas","Perfume Afrodisíaco","Perfume de Calcinha","Perfume de Cueca","Pirula do Dia Seguinte","Pó da Bruxa","Preservativos Especiais","Preservativo Rilex","Sabonete Feminino","Sabonete Masculino","Tadalafila","Vela Aromatizada","Vela de Massagem","Viagra"]},
-{titulo:"🔥 ACESSÓRIOS",pasta:"acessorios",itens:["Algemas","Anel Peniano","Bolinha de Pompoar","Bolinha Tailandesa","Bomba Peniana","Capa Peniana","Cassetete","Chibata e Máscara","Chicote","Cinta Peniana","Coleira","Corda","Ducha Íntima","Fantasias","Grampos de Mamilos","Massageador","Massageador De Pés","Mastubador Anus","Mastubador Egg","Mastubador Masculino","Mordaça","Pênis Duplo","Pênis Grande","Pênis Médio","Pênis Com Vibrador","Pilhas","Plug Anal","Plug Escalonado","Sugador Clitoriano","Teste de Gravidez","Varinha Mágica","Venda","Vibrador Batom","Vibrador Bullet","Vibrador Golfinho","Vibrador Multivelocidades","Vibrador Rosa","Vibrador Rotativo"]},
-{titulo:"🎲 JOGOS",pasta:"jogos",itens:["Baralho Erótico","Dado Erótico","Raspadinhas","Roletas"]},
-{titulo:"👙 MODA ÍNTIMA",pasta:"modaintima",itens:["Calcinha Ousada","Calcinhas Ousadas","Conjuntos","Lingerie","Perneira"]}
+const dados = [
+  {titulo:"💋 COSMÉTICOS", pasta:"cosmeticos", itens:[
+    "Apertadinha","Batom Pênis","Bolinhas Explosivas","Creme Japonês",
+    "Dessensibilizante Anal","Energético Estimulante","Excitante Masculino","Garganta Profunda",
+    "Gel Anestésico","Gel Corporal","Gel Eletrizante","Gel Retardante","Gel Térmico",
+    "Gel Treme Treme","Gel Volumão","Gotas da Paixão","Hidratante Blow Girl","Pomada Excitante",
+    "Lambe Lambe","Laminas","Lubrificante Comestível","Lubrificante Love Lub","Lubrificante Rilex",
+    "Melzinho do Amor","Óleo de Massagem","Óleo de Massagem Índia e Maldivas","Perfume Afrodisíaco",
+    "Perfume de Calcinha","Perfume de Cueca","Pirula do Dia Seguinte","Pó da Bruxa",
+    "Preservativos Especiais","Preservativo Rilex","Sabonete Feminino","Sabonete Masculino",
+    "Tadalafila","Vela Aromatizada","Vela de Massagem","Viagra"
+  ]},
+  {titulo:"🔥 ACESSÓRIOS", pasta:"acessorios", itens:[
+    "Algemas","Anel Peniano","Bolinha de Pompoar","Bolinha Tailandesa","Bomba Peniana",
+    "Capa Peniana","Cassetete","Chibata e Máscara","Chicote","Cinta Peniana","Coleira",
+    "Corda","Ducha Íntima","Fantasias","Grampos de Mamilos","Massageador","Massageador De Pés",
+    "Mastubador Anus","Mastubador Egg","Mastubador Masculino","Mordaça","Pênis Duplo",
+    "Pênis Grande","Pênis Médio","Pênis Com Vibrador","Pilhas","Plug Anal","Plug Escalonado",
+    "Sugador Clitoriano","Teste de Gravidez","Varinha Mágica","Venda","Vibrador Batom",
+    "Vibrador Bullet","Vibrador Golfinho","Vibrador Multivelocidades","Vibrador Rosa",
+    "Vibrador Rotativo"
+  ]},
+  {titulo:"🎲 JOGOS", pasta:"jogos", itens:["Baralho Erótico","Dado Erótico","Raspadinhas","Roletas"]},
+  {titulo:"👙 MODA ÍNTIMA", pasta:"modaintima", itens:["Calcinha Ousada","Calcinhas Ousadas","Conjuntos","Lingerie","Perneira"]}
 ];
 
 const area=document.getElementById("categorias");
+const carrinhoBtn=document.getElementById("carrinho-flutuante");
+const contador=document.getElementById("contador");
+const lista=document.getElementById("listaCarrinho");
+const popup=document.getElementById("popup-carrinho");
+let carrinho=[];
+
 dados.forEach(cat=>{
   const div=document.createElement("div");
   div.className="categoria";
@@ -244,10 +311,42 @@ dados.forEach(cat=>{
   cat.itens.forEach(n=>{
     const p=document.createElement("div");
     p.className="produto";
-    p.innerHTML=`<div class="imagem-produto"><img src="${cat.pasta}/${n}.jpg"></div><div class="produto-info"><button class="btn-produto">COMPRAR</button></div>`;
+    p.innerHTML=`
+      <div class="imagem-produto">
+        <img src="${cat.pasta}/${n}.jpg">
+      </div>
+      <div class="produto-info">
+        <button class="btn-produto">COMPRAR</button>
+      </div>`;
     car.appendChild(p);
+
+    p.querySelector("button").onclick=()=>{
+      const i=carrinho.indexOf(n);
+      if(i===-1) carrinho.push(n);
+      else carrinho.splice(i,1);
+
+      contador.textContent=carrinho.length;
+      carrinhoBtn.style.display=carrinho.length?"flex":"none";
+      carrinhoBtn.classList.add("pop");
+      setTimeout(()=>carrinhoBtn.classList.remove("pop"),300);
+    };
   });
 });
+
+carrinhoBtn.onclick=()=>{
+  lista.innerHTML="";
+  carrinho.forEach(i=>{
+    const li=document.createElement("li");
+    li.textContent="• "+i;
+    lista.appendChild(li);
+  });
+  popup.style.display="flex";
+};
+
+function finalizarCompra(){
+  const msg=encodeURIComponent("Olá, gostaria de adquirir esses produtos: "+carrinho.join(", "));
+  window.open("https://wa.me/5573998443608?text="+msg,"_blank");
+}
 </script>
 
 </body>
