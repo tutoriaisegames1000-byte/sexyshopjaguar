@@ -143,7 +143,6 @@ section{
   cursor:pointer;
   display:none;
   z-index:1000;
-  display:flex;
   align-items:center;
   gap:8px;
 }
@@ -173,18 +172,40 @@ section{
   padding:25px;
   width:90%;
   max-width:420px;
+  position:relative;
 }
 
 .popup-box h3{
   text-align:center;
   color:var(--rosa);
-  margin-bottom:15px;
+  margin-bottom:10px;
 }
 
-.lista-carrinho li{
+/* BOTÃO FECHAR */
+.fechar-popup{
+  position:absolute;
+  top:10px;
+  right:14px;
+  font-size:22px;
+  font-weight:bold;
+  color:#DC143C;
+  cursor:pointer;
+}
+
+/* LISTA COM LIMITE */
+#listaCarrinho{
+  list-style:none;
+  padding:0;
+  margin:10px 0;
+  max-height:260px; /* ~10 itens */
+  overflow-y:auto;
+}
+
+#listaCarrinho li{
   margin-bottom:6px;
 }
 
+/* BOTÃO FINALIZAR */
 .finalizar{
   margin-top:15px;
   width:100%;
@@ -228,7 +249,6 @@ section{
     <a class="instagram" href="https://www.instagram.com/sexyshopjaguar">INSTAGRAM</a>
     <a class="facebook" href="https://www.facebook.com/thais.santos.459169/">FACEBOOK</a>
   </div>
-  <br/>
   <div class="info">🔍 Arraste para o lado • Toque na imagem para ampliar</div>
 </header>
 
@@ -237,8 +257,9 @@ section{
 <div id="carrinho-flutuante">🛒 <span id="contador"></span></div>
 
 <!-- POPUP -->
-<div id="popup-carrinho" onclick="fecharPopup()">
-  <div class="popup-box" onclick="event.stopPropagation()">
+<div id="popup-carrinho">
+  <div class="popup-box">
+    <span class="fechar-popup" onclick="fecharPopup()">×</span>
     <h3>Seu Carrinho</h3>
     <ul id="listaCarrinho"></ul>
     <button class="finalizar" onclick="finalizarCompra()">FINALIZAR COMPRA!</button>
@@ -350,4 +371,3 @@ function fecharZoom(){zoom.style.display="none";}
 
 </body>
 </html>
-
