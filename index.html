@@ -12,6 +12,7 @@
   --roxo-scroll:#b84cff;
   --rosa:#ff4d8d;
   --amarelo:#FFD700;
+  --verde:#25D366;
   --carrinho:#DC143C;
 }
 
@@ -111,7 +112,6 @@ section{
   display:flex;
   align-items:center;
   justify-content:center;
-  cursor:pointer;
 }
 .imagem-produto img{
   max-width:100%;
@@ -122,7 +122,7 @@ section{
 .produto-info{padding:12px;}
 
 .btn-produto{
-  background:#25D366;
+  background:var(--verde);
   padding:12px;
   border-radius:12px;
   width:100%;
@@ -156,7 +156,7 @@ section{
   padding:2px 6px;
 }
 
-/* POP só no carrinho */
+/* POP */
 .pop{
   animation:pop 0.3s ease;
 }
@@ -176,19 +176,38 @@ section{
   justify-content:center;
   z-index:2000;
 }
+
 .popup-box{
   background:#1a1a1a;
   border-radius:18px;
   padding:25px;
   width:90%;
   max-width:420px;
+  position:relative;
 }
+
+.fechar-popup{
+  position:absolute;
+  top:10px;
+  right:10px;
+  background:#DC143C;
+  color:#fff;
+  border:none;
+  border-radius:50%;
+  width:32px;
+  height:32px;
+  font-size:18px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
 #listaCarrinho{
   max-height:260px;
   overflow-y:auto;
   list-style:none;
   padding:0;
 }
+
 .finalizar{
   margin-top:15px;
   width:100%;
@@ -213,6 +232,8 @@ footer{
   gap:30px;
 }
 .footer-box h3{color:var(--rosa);}
+.footer-box a{color:#fff;text-decoration:none;}
+.footer-box a:hover{text-decoration:underline;}
 @media(max-width:600px){
   footer{text-align:center;}
 }
@@ -228,17 +249,17 @@ footer{
     <a class="instagram" href="https://www.instagram.com/sexyshopjaguar">INSTAGRAM</a>
     <a class="facebook" href="https://www.facebook.com/profile.php?id=61566510735510">FACEBOOK</a>
   </div>
-  <br/>
-  <div class="info">➡️Arraste para o lado 🔍Toque na imagem para ampliar</div>
+  <div class="info">🔍 Arraste para o lado • Toque na imagem para ampliar</div>
 </header>
 
 <section id="categorias"></section>
 
 <div id="carrinho-flutuante">🛒 <span id="contador">0</span></div>
 
-<div id="popup-carrinho">
-  <div class="popup-box">
-    <h3>CARRINHO</h3>
+<div id="popup-carrinho" onclick="fecharPopup()">
+  <div class="popup-box" onclick="event.stopPropagation()">
+    <button class="fechar-popup" onclick="fecharPopup()">×</button>
+    <h3>Seu Carrinho</h3>
     <ul id="listaCarrinho"></ul>
     <button class="finalizar" onclick="finalizarCompra()">FINALIZAR COMPRA</button>
   </div>
@@ -320,10 +341,19 @@ dados.forEach(cat=>{
       </div>`;
     car.appendChild(p);
 
-    p.querySelector("button").onclick=()=>{
+    const btn=p.querySelector("button");
+
+    btn.onclick=()=>{
       const i=carrinho.indexOf(n);
-      if(i===-1) carrinho.push(n);
-      else carrinho.splice(i,1);
+      if(i===-1){
+        carrinho.push(n);
+        btn.textContent="NO CARRINHO";
+        btn.style.background="var(--amarelo)";
+      }else{
+        carrinho.splice(i,1);
+        btn.textContent="COMPRAR";
+        btn.style.background="var(--verde)";
+      }
 
       contador.textContent=carrinho.length;
       carrinhoBtn.style.display=carrinho.length?"flex":"none";
@@ -342,6 +372,10 @@ carrinhoBtn.onclick=()=>{
   });
   popup.style.display="flex";
 };
+
+function fecharPopup(){
+  popup.style.display="none";
+}
 
 function finalizarCompra(){
   const msg=encodeURIComponent("Olá, gostaria de adquirir esses produtos: "+carrinho.join(", "));
