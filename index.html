@@ -112,6 +112,7 @@ section{
   display:flex;
   align-items:center;
   justify-content:center;
+  cursor:pointer;
 }
 .imagem-produto img{
   max-width:100%;
@@ -145,7 +146,6 @@ section{
   cursor:pointer;
   display:none;
   z-index:1000;
-  display:flex;
   align-items:center;
   gap:8px;
 }
@@ -166,7 +166,7 @@ section{
   100%{transform:scale(1);}
 }
 
-/* POPUP */
+/* POPUP CARRINHO */
 #popup-carrinho{
   position:fixed;
   inset:0;
@@ -219,6 +219,34 @@ section{
   font-weight:bold;
 }
 
+/* ZOOM */
+#zoom{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.8);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:3000;
+}
+#zoom img{
+  max-width:90%;
+  max-height:90%;
+}
+.fechar-zoom{
+  position:absolute;
+  top:20px;
+  right:25px;
+  background:#DC143C;
+  color:#fff;
+  border:none;
+  border-radius:50%;
+  width:40px;
+  height:40px;
+  font-size:22px;
+  cursor:pointer;
+}
+
 /* FOOTER */
 footer{
   background:#0b0b0b;
@@ -250,8 +278,7 @@ footer{
     <a class="facebook" href="https://www.facebook.com/profile.php?id=61566510735510">FACEBOOK</a>
   </div>
   <br/>
-  <div class="info">➡️Arraste para o lado para ver os produtos<br>
-    🔍Toque na imagem para da zoom</div>
+  <div class="info">➡️ Arraste para o lado • 🔍 Toque na imagem para dar zoom</div>
 </header>
 
 <section id="categorias"></section>
@@ -267,32 +294,38 @@ footer{
   </div>
 </div>
 
+<div id="zoom" onclick="fecharZoom()">
+  <button class="fechar-zoom" onclick="fecharZoom()">×</button>
+  <img id="zoomImg">
+</div>
+
 <footer>
   <div class="footer-container">
     <div class="footer-box">
       <h3>REGIÕES ATENDIDAS:</h3>
       Jaguaquara • Baixão De Ipiúna • Itiúba • Entrocamento • Itiruçu • Itaquara • Santa Inês • Lagedo do Tabocal
     </div>
+
     <div class="footer-box">
       <h3>HORÁRIO DE ATENDIMENTO:</h3>
       Segunda a Domingo das 8h às 22hs.
     </div>
+
     <div class="footer-box">
       <h3>FORMAS DE PAGAMENTO:</h3>
       Dinheiro, Pix, Cartão Crédito/Débito.
     </div>
+
     <div class="footer-box">
       <h3>REDES SOCIAIS:</h3>
       <a href="https://www.instagram.com/sexyshopjaguar">Instagram: @sexyshopjaguar</a><br>
       <a href="https://www.facebook.com/profile.php?id=61566510735510">Facebook: Sex Shop Jaguar</a><br>
       <a href="https://wa.me/5573998443608">Whatsapp: (73) 99844-3608</a>
     </div>
+    <br>
+  © 2026 Sexy Shop Jaguar — Todos os direitos reservados.
   </div>
 
-  <div class="footer-copy">
-    <br/>
-    © 2026 Sexy Shop Jaguar — Todos os direitos reservados.
-  </div>
 </footer>
 
 <script>
@@ -327,6 +360,9 @@ const carrinhoBtn=document.getElementById("carrinho-flutuante");
 const contador=document.getElementById("contador");
 const lista=document.getElementById("listaCarrinho");
 const popup=document.getElementById("popup-carrinho");
+const zoom=document.getElementById("zoom");
+const zoomImg=document.getElementById("zoomImg");
+
 let carrinho=[];
 
 dados.forEach(cat=>{
@@ -340,7 +376,7 @@ dados.forEach(cat=>{
     const p=document.createElement("div");
     p.className="produto";
     p.innerHTML=`
-      <div class="imagem-produto">
+      <div class="imagem-produto" onclick="abrirZoom('${cat.pasta}/${n}.jpg')">
         <img src="${cat.pasta}/${n}.jpg">
       </div>
       <div class="produto-info">
@@ -349,7 +385,6 @@ dados.forEach(cat=>{
     car.appendChild(p);
 
     const btn=p.querySelector("button");
-
     btn.onclick=()=>{
       const i=carrinho.indexOf(n);
       if(i===-1){
@@ -361,7 +396,6 @@ dados.forEach(cat=>{
         btn.textContent="COMPRAR";
         btn.style.background="var(--verde)";
       }
-
       contador.textContent=carrinho.length;
       carrinhoBtn.style.display=carrinho.length?"flex":"none";
       carrinhoBtn.classList.add("pop");
@@ -380,18 +414,21 @@ carrinhoBtn.onclick=()=>{
   popup.style.display="flex";
 };
 
-function fecharPopup(){
-  popup.style.display="none";
-}
+function fecharPopup(){ popup.style.display="none"; }
 
 function finalizarCompra(){
   const msg=encodeURIComponent("Olá, gostaria de adquirir esses produtos: "+carrinho.join(", "));
   window.open("https://wa.me/5573998443608?text="+msg,"_blank");
 }
+
+function abrirZoom(src){
+  zoomImg.src=src;
+  zoom.style.display="flex";
+}
+function fecharZoom(){
+  zoom.style.display="none";
+}
 </script>
 
 </body>
 </html>
-
-
-
