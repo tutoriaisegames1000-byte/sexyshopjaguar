@@ -19,43 +19,39 @@
             color: #00ff99;
         }
 
-        header {
-            padding: 60px 20px;
-            text-align: center;
-            background: linear-gradient(135deg, #050505, #0f2027);
+        /* HERO */
+        .hero {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #020202, #0f2027);
             border-bottom: 1px solid #00ff99;
         }
 
-        header h1 {
-            font-size: 38px;
-            text-shadow: 0 0 10px #00ff99;
+        .hero-container {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 40px;
+            align-items: center;
         }
 
-        header p {
+        .hero-text h1 {
+            font-size: 42px;
+            text-shadow: 0 0 12px #00ff99;
+            margin-bottom: 20px;
+        }
+
+        .hero-text p {
             font-size: 20px;
-            max-width: 800px;
-            margin: auto;
             color: #9fffdc;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: auto;
-            padding: 50px 20px;
-        }
-
-        /* VIDEO APRESENTAÇÃO */
-        .video-principal h2 {
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .video-box {
+        .hero-video {
             background: #050505;
-            padding: 20px;
-            border-radius: 10px;
+            padding: 15px;
+            border-radius: 12px;
             border: 1px solid #00ff99;
-            box-shadow: 0 0 25px rgba(0, 255, 153, 0.2);
+            box-shadow: 0 0 30px rgba(0, 255, 153, 0.25);
         }
 
         video {
@@ -63,9 +59,15 @@
             border-radius: 8px;
         }
 
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 60px 20px;
+        }
+
         /* FEEDBACKS */
         .feedbacks {
-            margin-top: 80px;
+            margin-top: 60px;
         }
 
         .feedbacks h2 {
@@ -82,7 +84,7 @@
         .feedback-video {
             background: #050505;
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 12px;
             border-top: 3px solid #00ff99;
             box-shadow: 0 0 20px rgba(0, 255, 153, 0.15);
         }
@@ -90,14 +92,14 @@
         /* CTA */
         .cta {
             margin-top: 80px;
-            padding: 60px 20px;
+            padding: 70px 20px;
             text-align: center;
             background: linear-gradient(135deg, #000, #0f2027);
             border-top: 1px solid #00ff99;
         }
 
         .cta h2 {
-            font-size: 32px;
+            font-size: 34px;
         }
 
         .cta p {
@@ -107,21 +109,30 @@
 
         .cta a {
             display: inline-block;
-            margin-top: 25px;
-            padding: 18px 45px;
+            margin-top: 30px;
+            padding: 18px 50px;
             background: #00ff99;
             color: #000;
             text-decoration: none;
             font-size: 20px;
             font-weight: bold;
-            border-radius: 5px;
-            box-shadow: 0 0 25px #00ff99;
+            border-radius: 6px;
+            box-shadow: 0 0 30px #00ff99;
             transition: 0.3s;
         }
 
         .cta a:hover {
             background: #00cc77;
-            box-shadow: 0 0 40px #00ff99;
+            box-shadow: 0 0 45px #00ff99;
+        }
+
+        /* CRONÔMETRO */
+        .timer {
+            margin-top: 25px;
+            font-size: 22px;
+            font-family: 'Courier New', monospace;
+            color: #ff4d4d;
+            text-shadow: 0 0 10px rgba(255, 77, 77, 0.7);
         }
 
         footer {
@@ -133,61 +144,69 @@
         }
 
         /* RESPONSIVO */
-        @media (max-width: 768px) {
-            .feedback-grid {
+        @media (max-width: 900px) {
+            .hero-container {
                 grid-template-columns: 1fr;
+                text-align: center;
             }
 
-            header h1 {
-                font-size: 28px;
+            .hero-text h1 {
+                font-size: 32px;
+            }
+
+            .feedback-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>Curso de Detetive Particular</h1>
-    <p>Formação moderna com técnicas reais de investigação profissional</p>
-</header>
+<!-- HERO / APRESENTAÇÃO -->
+<section class="hero">
+    <div class="hero-container">
 
-<div class="container">
+        <div class="hero-text">
+            <h1>Curso de Detetive Particular</h1>
+            <p>
+                Formação moderna, estratégica e profissional para quem deseja
+                atuar de forma legal e eficiente na investigação particular.
+            </p>
+        </div>
 
-    <!-- VIDEO APRESENTAÇÃO -->
-    <section class="video-principal">
-        <h2>🎥 Apresentação</h2>
-        <div class="video-box">
+        <div class="hero-video">
             <video controls>
                 <source src="videos/apresentação.mp4" type="video/mp4">
                 Seu navegador não suporta vídeo.
             </video>
         </div>
-    </section>
+
+    </div>
+</section>
+
+<div class="container">
 
     <!-- FEEDBACKS -->
     <section class="feedbacks">
-        <h2>💬 Feedbacks dos Alunos</h2>
+        <h2>Feedbacks dos Alunos</h2>
 
         <div class="feedback-grid">
 
             <div class="feedback-video">
                 <video controls>
-                    <source src="videos/feedback1.mp4" type="video/mp4">
-                    Seu navegador não suporta vídeo.
+                    <source src="videos/apresentação.mp4" type="video/mp4">
                 </video>
             </div>
 
             <div class="feedback-video">
                 <video controls>
-                    <source src="videos/feedback2.mp4" type="video/mp4">
-                    Seu navegador não suporta vídeo.
+                    <source src="videos/apresentação.mp4" type="video/mp4">
                 </video>
             </div>
 
             <div class="feedback-video">
                 <video controls>
-                    <source src="videos/feedback3.mp4" type="video/mp4">
-                    Seu navegador não suporta vídeo.
+                    <source src="videos/apresentação.mp4" type="video/mp4">
                 </video>
             </div>
 
@@ -196,15 +215,57 @@
 
 </div>
 
+<!-- CTA + CRONÔMETRO -->
 <div class="cta">
-    <h2>Acesso Imediato</h2>
-    <p>Entre agora no curso e comece sua jornada como Detetive Particular.</p>
+    <h2>Acesso Imediato ao Curso</h2>
+    <p>Essa condição especial é válida por tempo limitado.</p>
+
     <a href="#">QUERO ME INSCREVER</a>
+
+    <div class="timer" id="countdown">
+        ⏰ Oferta expira em: 24:00:00
+    </div>
 </div>
 
 <footer>
     <p>© 2026 - Curso de Detetive Particular</p>
 </footer>
+
+<!-- SCRIPT DO CRONÔMETRO -->
+<script>
+    const countdownElement = document.getElementById("countdown");
+    const TOTAL_TIME = 24 * 60 * 60 * 1000;
+
+    let endTime = localStorage.getItem("endTime");
+
+    if (!endTime) {
+        endTime = Date.now() + TOTAL_TIME;
+        localStorage.setItem("endTime", endTime);
+    }
+
+    function updateCountdown() {
+        const now = Date.now();
+        const remaining = endTime - now;
+
+        if (remaining <= 0) {
+            countdownElement.innerHTML = "⛔ Oferta expirada";
+            localStorage.removeItem("endTime");
+            return;
+        }
+
+        const hours = Math.floor(remaining / (1000 * 60 * 60));
+        const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
+
+        countdownElement.innerHTML =
+            `⏰ Oferta expira em: ${String(hours).padStart(2, '0')}:` +
+            `${String(minutes).padStart(2, '0')}:` +
+            `${String(seconds).padStart(2, '0')}`;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+</script>
 
 </body>
 </html>
