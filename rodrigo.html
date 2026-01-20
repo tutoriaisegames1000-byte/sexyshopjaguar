@@ -30,8 +30,8 @@
             max-width: 1200px;
             margin: auto;
             display: grid;
-            grid-template-columns: 1.1fr 1fr;
-            gap: 40px;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 50px;
             align-items: center;
         }
 
@@ -44,6 +44,27 @@
         .hero-text p {
             font-size: 20px;
             color: #9fffdc;
+            margin-bottom: 25px;
+        }
+
+        .hero-benefits {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .hero-benefits li {
+            font-size: 18px;
+            margin-bottom: 12px;
+            padding-left: 28px;
+            position: relative;
+        }
+
+        .hero-benefits li::before {
+            content: "✔";
+            position: absolute;
+            left: 0;
+            color: #00ff99;
         }
 
         .hero-video {
@@ -135,6 +156,28 @@
             text-shadow: 0 0 10px rgba(255, 77, 77, 0.7);
         }
 
+        /* WHATSAPP FLOAT */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25d366;
+            color: #fff;
+            padding: 15px 20px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.6);
+            z-index: 999;
+        }
+
+        .whatsapp-float:hover {
+            background: #1ebe5d;
+        }
+
         footer {
             background: #000;
             text-align: center;
@@ -162,16 +205,23 @@
 </head>
 <body>
 
-<!-- HERO / APRESENTAÇÃO -->
+<!-- HERO / CABEÇALHO -->
 <section class="hero">
     <div class="hero-container">
 
         <div class="hero-text">
             <h1>Curso de Detetive Particular</h1>
             <p>
-                Formação moderna, estratégica e profissional para quem deseja
-                atuar de forma legal e eficiente na investigação particular.
+                Formação profissional moderna para quem deseja atuar legalmente
+                no mercado da investigação particular.
             </p>
+
+            <ul class="hero-benefits">
+                <li>Certificado de conclusão incluso</li>
+                <li>Conteúdo prático e atualizado</li>
+                <li>Acesso imediato ao treinamento</li>
+                <li>Estude no seu próprio ritmo</li>
+            </ul>
         </div>
 
         <div class="hero-video">
@@ -231,6 +281,13 @@
     <p>© 2026 - Curso de Detetive Particular</p>
 </footer>
 
+<!-- BOTÃO WHATSAPP -->
+<a class="whatsapp-float" 
+   href="https://wa.me/5599999999999" 
+   target="_blank">
+   💬 WhatsApp
+</a>
+
 <!-- SCRIPT DO CRONÔMETRO -->
 <script>
     const countdownElement = document.getElementById("countdown");
@@ -269,4 +326,3 @@
 
 </body>
 </html>
-
