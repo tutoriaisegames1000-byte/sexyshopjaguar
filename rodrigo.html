@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Curso de Detetive Particular</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: #0b0f14;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        h1, h2 {
+            font-family: 'Courier New', monospace;
+            color: #00ff99;
+        }
+
+        header {
+            padding: 60px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #050505, #0f2027);
+            border-bottom: 1px solid #00ff99;
+        }
+
+        header h1 {
+            font-size: 38px;
+            text-shadow: 0 0 10px #00ff99;
+        }
+
+        header p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: auto;
+            color: #9fffdc;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 50px 20px;
+        }
+
+        /* VIDEO APRESENTAÇÃO */
+        .video-principal h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .video-box {
+            background: #050505;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #00ff99;
+            box-shadow: 0 0 25px rgba(0, 255, 153, 0.2);
+        }
+
+        video {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        /* FEEDBACKS */
+        .feedbacks {
+            margin-top: 80px;
+        }
+
+        .feedbacks h2 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .feedback-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .feedback-video {
+            background: #050505;
+            padding: 20px;
+            border-radius: 10px;
+            border-top: 3px solid #00ff99;
+            box-shadow: 0 0 20px rgba(0, 255, 153, 0.15);
+        }
+
+        /* CTA */
+        .cta {
+            margin-top: 80px;
+            padding: 60px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #000, #0f2027);
+            border-top: 1px solid #00ff99;
+        }
+
+        .cta h2 {
+            font-size: 32px;
+        }
+
+        .cta p {
+            font-size: 20px;
+            color: #9fffdc;
+        }
+
+        .cta a {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 18px 45px;
+            background: #00ff99;
+            color: #000;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 5px;
+            box-shadow: 0 0 25px #00ff99;
+            transition: 0.3s;
+        }
+
+        .cta a:hover {
+            background: #00cc77;
+            box-shadow: 0 0 40px #00ff99;
+        }
+
+        footer {
+            background: #000;
+            text-align: center;
+            padding: 20px;
+            color: #00ff99;
+            font-size: 14px;
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 768px) {
+            .feedback-grid {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Curso de Detetive Particular</h1>
+    <p>Formação moderna com técnicas reais de investigação profissional</p>
+</header>
+
+<div class="container">
+
+    <!-- VIDEO APRESENTAÇÃO -->
+    <section class="video-principal">
+        <h2>🎥 Apresentação</h2>
+        <div class="video-box">
+            <video controls>
+                <source src="videos/apresentação.mp4" type="video/mp4">
+                Seu navegador não suporta vídeo.
+            </video>
+        </div>
+    </section>
+
+    <!-- FEEDBACKS -->
+    <section class="feedbacks">
+        <h2>💬 Feedbacks dos Alunos</h2>
+
+        <div class="feedback-grid">
+
+            <div class="feedback-video">
+                <video controls>
+                    <source src="videos/feedback1.mp4" type="video/mp4">
+                    Seu navegador não suporta vídeo.
+                </video>
+            </div>
+
+            <div class="feedback-video">
+                <video controls>
+                    <source src="videos/feedback2.mp4" type="video/mp4">
+                    Seu navegador não suporta vídeo.
+                </video>
+            </div>
+
+            <div class="feedback-video">
+                <video controls>
+                    <source src="videos/feedback3.mp4" type="video/mp4">
+                    Seu navegador não suporta vídeo.
+                </video>
+            </div>
+
+        </div>
+    </section>
+
+</div>
+
+<div class="cta">
+    <h2>Acesso Imediato</h2>
+    <p>Entre agora no curso e comece sua jornada como Detetive Particular.</p>
+    <a href="#">QUERO ME INSCREVER</a>
+</div>
+
+<footer>
+    <p>© 2026 - Curso de Detetive Particular</p>
+</footer>
+
+</body>
+</html>
