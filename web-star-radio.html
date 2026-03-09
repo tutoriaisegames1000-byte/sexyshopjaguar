@@ -49,27 +49,17 @@ border-radius:25px;
 border:none;
 font-weight:600;
 cursor:pointer;
-transition:0.3s;
 }
-
-.live-btn:hover{
-background:#0d6efd;
-}
-
-/* HERO */
 
 .hero{
 height:420px;
 background:linear-gradient(120deg,#6ec5ff,#1e90ff);
 display:flex;
 align-items:center;
-padding:0 8%;
+justify-content:center;
+flex-direction:column;
+text-align:center;
 color:white;
-}
-
-.hero small{
-font-size:14px;
-opacity:0.9;
 }
 
 .hero h1{
@@ -79,10 +69,19 @@ margin:10px 0;
 
 .hero p{
 font-size:18px;
-opacity:0.9;
 }
 
-/* PUBLICIDADE */
+.player-box{
+display:none;
+justify-content:center;
+margin-top:20px;
+}
+
+iframe{
+border:none;
+width:300px;
+height:150px;
+}
 
 .ad{
 margin:40px auto;
@@ -93,11 +92,7 @@ color:white;
 text-align:center;
 padding:25px;
 border-radius:12px;
-box-shadow:0 10px 25px rgba(0,0,0,0.15);
-font-weight:600;
 }
-
-/* BARRA INFO */
 
 .info-bar{
 background:#0d6efd;
@@ -106,8 +101,6 @@ text-align:center;
 padding:12px;
 font-size:14px;
 }
-
-/* NOTICIAS */
 
 .news{
 padding:60px 8%;
@@ -123,10 +116,6 @@ font-size:32px;
 color:#0d6efd;
 }
 
-.news-title p{
-color:#666;
-}
-
 .news-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
@@ -138,11 +127,6 @@ background:white;
 border-radius:10px;
 overflow:hidden;
 box-shadow:0 5px 15px rgba(0,0,0,0.08);
-transition:0.3s;
-}
-
-.card:hover{
-transform:translateY(-5px);
 }
 
 .card img{
@@ -154,34 +138,6 @@ object-fit:cover;
 .card-content{
 padding:20px;
 }
-
-.tag{
-background:#1e90ff;
-color:white;
-font-size:12px;
-padding:5px 10px;
-border-radius:20px;
-display:inline-block;
-margin-bottom:10px;
-}
-
-.card h3{
-font-size:18px;
-margin-bottom:10px;
-}
-
-.card p{
-font-size:14px;
-color:#666;
-}
-
-.date{
-margin-top:10px;
-font-size:13px;
-color:#888;
-}
-
-/* FOOTER */
 
 footer{
 margin-top:60px;
@@ -202,21 +158,19 @@ color:#666;
 Web Star Rádio
 </div>
 
-<button class="live-btn" id="playButton">
-▶ Ao Vivo
-</button>
+<button class="live-btn" onclick="togglePlayer()">▶ Ao Vivo</button>
 
 </header>
 
 <section class="hero">
 
-<div>
-
-<small>WEB STAR RÁDIO</small>
-
 <h1>Sintonia Perfeita</h1>
 
-<p>Transmissão ao vivo direto da Web Star Rádio</p>
+<p>Transmissão ao vivo da Web Star Rádio</p>
+
+<div class="player-box" id="player">
+
+<iframe src="https://zeno.fm/player/web-star-radio"></iframe>
 
 </div>
 
@@ -234,7 +188,6 @@ Espaço Publicitário 728x92
 
 <div class="news-title">
 <h2>Últimas Notícias</h2>
-<p>Fique por dentro de tudo que está acontecendo</p>
 </div>
 
 <div class="news-grid">
@@ -242,30 +195,24 @@ Espaço Publicitário 728x92
 <div class="card">
 <img src="https://picsum.photos/400/200?1">
 <div class="card-content">
-<span class="tag">Notícia</span>
-<h3>Evento movimenta a cidade neste final de semana</h3>
+<h3>Evento movimenta a cidade</h3>
 <p>Moradores participam de diversas atividades culturais.</p>
-<div class="date">09/03/2026</div>
 </div>
 </div>
 
 <div class="card">
 <img src="https://picsum.photos/400/200?2">
 <div class="card-content">
-<span class="tag">Música</span>
-<h3>Festival musical reúne artistas regionais</h3>
-<p>Evento promete agitar o público com grandes apresentações.</p>
-<div class="date">09/03/2026</div>
+<h3>Festival musical reúne artistas</h3>
+<p>Evento promete agitar o público.</p>
 </div>
 </div>
 
 <div class="card">
 <img src="https://picsum.photos/400/200?3">
 <div class="card-content">
-<span class="tag">Esporte</span>
-<h3>Time local conquista vitória importante</h3>
-<p>Torcida comemora resultado histórico no campeonato.</p>
-<div class="date">08/03/2026</div>
+<h3>Time local conquista vitória</h3>
+<p>Torcida comemora resultado histórico.</p>
 </div>
 </div>
 
@@ -275,38 +222,27 @@ Espaço Publicitário 728x92
 
 <footer>
 
-© 2026 Web Star Rádio - Todos os direitos reservados
+© 2026 Web Star Rádio
 
 </footer>
 
-<audio id="radioPlayer" preload="none">
-<source src="https://stream.zeno.fm/radio/web-star-radio" type="audio/mpeg">
-</audio>
-
 <script>
 
-const button = document.getElementById("playButton");
-const radio = document.getElementById("radioPlayer");
+function togglePlayer(){
 
-let playing = false;
+let player=document.getElementById("player");
 
-button.addEventListener("click",function(){
+if(player.style.display==="flex"){
 
-if(!playing){
-
-radio.play();
-button.innerHTML="⏸ Pausar";
-playing=true;
+player.style.display="none";
 
 }else{
 
-radio.pause();
-button.innerHTML="▶ Ao Vivo";
-playing=false;
+player.style.display="flex";
 
 }
 
-});
+}
 
 </script>
 
