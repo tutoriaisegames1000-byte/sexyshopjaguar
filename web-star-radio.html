@@ -225,22 +225,18 @@ Espaço Publicitário 728x92
 
 </footer>
 
-<!-- PLAYER INVISÍVEL -->
-
-<audio id="radio" preload="none"></audio>
+<audio id="radio" preload="none">
+<source src="https://stream.zeno.fm/6zb6ag59xy8uv" type="audio/mpeg">
+</audio>
 
 <script>
 
 const radio = document.getElementById("radio");
 const button = document.getElementById("playButton");
 
-let playing = false;
+let playing=false;
 
-/* STREAM DO ZENO */
-
-radio.src = "https://stream.zeno.fm/r4mpcrfwfzzuv";
-
-button.addEventListener("click", () => {
+button.addEventListener("click",()=>{
 
 if(!playing){
 
