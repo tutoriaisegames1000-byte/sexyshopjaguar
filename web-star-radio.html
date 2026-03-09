@@ -49,7 +49,14 @@ border-radius:25px;
 border:none;
 font-weight:600;
 cursor:pointer;
+transition:0.3s;
 }
+
+.live-btn:hover{
+background:#0d6efd;
+}
+
+/* HERO */
 
 .hero{
 height:420px;
@@ -71,17 +78,7 @@ margin:10px 0;
 font-size:18px;
 }
 
-.player-box{
-display:none;
-justify-content:center;
-margin-top:20px;
-}
-
-iframe{
-border:none;
-width:300px;
-height:150px;
-}
+/* PUBLICIDADE */
 
 .ad{
 margin:40px auto;
@@ -92,7 +89,11 @@ color:white;
 text-align:center;
 padding:25px;
 border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
+font-weight:600;
 }
+
+/* INFO BAR */
 
 .info-bar{
 background:#0d6efd;
@@ -101,6 +102,8 @@ text-align:center;
 padding:12px;
 font-size:14px;
 }
+
+/* NEWS */
 
 .news{
 padding:60px 8%;
@@ -158,7 +161,9 @@ color:#666;
 Web Star Rádio
 </div>
 
-<button class="live-btn" onclick="togglePlayer()">▶ Ao Vivo</button>
+<button class="live-btn" id="playButton">
+▶ Ao Vivo
+</button>
 
 </header>
 
@@ -167,12 +172,6 @@ Web Star Rádio
 <h1>Sintonia Perfeita</h1>
 
 <p>Transmissão ao vivo da Web Star Rádio</p>
-
-<div class="player-box" id="player">
-
-<iframe src="https://zeno.fm/player/web-star-radio"></iframe>
-
-</div>
 
 </section>
 
@@ -226,23 +225,38 @@ Espaço Publicitário 728x92
 
 </footer>
 
+<!-- PLAYER INVISÍVEL -->
+
+<audio id="radio" preload="none"></audio>
+
 <script>
 
-function togglePlayer(){
+const radio = document.getElementById("radio");
+const button = document.getElementById("playButton");
 
-let player=document.getElementById("player");
+let playing = false;
 
-if(player.style.display==="flex"){
+/* STREAM DO ZENO */
 
-player.style.display="none";
+radio.src = "https://stream.zeno.fm/r4mpcrfwfzzuv";
+
+button.addEventListener("click", () => {
+
+if(!playing){
+
+radio.play();
+button.innerHTML="⏸ Pausar";
+playing=true;
 
 }else{
 
-player.style.display="flex";
+radio.pause();
+button.innerHTML="▶ Ao Vivo";
+playing=false;
 
 }
 
-}
+});
 
 </script>
 
