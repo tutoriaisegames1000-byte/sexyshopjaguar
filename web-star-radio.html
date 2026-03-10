@@ -244,42 +244,17 @@ playing=false;
 
 });
 
-/* INFO DA RADIO */
+/* OUVINTES + MUSICA */
 
 async function updateRadio(){
 
 try{
 
-const res = await fetch("https://api.zeno.fm/mounts/metadata/stream/6zb6ag59xy8uv");
-
-const data = await res.json();
-
-/* musica */
-
-if(data.now_playing && data.now_playing.song){
-
-document.getElementById("song").innerText =
-data.now_playing.song.title;
-
-}
-
-/* ouvintes */
-
-if(data.listeners){
-
-document.getElementById("listeners").innerText =
-data.listeners.current;
-
-}
+const res = await fetch("https://api.allorigins.win/raw?url=https://stream.zeno.fm/6zb6ag59xy8uv");
 
 }catch(e){}
 
 }
-
-/* atualizar a cada 10s */
-
-setInterval(updateRadio,10000);
-updateRadio();
 
 </script>
 
