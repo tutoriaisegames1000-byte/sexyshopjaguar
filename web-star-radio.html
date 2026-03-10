@@ -158,7 +158,7 @@ Web Star Rádio
 </button>
 
 <div class="listeners">
-👥 <span id="visits">0</span> visitantes
+👥 <span id="listeners">0</span> ouvindo agora
 </div>
 
 </div>
@@ -172,7 +172,7 @@ Web Star Rádio
 <p>Transmissão ao vivo da Web Star Rádio</p>
 
 <div class="now">
-🎵 Tocando agora: Web Star Rádio
+🎵 Tocando agora: <span id="song">Carregando...</span>
 </div>
 
 </section>
@@ -219,7 +219,7 @@ Web Star Rádio
 
 <script>
 
-/* PLAYER RADIO */
+/* PLAYER */
 
 const radio = document.getElementById("radio");
 const button = document.getElementById("playButton");
@@ -244,13 +244,42 @@ playing=false;
 
 });
 
-/* CONTADOR DE VISITAS */
+/* INFO DA RADIO */
 
-fetch("https://api.countapi.xyz/hit/webstarradio/visitas")
-.then(res=>res.json())
-.then(res=>{
-document.getElementById("visits").innerText = res.value;
-});
+async function updateRadio(){
+
+try{
+
+const res = await fetch("https://api.zeno.fm/mounts/metadata/stream/6zb6ag59xy8uv");
+
+const data = await res.json();
+
+/* musica */
+
+if(data.now_playing && data.now_playing.song){
+
+document.getElementById("song").innerText =
+data.now_playing.song.title;
+
+}
+
+/* ouvintes */
+
+if(data.listeners){
+
+document.getElementById("listeners").innerText =
+data.listeners.current;
+
+}
+
+}catch(e){}
+
+}
+
+/* atualizar a cada 10s */
+
+setInterval(updateRadio,10000);
+updateRadio();
 
 </script>
 
