@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Web Star Rádio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
 
@@ -21,7 +18,7 @@ font-family:Poppins,sans-serif;
 
 body{
 background:#f2f8ff;
-padding-bottom:100px;
+color:#333;
 }
 
 /* HEADER */
@@ -33,6 +30,9 @@ align-items:center;
 padding:20px 8%;
 background:white;
 box-shadow:0 2px 10px rgba(0,0,0,0.05);
+position:sticky;
+top:0;
+z-index:100;
 }
 
 .logo{
@@ -41,48 +41,66 @@ font-weight:700;
 color:#1e90ff;
 }
 
-/* SLIDER */
-
-.slider{
-position:relative;
-height:420px;
-overflow:hidden;
+.live-btn{
+background:#1e90ff;
+color:white;
+padding:10px 22px;
+border-radius:25px;
+border:none;
+font-weight:600;
+cursor:pointer;
+transition:0.3s;
 }
 
-.slide{
-position:absolute;
-width:100%;
-height:100%;
-background-size:cover;
-background-position:center;
+.live-btn:hover{
+background:#0d6efd;
+}
+
+/* HERO */
+
+.hero{
+height:420px;
+background:linear-gradient(120deg,#6ec5ff,#1e90ff);
 display:flex;
 align-items:center;
 justify-content:center;
 flex-direction:column;
-color:white;
 text-align:center;
-transition:opacity 1s;
+color:white;
 }
 
-.slide h1{
+.hero h1{
 font-size:55px;
+margin:10px 0;
 }
 
-.slide p{
-margin-top:10px;
+.hero p{
 font-size:18px;
 }
 
-.slide1{
-background:linear-gradient(120deg,#6ec5ff,#1e90ff);
+/* PUBLICIDADE */
+
+.ad{
+margin:40px auto;
+width:728px;
+max-width:90%;
+background:#1e90ff;
+color:white;
+text-align:center;
+padding:25px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
+font-weight:600;
 }
 
-.slide2{
-background:linear-gradient(120deg,#1e90ff,#0d6efd);
-}
+/* INFO BAR */
 
-.slide3{
-background:linear-gradient(120deg,#6ec5ff,#0d6efd);
+.info-bar{
+background:#0d6efd;
+color:white;
+text-align:center;
+padding:12px;
+font-size:14px;
 }
 
 /* NEWS */
@@ -91,9 +109,19 @@ background:linear-gradient(120deg,#6ec5ff,#0d6efd);
 padding:60px 8%;
 }
 
+.news-title{
+text-align:center;
+margin-bottom:40px;
+}
+
+.news-title h2{
+font-size:32px;
+color:#0d6efd;
+}
+
 .news-grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
 gap:30px;
 }
 
@@ -101,7 +129,7 @@ gap:30px;
 background:white;
 border-radius:10px;
 overflow:hidden;
-box-shadow:0 5px 15px rgba(0,0,0,0.1);
+box-shadow:0 5px 15px rgba(0,0,0,0.08);
 }
 
 .card img{
@@ -114,94 +142,15 @@ object-fit:cover;
 padding:20px;
 }
 
-/* PLAYER */
-
-.player{
-position:fixed;
-bottom:0;
-left:0;
-width:100%;
-background:#ffffff;
-box-shadow:0 -3px 15px rgba(0,0,0,0.15);
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:15px 8%;
-}
-
-.player-info{
-display:flex;
-flex-direction:column;
-}
-
-.radio-name{
-font-weight:600;
-color:#1e90ff;
-}
-
-.song{
-font-size:14px;
-color:#555;
-}
-
-.play-btn{
-width:50px;
-height:50px;
-border-radius:50%;
-border:none;
-background:#1e90ff;
-color:white;
-font-size:18px;
-cursor:pointer;
-}
-
-/* BARRA ANIMADA */
-
-.bars{
-display:flex;
-gap:3px;
-}
-
-.bar{
-width:4px;
-height:15px;
-background:#1e90ff;
-animation:music 1s infinite;
-}
-
-.bar:nth-child(2){animation-delay:0.2s;}
-.bar:nth-child(3){animation-delay:0.4s;}
-.bar:nth-child(4){animation-delay:0.6s;}
-
-@keyframes music{
-
-0%{height:10px;}
-50%{height:25px;}
-100%{height:10px;}
-
-}
-
-/* WHATSAPP */
-
-.whatsapp{
-position:fixed;
-right:25px;
-bottom:110px;
-width:60px;
-height:60px;
-border-radius:50%;
-background:#25D366;
-display:flex;
-align-items:center;
-justify-content:center;
-color:white;
-font-size:30px;
-text-decoration:none;
-box-shadow:0 5px 15px rgba(0,0,0,0.3);
+footer{
+margin-top:60px;
+padding:30px;
+text-align:center;
+background:white;
+color:#666;
 }
 
 </style>
-
 </head>
 
 <body>
@@ -212,32 +161,33 @@ box-shadow:0 5px 15px rgba(0,0,0,0.3);
 Web Star Rádio
 </div>
 
+<button class="live-btn" id="playButton">
+▶ Ao Vivo
+</button>
+
 </header>
 
-<!-- SLIDER -->
+<section class="hero">
 
-<section class="slider">
+<h1>Sintonia Perfeita</h1>
 
-<div class="slide slide1 active">
-<h1>Web Star Rádio</h1>
-<p>Sintonia perfeita</p>
-</div>
-
-<div class="slide slide2">
-<h1>Música 24h</h1>
-<p>A melhor programação</p>
-</div>
-
-<div class="slide slide3">
-<h1>Ouça Ao Vivo</h1>
-<p>Direto da Web Star Rádio</p>
-</div>
+<p>Transmissão ao vivo da Web Star Rádio</p>
 
 </section>
 
-<!-- NOTICIAS -->
+<div class="ad">
+Espaço Publicitário 728x92
+</div>
+
+<div class="info-bar">
+🎵 Ouça agora a programação ao vivo da Web Star Rádio 🎵
+</div>
 
 <section class="news">
+
+<div class="news-title">
+<h2>Últimas Notícias</h2>
+</div>
 
 <div class="news-grid">
 
@@ -269,95 +219,42 @@ Web Star Rádio
 
 </section>
 
-<!-- PLAYER -->
+<footer>
 
-<div class="player">
+© 2026 Web Star Rádio
 
-<div class="player-info">
+</footer>
 
-<div class="radio-name">
-Web Star Rádio
-</div>
-
-<div class="song" id="song">
-Ao vivo
-</div>
-
-</div>
-
-<button class="play-btn" id="playButton">
-▶
-</button>
-
-<div class="bars">
-
-<div class="bar"></div>
-<div class="bar"></div>
-<div class="bar"></div>
-<div class="bar"></div>
-
-</div>
-
-</div>
-
-<audio id="radio">
-
+<audio id="radio" preload="none">
 <source src="https://stream.zeno.fm/6zb6ag59xy8uv" type="audio/mpeg">
-
 </audio>
-
-<a class="whatsapp" href="https://wa.me/5599999999999" target="_blank">
-💬
-</a>
 
 <script>
 
-/* PLAYER */
-
 const radio = document.getElementById("radio");
-const playButton = document.getElementById("playButton");
+const button = document.getElementById("playButton");
 
 let playing=false;
 
-playButton.addEventListener("click",()=>{
+button.addEventListener("click",()=>{
 
 if(!playing){
 
 radio.play();
-playButton.innerHTML="⏸";
+button.innerHTML="⏸ Pausar";
 playing=true;
 
 }else{
 
 radio.pause();
-playButton.innerHTML="▶";
+button.innerHTML="▶ Ao Vivo";
 playing=false;
 
 }
 
 });
 
-/* SLIDER */
-
-let slides=document.querySelectorAll(".slide");
-let index=0;
-
-setInterval(()=>{
-
-slides[index].style.opacity=0;
-
-index++;
-
-if(index>=slides.length){
-index=0;
-}
-
-slides[index].style.opacity=1;
-
-},5000);
-
 </script>
 
 </body>
-
 </html>
