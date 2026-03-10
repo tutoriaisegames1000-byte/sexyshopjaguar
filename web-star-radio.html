@@ -158,7 +158,7 @@ Web Star Rádio
 </button>
 
 <div class="listeners">
-👥 <span id="listeners">0</span> ouvindo
+👥 <span id="visits">0</span> visitantes
 </div>
 
 </div>
@@ -172,7 +172,7 @@ Web Star Rádio
 <p>Transmissão ao vivo da Web Star Rádio</p>
 
 <div class="now">
-🎵 Tocando agora: <span id="song">Carregando...</span>
+🎵 Tocando agora: Web Star Rádio
 </div>
 
 </section>
@@ -209,19 +209,17 @@ Web Star Rádio
 
 </section>
 
-<!-- PLAYER INVISÍVEL -->
-
 <audio id="radio">
 <source src="https://stream.zeno.fm/6zb6ag59xy8uv" type="audio/mpeg">
 </audio>
-
-<!-- WHATSAPP -->
 
 <a class="whatsapp" href="https://wa.me/5599999999999" target="_blank">
 💬
 </a>
 
 <script>
+
+/* PLAYER RADIO */
 
 const radio = document.getElementById("radio");
 const button = document.getElementById("playButton");
@@ -246,28 +244,13 @@ playing=false;
 
 });
 
-/* INFO RADIO */
+/* CONTADOR DE VISITAS */
 
-async function updateRadio(){
-
-try{
-
-const res = await fetch("https://api.zeno.fm/stations/web-star-radio");
-
-const data = await res.json();
-
-document.getElementById("listeners").innerText =
-data.station.listeners;
-
-document.getElementById("song").innerText =
-data.station.now_playing.song;
-
-}catch(e){}
-
-}
-
-setInterval(updateRadio,10000);
-updateRadio();
+fetch("https://api.countapi.xyz/hit/webstarradio/visitas")
+.then(res=>res.json())
+.then(res=>{
+document.getElementById("visits").innerText = res.value;
+});
 
 </script>
 
