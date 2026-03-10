@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
 
 <meta charset="UTF-8">
@@ -20,6 +21,7 @@ font-family:Poppins,sans-serif;
 
 body{
 background:#f2f8ff;
+padding-bottom:100px;
 }
 
 /* HEADER */
@@ -39,56 +41,48 @@ font-weight:700;
 color:#1e90ff;
 }
 
-.live-area{
-display:flex;
-align-items:center;
-gap:15px;
-}
+/* SLIDER */
 
-.live-btn{
-background:#1e90ff;
-color:white;
-padding:10px 20px;
-border:none;
-border-radius:25px;
-cursor:pointer;
-font-weight:600;
-}
-
-.listeners{
-font-size:14px;
-color:#0d6efd;
-font-weight:600;
-}
-
-/* HERO */
-
-.hero{
+.slider{
+position:relative;
 height:420px;
-background:linear-gradient(120deg,#6ec5ff,#1e90ff);
+overflow:hidden;
+}
+
+.slide{
+position:absolute;
+width:100%;
+height:100%;
+background-size:cover;
+background-position:center;
 display:flex;
-flex-direction:column;
 align-items:center;
 justify-content:center;
-text-align:center;
+flex-direction:column;
 color:white;
+text-align:center;
+transition:opacity 1s;
 }
 
-.hero h1{
+.slide h1{
 font-size:55px;
 }
 
-.hero p{
+.slide p{
 margin-top:10px;
 font-size:18px;
 }
 
-.now{
-margin-top:20px;
-background:rgba(255,255,255,0.2);
-padding:10px 20px;
-border-radius:20px;
-font-weight:500;
+.slide1{
+background:linear-gradient(120deg,#6ec5ff,#1e90ff);
+}
+
+.slide2{
+background:linear-gradient(120deg,#1e90ff,#0d6efd);
+}
+
+.slide3{
+background:linear-gradient(120deg,#6ec5ff,#0d6efd);
 }
 
 /* NEWS */
@@ -120,12 +114,79 @@ object-fit:cover;
 padding:20px;
 }
 
+/* PLAYER */
+
+.player{
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+background:#ffffff;
+box-shadow:0 -3px 15px rgba(0,0,0,0.15);
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:15px 8%;
+}
+
+.player-info{
+display:flex;
+flex-direction:column;
+}
+
+.radio-name{
+font-weight:600;
+color:#1e90ff;
+}
+
+.song{
+font-size:14px;
+color:#555;
+}
+
+.play-btn{
+width:50px;
+height:50px;
+border-radius:50%;
+border:none;
+background:#1e90ff;
+color:white;
+font-size:18px;
+cursor:pointer;
+}
+
+/* BARRA ANIMADA */
+
+.bars{
+display:flex;
+gap:3px;
+}
+
+.bar{
+width:4px;
+height:15px;
+background:#1e90ff;
+animation:music 1s infinite;
+}
+
+.bar:nth-child(2){animation-delay:0.2s;}
+.bar:nth-child(3){animation-delay:0.4s;}
+.bar:nth-child(4){animation-delay:0.6s;}
+
+@keyframes music{
+
+0%{height:10px;}
+50%{height:25px;}
+100%{height:10px;}
+
+}
+
 /* WHATSAPP */
 
 .whatsapp{
 position:fixed;
 right:25px;
-bottom:25px;
+bottom:110px;
 width:60px;
 height:60px;
 border-radius:50%;
@@ -151,31 +212,30 @@ box-shadow:0 5px 15px rgba(0,0,0,0.3);
 Web Star Rádio
 </div>
 
-<div class="live-area">
-
-<button class="live-btn" id="playButton">
-▶ Ao Vivo
-</button>
-
-<div class="listeners">
-👥 <span id="listeners">0</span> ouvindo agora
-</div>
-
-</div>
-
 </header>
 
-<section class="hero">
+<!-- SLIDER -->
 
-<h1>Sintonia Perfeita</h1>
+<section class="slider">
 
-<p>Transmissão ao vivo da Web Star Rádio</p>
+<div class="slide slide1 active">
+<h1>Web Star Rádio</h1>
+<p>Sintonia perfeita</p>
+</div>
 
-<div class="now">
-🎵 Tocando agora: <span id="song">Carregando...</span>
+<div class="slide slide2">
+<h1>Música 24h</h1>
+<p>A melhor programação</p>
+</div>
+
+<div class="slide slide3">
+<h1>Ouça Ao Vivo</h1>
+<p>Direto da Web Star Rádio</p>
 </div>
 
 </section>
+
+<!-- NOTICIAS -->
 
 <section class="news">
 
@@ -209,8 +269,41 @@ Web Star Rádio
 
 </section>
 
+<!-- PLAYER -->
+
+<div class="player">
+
+<div class="player-info">
+
+<div class="radio-name">
+Web Star Rádio
+</div>
+
+<div class="song" id="song">
+Ao vivo
+</div>
+
+</div>
+
+<button class="play-btn" id="playButton">
+▶
+</button>
+
+<div class="bars">
+
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+
+</div>
+
+</div>
+
 <audio id="radio">
+
 <source src="https://stream.zeno.fm/6zb6ag59xy8uv" type="audio/mpeg">
+
 </audio>
 
 <a class="whatsapp" href="https://wa.me/5599999999999" target="_blank">
@@ -222,41 +315,49 @@ Web Star Rádio
 /* PLAYER */
 
 const radio = document.getElementById("radio");
-const button = document.getElementById("playButton");
+const playButton = document.getElementById("playButton");
 
 let playing=false;
 
-button.addEventListener("click",()=>{
+playButton.addEventListener("click",()=>{
 
 if(!playing){
 
 radio.play();
-button.innerHTML="⏸ Pausar";
+playButton.innerHTML="⏸";
 playing=true;
 
 }else{
 
 radio.pause();
-button.innerHTML="▶ Ao Vivo";
+playButton.innerHTML="▶";
 playing=false;
 
 }
 
 });
 
-/* OUVINTES + MUSICA */
+/* SLIDER */
 
-async function updateRadio(){
+let slides=document.querySelectorAll(".slide");
+let index=0;
 
-try{
+setInterval(()=>{
 
-const res = await fetch("https://api.allorigins.win/raw?url=https://stream.zeno.fm/6zb6ag59xy8uv");
+slides[index].style.opacity=0;
 
-}catch(e){}
+index++;
 
+if(index>=slides.length){
+index=0;
 }
+
+slides[index].style.opacity=1;
+
+},5000);
 
 </script>
 
 </body>
+
 </html>
