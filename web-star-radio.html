@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Web Star Rádio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 
@@ -18,8 +20,6 @@ font-family:Poppins,sans-serif;
 
 body{
 background:#f2f8ff;
-color:#333;
-padding-bottom:100px;
 }
 
 /* HEADER */
@@ -31,9 +31,6 @@ align-items:center;
 padding:20px 8%;
 background:white;
 box-shadow:0 2px 10px rgba(0,0,0,0.05);
-position:sticky;
-top:0;
-z-index:100;
 }
 
 .logo{
@@ -51,11 +48,11 @@ gap:15px;
 .live-btn{
 background:#1e90ff;
 color:white;
-padding:10px 22px;
-border-radius:25px;
+padding:10px 20px;
 border:none;
-font-weight:600;
+border-radius:25px;
 cursor:pointer;
+font-weight:600;
 }
 
 .listeners{
@@ -70,9 +67,9 @@ font-weight:600;
 height:420px;
 background:linear-gradient(120deg,#6ec5ff,#1e90ff);
 display:flex;
+flex-direction:column;
 align-items:center;
 justify-content:center;
-flex-direction:column;
 text-align:center;
 color:white;
 }
@@ -86,27 +83,12 @@ margin-top:10px;
 font-size:18px;
 }
 
-/* MUSICA */
-
-.now-playing{
-margin-top:15px;
+.now{
+margin-top:20px;
 background:rgba(255,255,255,0.2);
 padding:10px 20px;
 border-radius:20px;
 font-weight:500;
-}
-
-/* PUBLICIDADE */
-
-.ad{
-margin:40px auto;
-width:728px;
-max-width:90%;
-background:#1e90ff;
-color:white;
-text-align:center;
-padding:25px;
-border-radius:12px;
 }
 
 /* NEWS */
@@ -115,19 +97,9 @@ border-radius:12px;
 padding:60px 8%;
 }
 
-.news-title{
-text-align:center;
-margin-bottom:40px;
-}
-
-.news-title h2{
-font-size:32px;
-color:#0d6efd;
-}
-
 .news-grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:30px;
 }
 
@@ -135,7 +107,7 @@ gap:30px;
 background:white;
 border-radius:10px;
 overflow:hidden;
-box-shadow:0 5px 15px rgba(0,0,0,0.08);
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
 }
 
 .card img{
@@ -148,56 +120,27 @@ object-fit:cover;
 padding:20px;
 }
 
-/* PLAYER */
-
-.player{
-position:fixed;
-bottom:0;
-left:0;
-width:100%;
-background:white;
-box-shadow:0 -2px 10px rgba(0,0,0,0.1);
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:15px 8%;
-}
-
-.play-btn{
-background:#1e90ff;
-color:white;
-border:none;
-width:45px;
-height:45px;
-border-radius:50%;
-cursor:pointer;
-font-size:16px;
-}
-
-.volume{
-width:120px;
-}
-
 /* WHATSAPP */
 
 .whatsapp{
 position:fixed;
-bottom:110px;
 right:25px;
-background:#25D366;
+bottom:25px;
 width:60px;
 height:60px;
 border-radius:50%;
+background:#25D366;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:30px;
 color:white;
+font-size:30px;
 text-decoration:none;
 box-shadow:0 5px 15px rgba(0,0,0,0.3);
 }
 
 </style>
+
 </head>
 
 <body>
@@ -210,7 +153,7 @@ Web Star Rádio
 
 <div class="live-area">
 
-<button class="live-btn" onclick="playRadio()">
+<button class="live-btn" id="playButton">
 ▶ Ao Vivo
 </button>
 
@@ -228,21 +171,13 @@ Web Star Rádio
 
 <p>Transmissão ao vivo da Web Star Rádio</p>
 
-<div class="now-playing">
+<div class="now">
 🎵 Tocando agora: <span id="song">Carregando...</span>
 </div>
 
 </section>
 
-<div class="ad">
-Espaço Publicitário 728x92
-</div>
-
 <section class="news">
-
-<div class="news-title">
-<h2>Últimas Notícias</h2>
-</div>
 
 <div class="news-grid">
 
@@ -274,15 +209,7 @@ Espaço Publicitário 728x92
 
 </section>
 
-<!-- PLAYER -->
-
-<div class="player">
-
-<button class="play-btn" id="playBtn">▶</button>
-
-<input type="range" id="volume" class="volume" min="0" max="1" step="0.1" value="1">
-
-</div>
+<!-- PLAYER INVISÍVEL -->
 
 <audio id="radio">
 <source src="https://stream.zeno.fm/6zb6ag59xy8uv" type="audio/mpeg">
@@ -297,52 +224,50 @@ Espaço Publicitário 728x92
 <script>
 
 const radio = document.getElementById("radio");
-const playBtn = document.getElementById("playBtn");
-const volume = document.getElementById("volume");
+const button = document.getElementById("playButton");
 
-function playRadio(){
+let playing=false;
+
+button.addEventListener("click",()=>{
+
+if(!playing){
+
 radio.play();
-playBtn.innerHTML="⏸";
-}
+button.innerHTML="⏸ Pausar";
+playing=true;
 
-playBtn.addEventListener("click",()=>{
-
-if(radio.paused){
-radio.play();
-playBtn.innerHTML="⏸";
 }else{
+
 radio.pause();
-playBtn.innerHTML="▶";
+button.innerHTML="▶ Ao Vivo";
+playing=false;
+
 }
 
 });
 
-volume.addEventListener("input",()=>{
-radio.volume=volume.value;
-});
+/* INFO RADIO */
 
-/* API ZENO */
-
-async function updateRadioInfo(){
+async function updateRadio(){
 
 try{
 
-const res = await fetch("https://api.zeno.fm/mounts/metadata/stream/6zb6ag59xy8uv");
+const res = await fetch("https://api.zeno.fm/stations/web-star-radio");
 
 const data = await res.json();
 
-document.getElementById("song").innerText =
-data.now_playing.song.title;
-
 document.getElementById("listeners").innerText =
-data.listeners.current;
+data.station.listeners;
+
+document.getElementById("song").innerText =
+data.station.now_playing.song;
 
 }catch(e){}
 
 }
 
-setInterval(updateRadioInfo,10000);
-updateRadioInfo();
+setInterval(updateRadio,10000);
+updateRadio();
 
 </script>
 
