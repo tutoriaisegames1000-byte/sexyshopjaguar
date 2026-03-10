@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Web Star Rádio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
@@ -19,6 +19,7 @@ font-family:Poppins,sans-serif;
 body{
 background:#f2f8ff;
 color:#333;
+padding-bottom:90px;
 }
 
 /* HEADER */
@@ -49,11 +50,6 @@ border-radius:25px;
 border:none;
 font-weight:600;
 cursor:pointer;
-transition:0.3s;
-}
-
-.live-btn:hover{
-background:#0d6efd;
 }
 
 /* HERO */
@@ -71,10 +67,10 @@ color:white;
 
 .hero h1{
 font-size:55px;
-margin:10px 0;
 }
 
 .hero p{
+margin-top:10px;
 font-size:18px;
 }
 
@@ -89,18 +85,15 @@ color:white;
 text-align:center;
 padding:25px;
 border-radius:12px;
-box-shadow:0 10px 25px rgba(0,0,0,0.15);
-font-weight:600;
 }
 
-/* INFO BAR */
+/* INFO */
 
 .info-bar{
 background:#0d6efd;
 color:white;
 text-align:center;
 padding:12px;
-font-size:14px;
 }
 
 /* NEWS */
@@ -142,12 +135,52 @@ object-fit:cover;
 padding:20px;
 }
 
+/* PLAYER FIXO */
+
+.player{
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+background:white;
+box-shadow:0 -2px 10px rgba(0,0,0,0.1);
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:15px 8%;
+}
+
+.player-info{
+font-weight:600;
+color:#1e90ff;
+}
+
+.player-controls{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.play-btn{
+background:#1e90ff;
+color:white;
+border:none;
+width:45px;
+height:45px;
+border-radius:50%;
+cursor:pointer;
+font-size:16px;
+}
+
+.volume{
+width:120px;
+}
+
 footer{
 margin-top:60px;
 padding:30px;
 text-align:center;
 background:white;
-color:#666;
 }
 
 </style>
@@ -161,7 +194,7 @@ color:#666;
 Web Star Rádio
 </div>
 
-<button class="live-btn" id="playButton">
+<button class="live-btn" onclick="playRadio()">
 ▶ Ao Vivo
 </button>
 
@@ -170,7 +203,6 @@ Web Star Rádio
 <section class="hero">
 
 <h1>Sintonia Perfeita</h1>
-
 <p>Transmissão ao vivo da Web Star Rádio</p>
 
 </section>
@@ -180,7 +212,7 @@ Espaço Publicitário 728x92
 </div>
 
 <div class="info-bar">
-🎵 Ouça agora a programação ao vivo da Web Star Rádio 🎵
+🎵 Você está ouvindo a Web Star Rádio ao vivo 🎵
 </div>
 
 <section class="news">
@@ -220,38 +252,60 @@ Espaço Publicitário 728x92
 </section>
 
 <footer>
-
 © 2026 Web Star Rádio
-
 </footer>
 
-<audio id="radio" preload="none">
+<!-- PLAYER -->
+
+<div class="player">
+
+<div class="player-info">
+🎧 Web Star Rádio
+</div>
+
+<div class="player-controls">
+
+<button class="play-btn" id="playBtn">▶</button>
+
+<input type="range" id="volume" class="volume" min="0" max="1" step="0.1" value="1">
+
+</div>
+
+</div>
+
+<audio id="radio">
 <source src="https://stream.zeno.fm/6zb6ag59xy8uv" type="audio/mpeg">
 </audio>
 
 <script>
 
 const radio = document.getElementById("radio");
-const button = document.getElementById("playButton");
+const playBtn = document.getElementById("playBtn");
+const volume = document.getElementById("volume");
 
-let playing=false;
+function playRadio(){
+radio.play();
+playBtn.innerHTML="⏸";
+}
 
-button.addEventListener("click",()=>{
+playBtn.addEventListener("click",()=>{
 
-if(!playing){
+if(radio.paused){
 
 radio.play();
-button.innerHTML="⏸ Pausar";
-playing=true;
+playBtn.innerHTML="⏸";
 
 }else{
 
 radio.pause();
-button.innerHTML="▶ Ao Vivo";
-playing=false;
+playBtn.innerHTML="▶";
 
 }
 
+});
+
+volume.addEventListener("input",()=>{
+radio.volume=volume.value;
 });
 
 </script>
