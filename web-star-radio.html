@@ -56,7 +56,7 @@ transition:0.3s;
 background:#0d6efd;
 }
 
-/* HERO */
+/* HERO CARROSSEL */
 
 .hero{
 height:420px;
@@ -64,14 +64,25 @@ background:linear-gradient(120deg,#6ec5ff,#1e90ff);
 display:flex;
 align-items:center;
 justify-content:center;
-flex-direction:column;
 text-align:center;
 color:white;
+position:relative;
+overflow:hidden;
+}
+
+.hero-slide{
+position:absolute;
+opacity:0;
+transition:opacity 1s;
+}
+
+.hero-slide.active{
+opacity:1;
 }
 
 .hero h1{
 font-size:55px;
-margin:10px 0;
+margin-bottom:10px;
 }
 
 .hero p{
@@ -127,13 +138,8 @@ object-fit:contain;
 
 @keyframes scrollSponsors{
 
-0%{
-transform:translateX(0);
-}
-
-100%{
-transform:translateX(-50%);
-}
+0%{ transform:translateX(0); }
+100%{ transform:translateX(-50%); }
 
 }
 
@@ -225,11 +231,23 @@ Web Star Rádio
 
 </header>
 
+<!-- HERO COM CARROSSEL -->
+
 <section class="hero">
 
-<h1>Sintonia Perfeita</h1>
+<div class="hero-slide active">
 
+<h1>Sintonia Perfeita</h1>
 <p>Transmissão ao vivo da Web Star Rádio</p>
+
+</div>
+
+<div class="hero-slide">
+
+<h1>SEJA BEM-VINDO À WEB STAR RÁDIO</h1>
+<p>a rádio que toca suas músicas preferidas, e noticias de Cascavel e região!</p>
+
+</div>
 
 </section>
 
@@ -310,6 +328,8 @@ Patrocinadores
 
 <script>
 
+/* PLAYER RADIO */
+
 const radio = document.getElementById("radio");
 const button = document.getElementById("playButton");
 
@@ -318,20 +338,37 @@ let playing=false;
 button.addEventListener("click",()=>{
 
 if(!playing){
-
 radio.play();
 button.innerHTML="⏸ Pausar";
 playing=true;
-
 }else{
-
 radio.pause();
 button.innerHTML="▶ Ao Vivo";
 playing=false;
-
 }
 
 });
+
+/* CARROSSEL HERO */
+
+let heroIndex = 0;
+const heroSlides = document.querySelectorAll(".hero-slide");
+
+function showHero(){
+
+heroSlides.forEach(slide => slide.classList.remove("active"));
+
+heroIndex++;
+
+if(heroIndex >= heroSlides.length){
+heroIndex = 0;
+}
+
+heroSlides[heroIndex].classList.add("active");
+
+}
+
+setInterval(showHero,4000);
 
 </script>
 
