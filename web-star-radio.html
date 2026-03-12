@@ -54,6 +54,7 @@ cursor:pointer;
 /* HERO */
 
 .hero{
+width:100%;
 height:420px;
 position:relative;
 overflow:hidden;
@@ -64,13 +65,21 @@ text-align:center;
 color:white;
 }
 
-/* IMAGENS DO CARROSSEL */
+/* IMAGENS */
+
+.hero-images{
+position:absolute;
+width:100%;
+height:100%;
+top:0;
+left:0;
+}
 
 .hero-images img{
 position:absolute;
 width:100%;
 height:100%;
-object-fit:cover; /* PREENCHE TODO RETANGULO */
+object-fit:cover;
 object-position:center;
 opacity:0;
 transition:opacity 1s;
@@ -80,13 +89,13 @@ transition:opacity 1s;
 opacity:1;
 }
 
-/* TEXTO SOBRE IMAGEM */
+/* TEXTO */
 
 .hero-content{
 position:relative;
 z-index:2;
 background:rgba(0,0,0,0.45);
-padding:25px 45px;
+padding:25px 40px;
 border-radius:10px;
 max-width:700px;
 }
@@ -129,6 +138,7 @@ color:#0d6efd;
 display:flex;
 gap:20px;
 animation:scrollSponsors 25s linear infinite;
+width:max-content;
 }
 
 .sponsor{
@@ -154,7 +164,7 @@ object-fit:contain;
 
 .news{
 padding:60px 8%;
-background:#d8ecff;
+background:#cfe4f7;
 }
 
 .news-title{
@@ -217,6 +227,24 @@ font-size:30px;
 text-decoration:none;
 box-shadow:0 4px 12px rgba(0,0,0,0.3);
 z-index:999;
+}
+
+/* RESPONSIVO */
+
+@media(max-width:768px){
+
+.hero{
+height:320px;
+}
+
+.hero h1{
+font-size:32px;
+}
+
+.hero p{
+font-size:16px;
+}
+
 }
 
 </style>
@@ -342,7 +370,7 @@ playing=false
 
 }
 
-/* CARROSSEL */
+/* CARROSSEL DE IMAGENS */
 
 let index=0
 const imagens=document.querySelectorAll(".hero-images img")
