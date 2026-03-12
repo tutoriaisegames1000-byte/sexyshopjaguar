@@ -109,6 +109,57 @@ padding:12px;
 font-size:14px;
 }
 
+/* PATROCINADORES */
+
+.sponsors{
+background:white;
+padding:30px 0;
+overflow:hidden;
+margin-bottom:40px;
+}
+
+.sponsors-title{
+text-align:center;
+font-weight:600;
+margin-bottom:20px;
+color:#0d6efd;
+}
+
+.sponsors-track{
+display:flex;
+gap:40px;
+width:max-content;
+animation:scrollSponsors 20s linear infinite;
+}
+
+.sponsor{
+width:150px;
+height:80px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#fff;
+border-radius:8px;
+box-shadow:0 3px 10px rgba(0,0,0,0.1);
+}
+
+.sponsor img{
+max-width:120px;
+max-height:60px;
+}
+
+@keyframes scrollSponsors{
+
+0%{
+transform:translateX(0);
+}
+
+100%{
+transform:translateX(-50%);
+}
+
+}
+
 /* NEWS */
 
 .news{
@@ -226,6 +277,27 @@ Web Star Rádio
 <div class="info-bar">
 🎵 Ouça agora a programação ao vivo da Web Star Rádio 🎵
 </div>
+
+<!-- CARROSSEL PATROCINADORES -->
+
+<section class="sponsors">
+
+<div class="sponsors-title">
+Patrocinadores
+</div>
+
+<div class="sponsors-track">
+
+<div class="sponsor"><img src="https://picsum.photos/120/60?1"></div>
+<div class="sponsor"><img src="https://picsum.photos/120/60?2"></div>
+<div class="sponsor"><img src="https://picsum.photos/120/60?3"></div>
+<div class="sponsor"><img src="https://picsum.photos/120/60?4"></div>
+<div class="sponsor"><img src="https://picsum.photos/120/60?5"></div>
+<div class="sponsor"><img src="https://picsum.photos/120/60?6"></div>
+
+</div>
+
+</section>
 
 <section class="news">
 
