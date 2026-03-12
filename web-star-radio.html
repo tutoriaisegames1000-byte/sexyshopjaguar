@@ -56,7 +56,7 @@ transition:0.3s;
 background:#0d6efd;
 }
 
-/* HERO CARROSSEL */
+/* HERO */
 
 .hero{
 height:420px;
@@ -71,16 +71,21 @@ overflow:hidden;
 padding:0 60px;
 }
 
+/* SLIDES */
+
 .hero-slide{
 position:absolute;
 opacity:0;
 transition:opacity 1s;
 max-width:900px;
+z-index:1;
 }
 
 .hero-slide.active{
 opacity:1;
 }
+
+/* TEXTOS */
 
 .hero h1{
 font-size:55px;
@@ -91,7 +96,7 @@ margin-bottom:10px;
 font-size:20px;
 }
 
-/* BOTÕES CARROSSEL */
+/* SETAS */
 
 .arrow{
 position:absolute;
@@ -100,18 +105,19 @@ transform:translateY(-50%);
 width:50px;
 height:50px;
 border-radius:50%;
-background:rgba(255,255,255,0.9);
-color:#1e90ff;
+background:rgba(255,255,255,0.35);
+color:white;
 display:flex;
 align-items:center;
 justify-content:center;
 font-size:26px;
 cursor:pointer;
-box-shadow:0 3px 10px rgba(0,0,0,0.2);
+z-index:5;
+backdrop-filter:blur(4px);
 }
 
 .arrow:hover{
-background:white;
+background:rgba(255,255,255,0.55);
 }
 
 .arrow-left{
@@ -291,17 +297,13 @@ Web Star Rádio
 <div class="arrow arrow-right" onclick="nextSlide()">❯</div>
 
 <div class="hero-slide active">
-
 <h1>Sintonia Perfeita</h1>
 <p>Transmissão ao vivo da Web Star Rádio</p>
-
 </div>
 
 <div class="hero-slide">
-
 <h1>SEJA BEM-VINDO À WEB STAR RÁDIO</h1>
 <p>A rádio que toca suas músicas preferidas e notícias de Cascavel e região!</p>
-
 </div>
 
 </section>
@@ -366,9 +368,7 @@ Patrocinadores
 </section>
 
 <footer>
-
 © 2026 Web Star Rádio
-
 </footer>
 
 <audio id="radio">
@@ -383,8 +383,8 @@ Patrocinadores
 
 /* PLAYER RADIO */
 
-const radio = document.getElementById("radio");
-const button = document.getElementById("playButton");
+const radio=document.getElementById("radio");
+const button=document.getElementById("playButton");
 
 let playing=false;
 
