@@ -68,12 +68,14 @@ text-align:center;
 color:white;
 position:relative;
 overflow:hidden;
+padding:0 60px;
 }
 
 .hero-slide{
 position:absolute;
 opacity:0;
 transition:opacity 1s;
+max-width:900px;
 }
 
 .hero-slide.active{
@@ -86,7 +88,38 @@ margin-bottom:10px;
 }
 
 .hero p{
-font-size:18px;
+font-size:20px;
+}
+
+/* BOTÕES CARROSSEL */
+
+.arrow{
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+width:50px;
+height:50px;
+border-radius:50%;
+background:rgba(255,255,255,0.9);
+color:#1e90ff;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:26px;
+cursor:pointer;
+box-shadow:0 3px 10px rgba(0,0,0,0.2);
+}
+
+.arrow:hover{
+background:white;
+}
+
+.arrow-left{
+left:15px;
+}
+
+.arrow-right{
+right:15px;
 }
 
 /* INFO BAR */
@@ -137,10 +170,8 @@ object-fit:contain;
 }
 
 @keyframes scrollSponsors{
-
-0%{ transform:translateX(0); }
-100%{ transform:translateX(-50%); }
-
+0%{transform:translateX(0);}
+100%{transform:translateX(-50%);}
 }
 
 /* NEWS */
@@ -182,6 +213,8 @@ object-fit:cover;
 padding:20px;
 }
 
+/* FOOTER */
+
 footer{
 margin-top:60px;
 padding:30px;
@@ -210,8 +243,29 @@ box-shadow:0 4px 12px rgba(0,0,0,0.3);
 z-index:999;
 }
 
-.whatsapp:hover{
-background:#1ebe5d;
+/* RESPONSIVO */
+
+@media(max-width:768px){
+
+.hero{
+height:360px;
+padding:0 40px;
+}
+
+.hero h1{
+font-size:32px;
+}
+
+.hero p{
+font-size:16px;
+}
+
+.arrow{
+width:40px;
+height:40px;
+font-size:20px;
+}
+
 }
 
 </style>
@@ -231,9 +285,10 @@ Web Star Rádio
 
 </header>
 
-<!-- HERO COM CARROSSEL -->
-
 <section class="hero">
+
+<div class="arrow arrow-left" onclick="prevSlide()">❮</div>
+<div class="arrow arrow-right" onclick="nextSlide()">❯</div>
 
 <div class="hero-slide active">
 
@@ -245,7 +300,7 @@ Web Star Rádio
 <div class="hero-slide">
 
 <h1>SEJA BEM-VINDO À WEB STAR RÁDIO</h1>
-<p>a rádio que toca suas músicas preferidas, e noticias de Cascavel e região!</p>
+<p>A rádio que toca suas músicas preferidas e notícias de Cascavel e região!</p>
 
 </div>
 
@@ -254,8 +309,6 @@ Web Star Rádio
 <div class="info-bar">
 🎵 Ouça agora a programação ao vivo da Web Star Rádio 🎵
 </div>
-
-<!-- PATROCINADORES -->
 
 <section class="sponsors">
 
@@ -318,7 +371,7 @@ Patrocinadores
 
 </footer>
 
-<audio id="radio" preload="none">
+<audio id="radio">
 <source src="https://stream.zeno.fm/6zb6ag59xy8uv" type="audio/mpeg">
 </audio>
 
@@ -335,7 +388,7 @@ const button = document.getElementById("playButton");
 
 let playing=false;
 
-button.addEventListener("click",()=>{
+button.onclick=()=>{
 
 if(!playing){
 radio.play();
@@ -347,28 +400,37 @@ button.innerHTML="▶ Ao Vivo";
 playing=false;
 }
 
-});
-
-/* CARROSSEL HERO */
-
-let heroIndex = 0;
-const heroSlides = document.querySelectorAll(".hero-slide");
-
-function showHero(){
-
-heroSlides.forEach(slide => slide.classList.remove("active"));
-
-heroIndex++;
-
-if(heroIndex >= heroSlides.length){
-heroIndex = 0;
 }
 
-heroSlides[heroIndex].classList.add("active");
+/* HERO CARROSSEL */
+
+let heroIndex=0;
+const slides=document.querySelectorAll(".hero-slide");
+
+function showSlide(i){
+
+slides.forEach(s=>s.classList.remove("active"));
+
+heroIndex=i;
+
+if(heroIndex>=slides.length) heroIndex=0;
+if(heroIndex<0) heroIndex=slides.length-1;
+
+slides[heroIndex].classList.add("active");
 
 }
 
-setInterval(showHero,4000);
+function nextSlide(){
+showSlide(heroIndex+1);
+}
+
+function prevSlide(){
+showSlide(heroIndex-1);
+}
+
+setInterval(()=>{
+nextSlide();
+},7000);
 
 </script>
 
