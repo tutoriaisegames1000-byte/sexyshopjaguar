@@ -78,27 +78,6 @@ margin:10px 0;
 font-size:18px;
 }
 
-/* BANNER ROTATIVO */
-
-.ad-slider{
-margin:40px auto;
-width:728px;
-max-width:90%;
-position:relative;
-overflow:hidden;
-border-radius:12px;
-box-shadow:0 10px 25px rgba(0,0,0,0.15);
-}
-
-.ad-slide{
-display:none;
-}
-
-.ad-slide img{
-width:100%;
-display:block;
-}
-
 /* INFO BAR */
 
 .info-bar{
@@ -254,24 +233,6 @@ Web Star Rádio
 
 </section>
 
-<!-- BANNER ROTATIVO -->
-
-<div class="ad-slider">
-
-<div class="ad-slide">
-<img src="https://picsum.photos/728/92?1">
-</div>
-
-<div class="ad-slide">
-<img src="https://picsum.photos/728/92?2">
-</div>
-
-<div class="ad-slide">
-<img src="https://picsum.photos/728/92?3">
-</div>
-
-</div>
-
 <div class="info-bar">
 🎵 Ouça agora a programação ao vivo da Web Star Rádio 🎵
 </div>
@@ -349,8 +310,6 @@ Patrocinadores
 
 <script>
 
-/* PLAYER RADIO */
-
 const radio = document.getElementById("radio");
 const button = document.getElementById("playButton");
 
@@ -373,29 +332,6 @@ playing=false;
 }
 
 });
-
-/* BANNER ROTATIVO */
-
-let slideIndex = 0;
-const slides = document.querySelectorAll(".ad-slide");
-
-function showSlides(){
-
-slides.forEach(slide => slide.style.display = "none");
-
-slideIndex++;
-
-if(slideIndex > slides.length){
-slideIndex = 1;
-}
-
-slides[slideIndex-1].style.display = "block";
-
-}
-
-setInterval(showSlides,5000);
-
-showSlides();
 
 </script>
 
