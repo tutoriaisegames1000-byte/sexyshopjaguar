@@ -129,19 +129,23 @@ margin-bottom:25px;
 color:#0d6efd;
 }
 
+.sponsors-container{
+width:100%;
+overflow:hidden;
+}
+
 .sponsors-track{
 display:flex;
 gap:40px;
-width:max-content;
-animation:scrollSponsors 25s linear infinite;
+align-items:center;
 }
 
 .sponsor{
+flex:0 0 auto;
 border:1px solid #e5e5e5;
 border-radius:8px;
 padding:12px;
 background:white;
-flex:0 0 auto;
 }
 
 .sponsor img{
@@ -149,11 +153,6 @@ width:220px;
 height:110px;
 object-fit:cover;
 border-radius:4px;
-}
-
-@keyframes scrollSponsors{
-0%{transform:translateX(0)}
-100%{transform:translateX(-50%)}
 }
 
 /* NEWS */
@@ -225,6 +224,8 @@ box-shadow:0 4px 12px rgba(0,0,0,0.3);
 z-index:999;
 }
 
+/* RESPONSIVO */
+
 @media(max-width:768px){
 
 .hero{
@@ -289,19 +290,16 @@ WEB STAR RÁDIO
 PATROCINADORES
 </div>
 
-<div class="sponsors-track">
+<div class="sponsors-container">
+
+<div class="sponsors-track" id="sponsorsTrack">
 
 <div class="sponsor"><img src="imagens/patrocinadores1.jpg"></div>
 <div class="sponsor"><img src="imagens/patrocinadores2.jpg"></div>
 <div class="sponsor"><img src="imagens/patrocinadores3.jpg"></div>
 <div class="sponsor"><img src="imagens/patrocinadores4.jpg"></div>
 
-<!-- duplicados para loop infinito -->
-
-<div class="sponsor"><img src="imagens/patrocinadores1.jpg"></div>
-<div class="sponsor"><img src="imagens/patrocinadores2.jpg"></div>
-<div class="sponsor"><img src="imagens/patrocinadores3.jpg"></div>
-<div class="sponsor"><img src="imagens/patrocinadores4.jpg"></div>
+</div>
 
 </div>
 
@@ -357,6 +355,8 @@ PATROCINADORES
 
 <script>
 
+/* PLAYER RADIO */
+
 const radio=document.getElementById("radio")
 const button=document.getElementById("playButton")
 
@@ -376,6 +376,8 @@ playing=false
 
 }
 
+/* SLIDER TOPO */
+
 let index=0
 const imagens=document.querySelectorAll(".hero-images img")
 
@@ -390,6 +392,30 @@ if(index>=imagens.length) index=0
 imagens[index].classList.add("active")
 
 },5000)
+
+/* CARROSSEL PATROCINADORES FLUIDO */
+
+const track=document.getElementById("sponsorsTrack")
+
+track.innerHTML += track.innerHTML
+
+let pos=0
+
+function animar(){
+
+pos -= 0.5
+
+if(Math.abs(pos) >= track.scrollWidth/2){
+pos = 0
+}
+
+track.style.transform = `translateX(${pos}px)`
+
+requestAnimationFrame(animar)
+
+}
+
+animar()
 
 </script>
 
