@@ -49,11 +49,6 @@ border-radius:25px;
 border:none;
 font-weight:600;
 cursor:pointer;
-transition:0.3s;
-}
-
-.live-btn:hover{
-background:#0d6efd;
 }
 
 /* HERO */
@@ -71,21 +66,16 @@ overflow:hidden;
 padding:0 60px;
 }
 
-/* SLIDES */
-
 .hero-slide{
 position:absolute;
 opacity:0;
 transition:opacity 1s;
 max-width:900px;
-z-index:1;
 }
 
 .hero-slide.active{
 opacity:1;
 }
-
-/* TEXTOS */
 
 .hero h1{
 font-size:55px;
@@ -96,7 +86,7 @@ margin-bottom:10px;
 font-size:20px;
 }
 
-/* SETAS */
+/* SETAS MAIS TRANSPARENTES */
 
 .arrow{
 position:absolute;
@@ -105,7 +95,7 @@ transform:translateY(-50%);
 width:50px;
 height:50px;
 border-radius:50%;
-background:rgba(255,255,255,0.35);
+background:rgba(255,255,255,0.20);
 color:white;
 display:flex;
 align-items:center;
@@ -113,11 +103,10 @@ justify-content:center;
 font-size:26px;
 cursor:pointer;
 z-index:5;
-backdrop-filter:blur(4px);
 }
 
 .arrow:hover{
-background:rgba(255,255,255,0.55);
+background:rgba(255,255,255,0.35);
 }
 
 .arrow-left{
@@ -143,8 +132,8 @@ font-size:14px;
 .sponsors{
 background:white;
 padding:25px 0;
-margin-bottom:40px;
 overflow:hidden;
+width:100%;
 }
 
 .sponsors-title{
@@ -156,10 +145,8 @@ color:#0d6efd;
 
 .sponsors-track{
 display:flex;
-gap:15px;
-padding:10px 20px;
+gap:20px;
 animation:scrollSponsors 25s linear infinite;
-width:max-content;
 }
 
 .sponsor{
@@ -167,33 +154,44 @@ border:1px solid #e5e5e5;
 border-radius:6px;
 padding:10px;
 background:white;
+flex:0 0 auto;
 }
 
 .sponsor img{
-width:160px;
-height:80px;
+width:170px;
+height:90px;
 object-fit:contain;
 }
 
+/* ANIMAÇÃO CORRIGIDA */
+
 @keyframes scrollSponsors{
-0%{transform:translateX(0);}
-100%{transform:translateX(-50%);}
+
+0%{
+transform:translateX(0);
+}
+
+100%{
+transform:translateX(-50%);
+}
+
 }
 
 /* NEWS */
 
 .news{
 padding:60px 8%;
+background:#2e2e2e;
 }
 
 .news-title{
 text-align:center;
 margin-bottom:40px;
+color:white;
 }
 
 .news-title h2{
 font-size:32px;
-color:#0d6efd;
 }
 
 .news-grid{
@@ -206,7 +204,7 @@ gap:30px;
 background:white;
 border-radius:10px;
 overflow:hidden;
-box-shadow:0 5px 15px rgba(0,0,0,0.08);
+box-shadow:0 5px 15px rgba(0,0,0,0.3);
 }
 
 .card img{
@@ -222,7 +220,6 @@ padding:20px;
 /* FOOTER */
 
 footer{
-margin-top:60px;
 padding:30px;
 text-align:center;
 background:white;
@@ -381,8 +378,6 @@ PATROCINADORES
 
 <script>
 
-/* PLAYER RADIO */
-
 const radio=document.getElementById("radio");
 const button=document.getElementById("playButton");
 
@@ -401,8 +396,6 @@ playing=false;
 }
 
 }
-
-/* HERO CARROSSEL */
 
 let heroIndex=0;
 const slides=document.querySelectorAll(".hero-slide");
@@ -436,5 +429,3 @@ nextSlide();
 
 </body>
 </html>
-
-
