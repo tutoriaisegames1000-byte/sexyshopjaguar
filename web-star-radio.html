@@ -65,26 +65,32 @@ text-align:center;
 color:white;
 }
 
+/* IMAGENS */
+
 .hero-images{
 position:absolute;
 top:0;
 left:0;
-width:100%;
+width:100vw;
 height:100%;
 }
 
 .hero-images img{
 position:absolute;
-width:100%;
+top:0;
+left:0;
+width:100vw;
 height:100%;
 object-fit:cover;
 opacity:0;
-transition:opacity 1s ease;
+transition:opacity 1s;
 }
 
 .hero-images img.active{
 opacity:1;
 }
+
+/* TEXTO */
 
 .hero-content{
 position:relative;
@@ -118,37 +124,38 @@ font-size:14px;
 
 .sponsors{
 background:white;
-padding:35px 0;
+padding:40px 0;
 overflow:hidden;
-width:100%;
 }
 
 .sponsors-title{
 text-align:center;
 font-weight:600;
-margin-bottom:20px;
+margin-bottom:25px;
 color:#0d6efd;
 }
 
 .sponsors-track{
 display:flex;
-gap:25px;
+gap:40px;
 width:max-content;
 animation:scrollSponsors 30s linear infinite;
+align-items:center;
 }
 
 .sponsor{
 border:1px solid #e5e5e5;
-border-radius:6px;
-padding:10px;
+border-radius:8px;
+padding:12px;
 background:white;
 flex:0 0 auto;
 }
 
 .sponsor img{
-width:170px;
-height:90px;
+width:220px;
+height:110px;
 object-fit:cover;
+border-radius:4px;
 }
 
 @keyframes scrollSponsors{
@@ -241,6 +248,11 @@ font-size:30px;
 font-size:16px;
 }
 
+.sponsor img{
+width:170px;
+height:85px;
+}
+
 }
 
 </style>
@@ -288,10 +300,11 @@ PATROCINADORES
 
 <div class="sponsors-track">
 
-<div class="sponsor"><img src="https://picsum.photos/200/100?1"></div>
-<div class="sponsor"><img src="https://picsum.photos/200/100?2"></div>
-<div class="sponsor"><img src="https://picsum.photos/200/100?3"></div>
-<div class="sponsor"><img src="https://picsum.photos/200/100?4"></div>
+<div class="sponsor"><img src="https://picsum.photos/300/150?1"></div>
+<div class="sponsor"><img src="https://picsum.photos/300/150?2"></div>
+<div class="sponsor"><img src="https://picsum.photos/300/150?3"></div>
+<div class="sponsor"><img src="https://picsum.photos/300/150?4"></div>
+<div class="sponsor"><img src="https://picsum.photos/300/150?5"></div>
 
 </div>
 
