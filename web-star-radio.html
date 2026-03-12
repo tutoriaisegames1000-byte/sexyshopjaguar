@@ -78,19 +78,25 @@ margin:10px 0;
 font-size:18px;
 }
 
-/* PUBLICIDADE */
+/* BANNER ROTATIVO */
 
-.ad{
+.ad-slider{
 margin:40px auto;
 width:728px;
 max-width:90%;
-background:#1e90ff;
-color:white;
-text-align:center;
-padding:25px;
+position:relative;
+overflow:hidden;
 border-radius:12px;
 box-shadow:0 10px 25px rgba(0,0,0,0.15);
-font-weight:600;
+}
+
+.ad-slide{
+display:none;
+}
+
+.ad-slide img{
+width:100%;
+display:block;
 }
 
 /* INFO BAR */
@@ -150,6 +156,30 @@ background:white;
 color:#666;
 }
 
+/* WHATSAPP */
+
+.whatsapp{
+position:fixed;
+bottom:25px;
+right:25px;
+width:60px;
+height:60px;
+background:#25D366;
+color:white;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:30px;
+text-decoration:none;
+box-shadow:0 4px 12px rgba(0,0,0,0.3);
+z-index:999;
+}
+
+.whatsapp:hover{
+background:#1ebe5d;
+}
+
 </style>
 </head>
 
@@ -175,8 +205,22 @@ Web Star Rádio
 
 </section>
 
-<div class="ad">
-Espaço Publicitário 728x92
+<!-- BANNER ROTATIVO -->
+
+<div class="ad-slider">
+
+<div class="ad-slide">
+<img src="https://picsum.photos/728/92?1">
+</div>
+
+<div class="ad-slide">
+<img src="https://picsum.photos/728/92?2">
+</div>
+
+<div class="ad-slide">
+<img src="https://picsum.photos/728/92?3">
+</div>
+
 </div>
 
 <div class="info-bar">
@@ -229,7 +273,13 @@ Espaço Publicitário 728x92
 <source src="https://stream.zeno.fm/6zb6ag59xy8uv" type="audio/mpeg">
 </audio>
 
+<a class="whatsapp" href="https://wa.me/5577988361857" target="_blank">
+💬
+</a>
+
 <script>
+
+/* PLAYER RADIO */
 
 const radio = document.getElementById("radio");
 const button = document.getElementById("playButton");
@@ -253,6 +303,29 @@ playing=false;
 }
 
 });
+
+/* BANNER ROTATIVO */
+
+let slideIndex = 0;
+const slides = document.querySelectorAll(".ad-slide");
+
+function showSlides(){
+
+slides.forEach(slide => slide.style.display = "none");
+
+slideIndex++;
+
+if(slideIndex > slides.length){
+slideIndex = 1;
+}
+
+slides[slideIndex-1].style.display = "block";
+
+}
+
+setInterval(showSlides,5000);
+
+showSlides();
 
 </script>
 
