@@ -136,24 +136,27 @@ overflow:hidden;
 
 .sponsors-track{
 display:flex;
-gap:40px;
+gap:30px;
 width:max-content;
-animation:marquee 20s linear infinite;
+animation:marquee 25s linear infinite;
 }
 
 .sponsor{
 border:1px solid #e5e5e5;
 border-radius:8px;
-padding:10px;
 background:white;
+width:200px;
+height:110px;
+display:flex;
+align-items:center;
+justify-content:center;
 flex-shrink:0;
 }
 
 .sponsor img{
-width:240px;
-height:120px;
-object-fit:cover;
-border-radius:6px;
+max-width:180px;
+max-height:90px;
+object-fit:contain;
 }
 
 @keyframes marquee{
@@ -253,11 +256,6 @@ font-size:30px;
 font-size:16px;
 }
 
-.sponsor img{
-width:180px;
-height:90px;
-}
-
 }
 
 </style>
@@ -309,15 +307,15 @@ PATROCINADORES
 
 <div class="sponsors-track">
 
-<img class="sponsor" src="imagens/patrocinadores1.jpg">
-<img class="sponsor" src="imagens/patrocinadores2.jpg">
-<img class="sponsor" src="imagens/patrocinadores3.jpg">
-<img class="sponsor" src="imagens/patrocinadores4.jpg">
+<div class="sponsor"><img src="imagens/patrocinadores1.jpg"></div>
+<div class="sponsor"><img src="imagens/patrocinadores2.jpg"></div>
+<div class="sponsor"><img src="imagens/patrocinadores3.jpg"></div>
+<div class="sponsor"><img src="imagens/patrocinadores4.jpg"></div>
 
-<img class="sponsor" src="imagens/patrocinadores1.jpg">
-<img class="sponsor" src="imagens/patrocinadores2.jpg">
-<img class="sponsor" src="imagens/patrocinadores3.jpg">
-<img class="sponsor" src="imagens/patrocinadores4.jpg">
+<div class="sponsor"><img src="imagens/patrocinadores1.jpg"></div>
+<div class="sponsor"><img src="imagens/patrocinadores2.jpg"></div>
+<div class="sponsor"><img src="imagens/patrocinadores3.jpg"></div>
+<div class="sponsor"><img src="imagens/patrocinadores4.jpg"></div>
 
 </div>
 
@@ -375,8 +373,6 @@ PATROCINADORES
 
 <script>
 
-/* PLAYER RADIO */
-
 const radio=document.getElementById("radio")
 const button=document.getElementById("playButton")
 
@@ -396,7 +392,7 @@ playing=false
 
 }
 
-/* SLIDER IMAGENS TOPO */
+/* SLIDE IMAGENS TOPO */
 
 let index=0
 const slides=document.querySelectorAll(".hero-images img")
