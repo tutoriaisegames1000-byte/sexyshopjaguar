@@ -61,7 +61,6 @@ overflow:hidden;
 display:flex;
 align-items:center;
 justify-content:center;
-color:white;
 }
 
 .hero-images{
@@ -93,15 +92,16 @@ padding:25px 40px;
 border-radius:10px;
 max-width:700px;
 text-align:center;
+color:white;
 }
 
 .hero h1{
-font-size:50px;
+font-size:48px;
 margin-bottom:10px;
 }
 
 .hero p{
-font-size:20px;
+font-size:18px;
 }
 
 /* INFO BAR */
@@ -127,11 +127,6 @@ text-align:center;
 font-weight:600;
 margin-bottom:30px;
 color:#0d6efd;
-}
-
-.sponsors-wrapper{
-width:100%;
-overflow:hidden;
 }
 
 .sponsors-track{
@@ -160,15 +155,8 @@ object-fit:contain;
 }
 
 @keyframes marquee{
-
-0%{
-transform:translateX(0);
-}
-
-100%{
-transform:translateX(-50%);
-}
-
+0%{transform:translateX(0);}
+100%{transform:translateX(-50%);}
 }
 
 /* NEWS */
@@ -214,10 +202,40 @@ padding:20px;
 /* FOOTER */
 
 footer{
-padding:30px;
+background:#0d6efd;
+color:white;
+padding:40px 20px;
 text-align:center;
-background:white;
-color:#666;
+}
+
+.footer-container{
+max-width:900px;
+margin:auto;
+}
+
+.footer-title{
+font-size:22px;
+font-weight:600;
+margin-bottom:15px;
+}
+
+.footer-info{
+margin:6px 0;
+}
+
+.footer-info a{
+color:white;
+text-decoration:none;
+}
+
+.footer-social{
+margin-top:15px;
+}
+
+.footer-copy{
+margin-top:20px;
+font-size:14px;
+opacity:0.9;
 }
 
 /* WHATSAPP */
@@ -278,12 +296,10 @@ WEB STAR RÁDIO
 <section class="hero">
 
 <div class="hero-images">
-
 <img src="imagens/renato1.jpg" class="active">
 <img src="imagens/renato2.jpg">
 <img src="imagens/renato3.jpg">
 <img src="imagens/renato4.jpg">
-
 </div>
 
 <div class="hero-content">
@@ -303,8 +319,6 @@ WEB STAR RÁDIO
 PATROCINADORES
 </div>
 
-<div class="sponsors-wrapper">
-
 <div class="sponsors-track">
 
 <div class="sponsor"><img src="imagens/patrocinadores1.jpg"></div>
@@ -316,8 +330,6 @@ PATROCINADORES
 <div class="sponsor"><img src="imagens/patrocinadores2.jpg"></div>
 <div class="sponsor"><img src="imagens/patrocinadores3.jpg"></div>
 <div class="sponsor"><img src="imagens/patrocinadores4.jpg"></div>
-
-</div>
 
 </div>
 
@@ -360,7 +372,32 @@ PATROCINADORES
 </section>
 
 <footer>
-© 2026 Web Star Rádio
+
+<div class="footer-container">
+
+<div class="footer-title">
+WEB STAR RÁDIO
+</div>
+
+<div class="footer-info">
+Contato: <a href="tel:+5577988361857">(77) 98836-1857</a>
+</div>
+
+<div class="footer-info">
+Email: <a href="mailto:webstarradio@gmail.com">webstarradio@gmail.com</a>
+</div>
+
+<div class="footer-social">
+Instagram: @WebStarRadio<br>
+Facebook: Web Star Radio
+</div>
+
+<div class="footer-copy">
+© 2026 Web Star Rádio. Todos os direitos reservados.
+</div>
+
+</div>
+
 </footer>
 
 <audio id="radio">
@@ -392,7 +429,7 @@ playing=false
 
 }
 
-/* SLIDE IMAGENS TOPO */
+/* SLIDER IMAGENS */
 
 let index=0
 const slides=document.querySelectorAll(".hero-images img")
