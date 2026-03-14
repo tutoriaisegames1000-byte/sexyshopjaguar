@@ -197,41 +197,52 @@ footer{
 background:#0d6efd;
 color:white;
 padding:40px 20px;
-text-align:center;
 }
 
 .footer-container{
-max-width:800px;
+max-width:1000px;
 margin:auto;
+}
+
+.footer-top{
+display:flex;
+justify-content:space-between;
+gap:40px;
+flex-wrap:wrap;
+}
+
+.footer-column{
+flex:1;
+min-width:200px;
 }
 
 .footer-title{
 font-size:22px;
 font-weight:700;
-margin-bottom:20px;
+text-align:center;
+margin-bottom:25px;
 }
 
 .footer-section-title{
 font-weight:700;
-font-size:16px;
-margin-top:15px;
+margin-bottom:10px;
 }
 
 .footer-info{
-margin-top:6px;
+margin:6px 0;
 }
 
 .footer-divider{
-width:60%;
+width:100%;
 height:1px;
 background:rgba(255,255,255,0.4);
-margin:15px auto;
+margin:20px 0;
 }
 
 .footer-copy{
+text-align:center;
 margin-top:20px;
 font-size:14px;
-opacity:0.9;
 }
 
 /* WHATSAPP */
@@ -254,6 +265,8 @@ box-shadow:0 4px 12px rgba(0,0,0,0.3);
 z-index:999;
 }
 
+/* RESPONSIVO */
+
 @media(max-width:768px){
 
 .hero{
@@ -266,6 +279,11 @@ font-size:30px;
 
 .hero p{
 font-size:16px;
+}
+
+.footer-top{
+flex-direction:column;
+text-align:center;
 }
 
 }
@@ -373,32 +391,24 @@ PATROCINADORES
 WEB STAR RÁDIO
 </div>
 
-<div class="footer-divider"></div>
+<div class="footer-top">
 
-<div class="footer-section-title">
-CONTATO:
+<div class="footer-column">
+
+<div class="footer-section-title">CONTATO:</div>
+<div class="footer-info">(77) 98836-1857</div>
+<div class="footer-info">webstarradio@gmail.com</div>
+
 </div>
 
-<div class="footer-info">
-(77) 98836-1857
+<div class="footer-column">
+
+<div class="footer-section-title">REDES SOCIAIS:</div>
+<div class="footer-info">Instagram: @WebStarRadio</div>
+<div class="footer-info">Facebook: Web Star Radio</div>
+
 </div>
 
-<div class="footer-info">
-webstarradio@gmail.com
-</div>
-
-<div class="footer-divider"></div>
-
-<div class="footer-section-title">
-REDES SOCIAIS:
-</div>
-
-<div class="footer-info">
-Instagram: @WebStarRadio
-</div>
-
-<div class="footer-info">
-Facebook: Web Star Radio
 </div>
 
 <div class="footer-divider"></div>
