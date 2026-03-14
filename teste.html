@@ -19,8 +19,8 @@ font-family:Poppins,sans-serif;
 }
 
 body{
-background:#f2f8ff;
-color:#333;
+background:#0b0f1a;
+color:white;
 }
 
 /* HEADER */
@@ -30,178 +30,176 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 padding:20px 8%;
-background:white;
-box-shadow:0 2px 10px rgba(0,0,0,0.08);
+background:#111827;
+border-bottom:1px solid #1f2937;
 }
 
 .logo{
 font-size:26px;
 font-weight:700;
-color:#1e90ff;
-}
-
-/* PLAYER */
-
-.player{
-background:#1e90ff;
-color:white;
-padding:30px;
-text-align:center;
-}
-
-.play-btn{
-
-width:70px;
-height:70px;
-
-border-radius:50%;
-border:none;
-
-background:white;
-color:#1e90ff;
-
-font-size:28px;
-
-cursor:pointer;
-
-box-shadow:0 5px 20px rgba(0,0,0,0.2);
-
+color:#38bdf8;
 }
 
 /* HERO */
 
 .hero{
-position:relative;
-height:420px;
-overflow:hidden;
-}
-
-.hero-slide{
-
-position:absolute;
-width:100%;
-height:100%;
-
+height:500px;
+background:url(imagens/renato1.jpg);
 background-size:cover;
 background-position:center;
-
-opacity:0;
-transition:opacity 1s;
-
+position:relative;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
 }
 
-.hero-slide.active{
-opacity:1;
-}
-
-.hero-overlay{
+.hero::after{
+content:"";
 position:absolute;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.45);
+background:rgba(0,0,0,0.6);
 }
 
-.hero-text{
-
-position:absolute;
-top:50%;
-left:50%;
-
-transform:translate(-50%,-50%);
-
-color:white;
-
-text-align:center;
-
+.hero-content{
+position:relative;
+z-index:2;
+max-width:700px;
 }
 
-.hero-text h1{
-font-size:48px;
+.hero h1{
+font-size:52px;
+margin-bottom:15px;
 }
 
-.hero-text p{
+.hero p{
 font-size:20px;
-margin-top:10px;
+opacity:.9;
+margin-bottom:25px;
+}
+
+.listen-btn{
+background:#38bdf8;
+border:none;
+padding:15px 35px;
+border-radius:40px;
+font-size:18px;
+cursor:pointer;
+font-weight:600;
+}
+
+/* PLAYER FIXO */
+
+.player-bar{
+
+position:fixed;
+bottom:0;
+left:0;
+
+width:100%;
+
+background:#111827;
+
+border-top:1px solid #1f2937;
+
+display:flex;
+
+align-items:center;
+justify-content:center;
+
+padding:15px;
+
+z-index:999;
+
+}
+
+.play-btn{
+
+width:60px;
+height:60px;
+
+border-radius:50%;
+border:none;
+
+background:#38bdf8;
+
+color:#0b0f1a;
+
+font-size:28px;
+
+cursor:pointer;
+
 }
 
 /* PATROCINADORES */
 
 .sponsors{
-
-background:white;
-
-padding:40px 0;
-
+padding:60px 0;
 overflow:hidden;
-
+background:#0f172a;
 }
 
-.sponsors-title{
-
+.sponsors h2{
 text-align:center;
-margin-bottom:30px;
-font-weight:600;
-color:#1e90ff;
-
+margin-bottom:40px;
+color:#38bdf8;
 }
 
 .track{
 
 display:flex;
-gap:40px;
-animation:scroll 25s linear infinite;
+gap:50px;
+
+animation:scroll 30s linear infinite;
+
+width:max-content;
 
 }
 
 .sponsor{
 
-width:180px;
-height:90px;
+width:200px;
+height:100px;
+
+background:white;
+
+border-radius:12px;
 
 display:flex;
 align-items:center;
 justify-content:center;
 
-border:1px solid #ddd;
-
-border-radius:10px;
-
 }
 
 .sponsor img{
-
-max-width:150px;
-
-max-height:70px;
-
+max-width:160px;
+max-height:80px;
 }
 
 @keyframes scroll{
 
-0%{transform:translateX(0);}
-100%{transform:translateX(-50%);}
+0%{transform:translateX(0)}
+100%{transform:translateX(-50%)}
 
 }
 
 /* NOTÍCIAS */
 
 .news{
-
-padding:60px 8%;
-
+padding:70px 8%;
+background:#0b0f1a;
 }
 
-.news-title{
-
+.news h2{
 text-align:center;
-margin-bottom:40px;
-
+margin-bottom:50px;
+color:#38bdf8;
 }
 
-.grid{
+.news-grid{
 
 display:grid;
-
 grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
 
 gap:30px;
@@ -210,23 +208,24 @@ gap:30px;
 
 .card{
 
-background:white;
+background:#111827;
 
-border-radius:12px;
+border-radius:14px;
 
 overflow:hidden;
 
-box-shadow:0 6px 20px rgba(0,0,0,0.1);
+transition:.3s;
 
 }
 
-.card img{
+.card:hover{
+transform:translateY(-5px);
+}
 
+.card img{
 width:100%;
 height:180px;
-
 object-fit:cover;
-
 }
 
 .card-content{
@@ -235,56 +234,41 @@ padding:20px;
 
 .date{
 font-size:13px;
-color:#777;
-margin:8px 0;
-}
-
-.read{
-
-margin-top:10px;
-
-display:inline-block;
-
-background:#1e90ff;
-color:white;
-
-padding:6px 14px;
-
-border-radius:6px;
-
-cursor:pointer;
-
-font-size:14px;
-
+opacity:.7;
+margin:6px 0;
 }
 
 .more{
 display:none;
 margin-top:10px;
+font-size:14px;
+}
+
+.read{
+margin-top:10px;
+display:inline-block;
+background:#38bdf8;
+color:#0b0f1a;
+padding:6px 12px;
+border-radius:6px;
+cursor:pointer;
 }
 
 /* FOOTER */
 
 footer{
-
-background:#0d6efd;
-
-color:white;
-
-padding:40px 20px;
-
+background:#111827;
+padding:50px 8%;
+margin-top:80px;
 }
 
-.footer-wrap{
+.footer-grid{
 
-display:flex;
-justify-content:space-between;
+display:grid;
 
-max-width:1000px;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 
-margin:auto;
-
-flex-wrap:wrap;
+gap:30px;
 
 }
 
@@ -293,14 +277,10 @@ font-weight:700;
 margin-bottom:10px;
 }
 
-.footer-divider{
-height:1px;
-background:rgba(255,255,255,0.3);
-margin:25px 0;
-}
-
 .copy{
 text-align:center;
+margin-top:30px;
+opacity:.7;
 }
 
 /* WHATSAPP */
@@ -309,8 +289,8 @@ text-align:center;
 
 position:fixed;
 
-bottom:25px;
-right:25px;
+right:20px;
+bottom:90px;
 
 width:60px;
 height:60px;
@@ -324,23 +304,10 @@ align-items:center;
 justify-content:center;
 
 font-size:28px;
-color:white;
 
 text-decoration:none;
 
-}
-
-/* RESPONSIVO */
-
-@media(max-width:768px){
-
-.hero-text h1{
-font-size:32px;
-}
-
-.hero-text p{
-font-size:16px;
-}
+color:white;
 
 }
 
@@ -360,42 +327,23 @@ WEB STAR RÁDIO
 
 <section class="hero">
 
-<div class="hero-slide active" style="background-image:url(imagens/renato1.jpg)"></div>
-<div class="hero-slide" style="background-image:url(imagens/renato2.jpg)"></div>
-<div class="hero-slide" style="background-image:url(imagens/renato3.jpg)"></div>
-<div class="hero-slide" style="background-image:url(imagens/renato4.jpg)"></div>
+<div class="hero-content">
 
-<div class="hero-overlay"></div>
+<h1>SINTONIA PERFEITA</h1>
 
-<div class="hero-text">
+<p>A rádio que toca suas músicas preferidas e as principais notícias</p>
 
-<h1>SEJA BEM-VINDO</h1>
-
-<p>A rádio que toca suas músicas preferidas e notícias de Cascavel e região</p>
+<button class="listen-btn" onclick="playRadio()">
+OUVIR AGORA
+</button>
 
 </div>
-
-</section>
-
-<section class="player">
-
-<h2>AO VIVO</h2>
-
-<br>
-
-<button class="play-btn" id="play">
-▶
-</button>
 
 </section>
 
 <section class="sponsors">
 
-<div class="sponsors-title">
-
-PATROCINADORES
-
-</div>
+<h2>PATROCINADORES</h2>
 
 <div class="track">
 
@@ -415,51 +363,37 @@ PATROCINADORES
 
 <section class="news">
 
-<div class="news-title">
-
 <h2>ÚLTIMAS NOTÍCIAS</h2>
 
-</div>
-
-<div class="grid" id="newsGrid">
-
-</div>
+<div class="news-grid" id="newsGrid"></div>
 
 </section>
 
 <footer>
 
-<div class="footer-wrap">
+<div class="footer-grid">
 
 <div>
 
-<div class="footer-title">
-
-CONTATO:
-
-</div>
+<div class="footer-title">CONTATO</div>
 
 <div>(77) 98836-1857</div>
+
 <div>webstarradio@gmail.com</div>
 
 </div>
 
 <div>
 
-<div class="footer-title">
-
-REDES SOCIAIS:
-
-</div>
+<div class="footer-title">REDES SOCIAIS</div>
 
 <div>Instagram: @WebStarRadio</div>
+
 <div>Facebook: Web Star Radio</div>
 
 </div>
 
 </div>
-
-<div class="footer-divider"></div>
 
 <div class="copy">
 
@@ -469,63 +403,50 @@ REDES SOCIAIS:
 
 </footer>
 
+<div class="player-bar">
+
+<button class="play-btn" onclick="togglePlay()" id="playBtn">▶</button>
+
+</div>
+
 <audio id="radio">
 <source src="https://stream.zeno.fm/6zb6ag59xy8uv">
 </audio>
 
-<a class="whatsapp" href="https://wa.me/5577988361857">
-💬
-</a>
+<a class="whatsapp" href="https://wa.me/5577988361857">💬</a>
 
 <script>
 
-/* PLAYER */
-
 const radio=document.getElementById("radio")
+const playBtn=document.getElementById("playBtn")
 
-const play=document.getElementById("play")
+let playing=false
 
-let tocando=false
+function togglePlay(){
 
-play.onclick=()=>{
-
-if(!tocando){
+if(!playing){
 
 radio.play()
-
-play.innerHTML="⏸"
-
-tocando=true
+playBtn.innerHTML="⏸"
+playing=true
 
 }else{
 
 radio.pause()
-
-play.innerHTML="▶"
-
-tocando=false
+playBtn.innerHTML="▶"
+playing=false
 
 }
 
 }
 
-/* HERO SLIDE */
+function playRadio(){
 
-let slideIndex=0
+radio.play()
+playBtn.innerHTML="⏸"
+playing=true
 
-const slides=document.querySelectorAll(".hero-slide")
-
-setInterval(()=>{
-
-slides[slideIndex].classList.remove("active")
-
-slideIndex++
-
-if(slideIndex>=slides.length)slideIndex=0
-
-slides[slideIndex].classList.add("active")
-
-},5000)
+}
 
 /* NOTÍCIAS */
 
@@ -542,7 +463,6 @@ const grid=document.getElementById("newsGrid")
 data.items.slice(0,3).forEach((n,i)=>{
 
 let img=n.thumbnail
-
 let desc=n.description.replace(/<[^>]*>?/gm,'')
 
 let dataNot=new Date(n.pubDate).toLocaleDateString("pt-BR")
