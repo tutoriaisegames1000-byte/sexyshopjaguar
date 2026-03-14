@@ -66,8 +66,6 @@ justify-content:center;
 position:absolute;
 width:100%;
 height:100%;
-top:0;
-left:0;
 object-fit:cover;
 opacity:0;
 transition:1s;
@@ -95,10 +93,6 @@ text-align:center;
 font-size:48px;
 }
 
-.hero p{
-font-size:18px;
-}
-
 /* INFO BAR */
 
 .info-bar{
@@ -112,14 +106,14 @@ padding:12px;
 
 .sponsors{
 background:white;
-padding:40px 0;
+padding:30px 0;
 overflow:hidden;
 }
 
 .sponsors-title{
 text-align:center;
-margin-bottom:30px;
 color:#0d6efd;
+margin-bottom:20px;
 font-weight:600;
 }
 
@@ -127,11 +121,11 @@ font-weight:600;
 display:flex;
 gap:30px;
 width:max-content;
-animation:marquee 25s linear infinite;
+animation:scroll 20s linear infinite;
 }
 
 .sponsor{
-border:1px solid #e5e5e5;
+border:1px solid #ddd;
 border-radius:8px;
 width:200px;
 height:110px;
@@ -147,7 +141,7 @@ max-height:90px;
 object-fit:contain;
 }
 
-@keyframes marquee{
+@keyframes scroll{
 0%{transform:translateX(0)}
 100%{transform:translateX(-50%)}
 }
@@ -187,10 +181,27 @@ object-fit:cover;
 padding:20px;
 }
 
-.card-content p{
-font-size:14px;
+.news-date{
+font-size:12px;
+color:#777;
+margin:6px 0;
+}
+
+.more-text{
+display:none;
 margin-top:10px;
-color:#555;
+font-size:14px;
+}
+
+.read-more{
+display:inline-block;
+margin-top:10px;
+background:#1e90ff;
+color:white;
+padding:6px 12px;
+border-radius:6px;
+font-size:13px;
+cursor:pointer;
 }
 
 /* FOOTER */
@@ -210,10 +221,6 @@ margin:auto;
 display:flex;
 justify-content:space-between;
 flex-wrap:wrap;
-}
-
-.footer-column{
-min-width:200px;
 }
 
 .footer-section-title{
@@ -248,19 +255,6 @@ align-items:center;
 justify-content:center;
 font-size:28px;
 text-decoration:none;
-}
-
-@media(max-width:768px){
-
-.hero{height:300px}
-
-.hero h1{font-size:30px}
-
-.footer-top{
-flex-direction:column;
-text-align:center;
-}
-
 }
 
 </style>
@@ -331,13 +325,13 @@ text-align:center;
 
 <div class="footer-top">
 
-<div class="footer-column">
+<div>
 <div class="footer-section-title">CONTATO:</div>
 <div>(77) 98836-1857</div>
 <div>webstarradio@gmail.com</div>
 </div>
 
-<div class="footer-column">
+<div>
 <div class="footer-section-title">REDES SOCIAIS:</div>
 <div>Instagram: @WebStarRadio</div>
 <div>Facebook: Web Star Radio</div>
@@ -363,7 +357,7 @@ text-align:center;
 
 <script>
 
-/* PLAYER RADIO */
+/* PLAYER */
 
 const radio=document.getElementById("radio")
 const button=document.getElementById("playButton")
@@ -382,7 +376,7 @@ playing=false
 }
 }
 
-/* SLIDER FUNDO */
+/* SLIDER */
 
 let index=0
 const slides=document.querySelectorAll(".hero-images img")
@@ -394,7 +388,7 @@ if(index>=slides.length) index=0
 slides[index].classList.add("active")
 },5000)
 
-/* NOTÍCIAS AUTOMÁTICAS */
+/* NOTÍCIAS */
 
 async function carregarNoticias(){
 
@@ -404,15 +398,14 @@ const data=await res.json()
 
 const grid=document.getElementById("newsGrid")
 
-data.items.slice(0,3).forEach(noticia=>{
+data.items.slice(0,3).forEach((n,i)=>{
 
-let imagem="https://images.unsplash.com/photo-1504711434969-e33886168f5c"
+let imgMatch=n.description.match(/<img.*?src="(.*?)"/)
+let imagem=imgMatch?imgMatch[1]:""
 
-if(noticia.thumbnail && noticia.thumbnail !== ""){
-imagem=noticia.thumbnail
-}
+let texto=n.description.replace(/<[^>]+>/g,"")
 
-const resumo=noticia.description.replace(/<[^>]+>/g,"").slice(0,120)
+let dataNoticia=new Date(n.pubDate).toLocaleDateString("pt-BR")
 
 const div=document.createElement("div")
 div.className="card"
@@ -420,14 +413,35 @@ div.className="card"
 div.innerHTML=`
 <img src="${imagem}">
 <div class="card-content">
-<h3>${noticia.title}</h3>
-<p>${resumo}...</p>
+<h3>${n.title}</h3>
+<div class="news-date">${dataNoticia}</div>
+
+<p>${texto.slice(0,120)}...</p>
+
+<p class="more-text" id="more${i}">
+${texto}
+</p>
+
+<span class="read-more" onclick="lerMais(${i})">Ler mais</span>
+
 </div>
 `
 
 grid.appendChild(div)
 
 })
+
+}
+
+function lerMais(i){
+
+const el=document.getElementById("more"+i)
+
+if(el.style.display==="block"){
+el.style.display="none"
+}else{
+el.style.display="block"
+}
 
 }
 
