@@ -382,7 +382,7 @@ playing=false
 }
 }
 
-/* SLIDER FUNDO */
+/* SLIDER */
 
 let index=0
 const slides=document.querySelectorAll(".hero-images img")
@@ -396,12 +396,6 @@ slides[index].classList.add("active")
 
 /* NOTÍCIAS */
 
-const imagensNoticias=[
-"https://picsum.photos/400/200?1",
-"https://picsum.photos/400/200?2",
-"https://picsum.photos/400/200?3"
-]
-
 async function carregarNoticias(){
 
 const url="https://api.rss2json.com/v1/api.json?rss_url=https://g1.globo.com/rss/g1/"
@@ -410,7 +404,7 @@ const data=await res.json()
 
 const grid=document.getElementById("newsGrid")
 
-data.items.slice(0,3).forEach((noticia,i)=>{
+data.items.slice(0,3).forEach(noticia=>{
 
 const resumo=noticia.description.replace(/<[^>]+>/g,"").slice(0,120)
 
@@ -418,7 +412,7 @@ const div=document.createElement("div")
 div.className="card"
 
 div.innerHTML=`
-<img src="${imagensNoticias[i]}">
+<img src="${noticia.thumbnail}">
 <div class="card-content">
 <h3>${noticia.title}</h3>
 <p>${resumo}...</p>
