@@ -363,7 +363,7 @@ text-align:center;
 
 <script>
 
-/* PLAYER */
+/* PLAYER RADIO */
 
 const radio=document.getElementById("radio")
 const button=document.getElementById("playButton")
@@ -382,7 +382,7 @@ playing=false
 }
 }
 
-/* SLIDER */
+/* SLIDER FUNDO */
 
 let index=0
 const slides=document.querySelectorAll(".hero-images img")
@@ -394,11 +394,11 @@ if(index>=slides.length) index=0
 slides[index].classList.add("active")
 },5000)
 
-/* NOTÍCIAS */
+/* NOTÍCIAS AUTOMÁTICAS */
 
 async function carregarNoticias(){
 
-const url="https://api.rss2json.com/v1/api.json?rss_url=https://rss.uol.com.br/feed/noticias.xml"
+const url="https://api.rss2json.com/v1/api.json?rss_url=https://g1.globo.com/rss/g1/"
 const res=await fetch(url)
 const data=await res.json()
 
@@ -406,8 +406,11 @@ const grid=document.getElementById("newsGrid")
 
 data.items.slice(0,3).forEach(noticia=>{
 
-const imgMatch=noticia.content.match(/<img.*?src="(.*?)"/)
-const imagem=imgMatch ? imgMatch[1] : ""
+let imagem="https://images.unsplash.com/photo-1504711434969-e33886168f5c"
+
+if(noticia.thumbnail && noticia.thumbnail !== ""){
+imagem=noticia.thumbnail
+}
 
 const resumo=noticia.description.replace(/<[^>]+>/g,"").slice(0,120)
 
