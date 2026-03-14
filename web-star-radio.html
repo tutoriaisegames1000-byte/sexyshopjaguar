@@ -63,6 +63,16 @@ align-items:center;
 justify-content:center;
 }
 
+/* IMAGENS FUNDO */
+
+.hero-images{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+}
+
 .hero-images img{
 position:absolute;
 width:100%;
@@ -76,15 +86,27 @@ transition:opacity 1s;
 opacity:1;
 }
 
+/* CAMADA CINZA TRANSPARENTE */
+
+.hero-overlay{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.45);
+z-index:1;
+}
+
+/* TEXTO */
+
 .hero-content{
 position:relative;
 z-index:2;
-background:rgba(0,0,0,0.45);
-padding:25px 40px;
-border-radius:10px;
-max-width:700px;
-text-align:center;
 color:white;
+text-align:center;
+max-width:700px;
+padding:20px;
 }
 
 .hero h1{
@@ -314,6 +336,8 @@ WEB STAR RÁDIO
 <img src="imagens/renato4.jpg">
 </div>
 
+<div class="hero-overlay"></div>
+
 <div class="hero-content">
 <h1>Seja Bem-Vindo!</h1>
 <p>A rádio que toca suas músicas preferidas e notícias de Cascavel e região.</p>
@@ -390,19 +414,15 @@ PATROCINADORES
 <div class="footer-top">
 
 <div class="footer-column">
-
 <div class="footer-section-title">CONTATO:</div>
 <div class="footer-info">(77) 98836-1857</div>
 <div class="footer-info">webstarradio@gmail.com</div>
-
 </div>
 
 <div class="footer-column">
-
 <div class="footer-section-title">REDES SOCIAIS:</div>
 <div class="footer-info">Instagram: @WebStarRadio</div>
 <div class="footer-info">Facebook: Web Star Radio</div>
-
 </div>
 
 </div>
@@ -452,11 +472,8 @@ const slides=document.querySelectorAll(".hero-images img")
 setInterval(()=>{
 
 slides[index].classList.remove("active")
-
 index++
-
 if(index>=slides.length) index=0
-
 slides[index].classList.add("active")
 
 },5000)
