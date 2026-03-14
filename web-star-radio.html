@@ -63,12 +63,8 @@ align-items:center;
 justify-content:center;
 }
 
-/* IMAGENS FUNDO */
-
 .hero-images{
 position:absolute;
-top:0;
-left:0;
 width:100%;
 height:100%;
 }
@@ -86,27 +82,18 @@ transition:opacity 1s;
 opacity:1;
 }
 
-/* CAMADA CINZA TRANSPARENTE */
-
 .hero-overlay{
 position:absolute;
-top:0;
-left:0;
 width:100%;
 height:100%;
 background:rgba(0,0,0,0.45);
-z-index:1;
 }
-
-/* TEXTO */
 
 .hero-content{
 position:relative;
-z-index:2;
 color:white;
 text-align:center;
-max-width:700px;
-padding:20px;
+z-index:2;
 }
 
 .hero h1{
@@ -201,6 +188,7 @@ background:white;
 border-radius:10px;
 overflow:hidden;
 box-shadow:0 5px 15px rgba(0,0,0,0.08);
+cursor:pointer;
 }
 
 .card img{
@@ -286,8 +274,6 @@ text-decoration:none;
 box-shadow:0 4px 12px rgba(0,0,0,0.3);
 z-index:999;
 }
-
-/* RESPONSIVO */
 
 @media(max-width:768px){
 
@@ -377,31 +363,7 @@ PATROCINADORES
 <h2>ÚLTIMAS NOTÍCIAS</h2>
 </div>
 
-<div class="news-grid">
-
-<div class="card">
-<img src="https://picsum.photos/400/200?1">
-<div class="card-content">
-<h3>Evento movimenta a cidade</h3>
-<p>Moradores participam de diversas atividades culturais.</p>
-</div>
-</div>
-
-<div class="card">
-<img src="https://picsum.photos/400/200?2">
-<div class="card-content">
-<h3>Festival musical reúne artistas</h3>
-<p>Evento promete agitar o público.</p>
-</div>
-</div>
-
-<div class="card">
-<img src="https://picsum.photos/400/200?3">
-<div class="card-content">
-<h3>Time local conquista vitória</h3>
-<p>Torcida comemora resultado histórico.</p>
-</div>
-</div>
+<div class="news-grid" id="newsGrid">
 
 </div>
 
@@ -410,6 +372,10 @@ PATROCINADORES
 <footer>
 
 <div class="footer-container">
+
+<div class="footer-title">
+WEB STAR RÁDIO
+</div>
 
 <div class="footer-top">
 
@@ -447,6 +413,8 @@ PATROCINADORES
 
 <script>
 
+/* PLAYER */
+
 const radio=document.getElementById("radio")
 const button=document.getElementById("playButton")
 
@@ -466,17 +434,55 @@ playing=false
 
 }
 
+/* SLIDER */
+
 let index=0
 const slides=document.querySelectorAll(".hero-images img")
 
 setInterval(()=>{
 
 slides[index].classList.remove("active")
+
 index++
+
 if(index>=slides.length) index=0
+
 slides[index].classList.add("active")
 
 },5000)
+
+/* NOTÍCIAS AUTOMÁTICAS */
+
+async function carregarNoticias(){
+
+const url="https://api.rss2json.com/v1/api.json?rss_url=https://g1.globo.com/rss/g1/"
+
+const res=await fetch(url)
+const data=await res.json()
+
+const grid=document.getElementById("newsGrid")
+
+data.items.slice(0,3).forEach(noticia=>{
+
+const card=document.createElement("div")
+card.className="card"
+
+card.innerHTML=`
+<img src="${noticia.thumbnail}">
+<div class="card-content">
+<h3>${noticia.title}</h3>
+</div>
+`
+
+card.onclick=()=>window.open(noticia.link,"_blank")
+
+grid.appendChild(card)
+
+})
+
+}
+
+carregarNoticias()
 
 </script>
 
