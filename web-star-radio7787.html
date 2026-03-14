@@ -398,7 +398,7 @@ slides[index].classList.add("active")
 
 async function carregarNoticias(){
 
-const url="https://api.rss2json.com/v1/api.json?rss_url=https://g1.globo.com/rss/g1/"
+const url="https://api.rss2json.com/v1/api.json?rss_url=https://rss.uol.com.br/feed/noticias.xml"
 const res=await fetch(url)
 const data=await res.json()
 
@@ -406,13 +406,16 @@ const grid=document.getElementById("newsGrid")
 
 data.items.slice(0,3).forEach(noticia=>{
 
+const imgMatch=noticia.content.match(/<img.*?src="(.*?)"/)
+const imagem=imgMatch ? imgMatch[1] : ""
+
 const resumo=noticia.description.replace(/<[^>]+>/g,"").slice(0,120)
 
 const div=document.createElement("div")
 div.className="card"
 
 div.innerHTML=`
-<img src="${noticia.thumbnail}">
+<img src="${imagem}">
 <div class="card-content">
 <h3>${noticia.title}</h3>
 <p>${resumo}...</p>
