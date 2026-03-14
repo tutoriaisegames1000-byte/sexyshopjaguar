@@ -66,8 +66,6 @@ justify-content:center;
 position:absolute;
 width:100%;
 height:100%;
-top:0;
-left:0;
 object-fit:cover;
 opacity:0;
 transition:1s;
@@ -187,10 +185,21 @@ object-fit:cover;
 padding:20px;
 }
 
-.card-content p{
-font-size:14px;
+.news-date{
+font-size:12px;
+color:#888;
+margin-top:5px;
+}
+
+.read-more{
+display:inline-block;
 margin-top:10px;
-color:#555;
+background:#1e90ff;
+color:white;
+padding:6px 12px;
+border-radius:6px;
+font-size:13px;
+text-decoration:none;
 }
 
 /* FOOTER */
@@ -250,19 +259,6 @@ font-size:28px;
 text-decoration:none;
 }
 
-@media(max-width:768px){
-
-.hero{height:300px}
-
-.hero h1{font-size:30px}
-
-.footer-top{
-flex-direction:column;
-text-align:center;
-}
-
-}
-
 </style>
 </head>
 
@@ -294,26 +290,6 @@ text-align:center;
 <div class="info-bar">
 🎵 Ouça ao vivo agora - Sua música favorita está tocando! 🎵
 </div>
-
-<section class="sponsors">
-
-<div class="sponsors-title">PATROCINADORES</div>
-
-<div class="sponsors-track">
-
-<div class="sponsor"><img src="imagens/patrocinadores1.jpg"></div>
-<div class="sponsor"><img src="imagens/patrocinadores2.jpg"></div>
-<div class="sponsor"><img src="imagens/patrocinadores3.jpg"></div>
-<div class="sponsor"><img src="imagens/patrocinadores4.jpg"></div>
-
-<div class="sponsor"><img src="imagens/patrocinadores1.jpg"></div>
-<div class="sponsor"><img src="imagens/patrocinadores2.jpg"></div>
-<div class="sponsor"><img src="imagens/patrocinadores3.jpg"></div>
-<div class="sponsor"><img src="imagens/patrocinadores4.jpg"></div>
-
-</div>
-
-</section>
 
 <section class="news">
 
@@ -363,7 +339,7 @@ text-align:center;
 
 <script>
 
-/* PLAYER RADIO */
+/* PLAYER */
 
 const radio=document.getElementById("radio")
 const button=document.getElementById("playButton")
@@ -382,7 +358,7 @@ playing=false
 }
 }
 
-/* SLIDER FUNDO */
+/* SLIDER */
 
 let index=0
 const slides=document.querySelectorAll(".hero-images img")
@@ -394,7 +370,7 @@ if(index>=slides.length) index=0
 slides[index].classList.add("active")
 },5000)
 
-/* NOTÍCIAS AUTOMÁTICAS */
+/* NOTÍCIAS */
 
 async function carregarNoticias(){
 
@@ -406,11 +382,10 @@ const grid=document.getElementById("newsGrid")
 
 data.items.slice(0,3).forEach(noticia=>{
 
-let imagem="https://images.unsplash.com/photo-1504711434969-e33886168f5c"
+let imgMatch=noticia.description.match(/<img.*?src="(.*?)"/)
+let imagem=imgMatch ? imgMatch[1] : ""
 
-if(noticia.thumbnail && noticia.thumbnail !== ""){
-imagem=noticia.thumbnail
-}
+let dataNoticia=new Date(noticia.pubDate).toLocaleDateString("pt-BR")
 
 const resumo=noticia.description.replace(/<[^>]+>/g,"").slice(0,120)
 
@@ -421,7 +396,9 @@ div.innerHTML=`
 <img src="${imagem}">
 <div class="card-content">
 <h3>${noticia.title}</h3>
+<div class="news-date">${dataNoticia}</div>
 <p>${resumo}...</p>
+<a href="${noticia.link}" target="_blank" class="read-more">Ler mais</a>
 </div>
 `
 
