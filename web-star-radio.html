@@ -21,6 +21,7 @@ font-family:Poppins,sans-serif;
 body{
 background:#0b0f1a;
 color:white;
+padding-bottom:120px; /* espaço para o player não cobrir o rodapé */
 }
 
 /* HEADER */
@@ -271,6 +272,15 @@ font-weight:700;
 margin-bottom:10px;
 }
 
+.footer-grid a{
+color:white; /* mesma cor do texto */
+text-decoration:none;
+}
+
+.footer-grid a:hover{
+text-decoration:underline;
+}
+
 .copy{
 text-align:center;
 margin-top:30px;
@@ -371,7 +381,11 @@ OUVIR AGORA
 
 <div class="footer-title">CONTATO</div>
 
-<a href="https://wa.me/5577988361857">(77) 98836-1857</a>
+<div>
+<a href="https://wa.me/5577988361857" target="_blank">
+(77) 98836-1857
+</a>
+</div>
 
 <div>webstarradio@gmail.com</div>
 
@@ -393,13 +407,8 @@ OUVIR AGORA
 
 © 2026 Web Star Rádio. Todos os direitos reservados.
 
-
-
-  
-</div>
 </div>
 
-</div>
 </footer>
 
 <div class="player-bar">
@@ -412,7 +421,9 @@ OUVIR AGORA
 <source src="https://stream.zeno.fm/6zb6ag59xy8uv">
 </audio>
 
-<a class="whatsapp" href="https://wa.me/5577988361857">💬</a>
+<a class="whatsapp" href="https://wa.me/5577988361857" target="_blank">
+💬
+</a>
 
 <script>
 
@@ -446,8 +457,6 @@ playBtn.innerHTML="⏸"
 playing=true
 
 }
-
-/* NOTÍCIAS */
 
 async function noticias(){
 
