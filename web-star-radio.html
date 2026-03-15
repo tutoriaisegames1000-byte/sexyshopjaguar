@@ -21,7 +21,7 @@ font-family:Poppins,sans-serif;
 body{
 background:#0b0f1a;
 color:white;
-padding-bottom:120px; /* espaço para o player não cobrir o rodapé */
+padding-bottom:120px;
 }
 
 /* HEADER */
@@ -93,44 +93,28 @@ font-weight:600;
 /* PLAYER */
 
 .player-bar{
-
 position:fixed;
 bottom:0;
 left:0;
-
 width:100%;
-
 background:#111827;
-
 border-top:1px solid #1f2937;
-
 display:flex;
-
 align-items:center;
 justify-content:center;
-
 padding:15px;
-
 z-index:999;
-
 }
 
 .play-btn{
-
 width:60px;
 height:60px;
-
 border-radius:50%;
 border:none;
-
 background:#38bdf8;
-
 color:#0b0f1a;
-
 font-size:28px;
-
 cursor:pointer;
-
 }
 
 /* PATROCINADORES */
@@ -148,29 +132,20 @@ color:#38bdf8;
 }
 
 .track{
-
 display:flex;
 gap:50px;
-
 animation:scroll 30s linear infinite;
-
 width:max-content;
-
 }
 
 .sponsor{
-
 width:200px;
 height:100px;
-
 background:white;
-
 border-radius:12px;
-
 display:flex;
 align-items:center;
 justify-content:center;
-
 }
 
 .sponsor img{
@@ -179,10 +154,8 @@ max-height:80px;
 }
 
 @keyframes scroll{
-
 0%{transform:translateX(0)}
 100%{transform:translateX(-50%)}
-
 }
 
 /* NOTÍCIAS */
@@ -199,24 +172,16 @@ color:#38bdf8;
 }
 
 .news-grid{
-
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-
 gap:30px;
-
 }
 
 .card{
-
 background:#111827;
-
 border-radius:14px;
-
 overflow:hidden;
-
 transition:.3s;
-
 }
 
 .card:hover{
@@ -258,13 +223,9 @@ margin-top:80px;
 }
 
 .footer-grid{
-
 display:grid;
-
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-
 gap:30px;
-
 }
 
 .footer-title{
@@ -273,7 +234,7 @@ margin-bottom:10px;
 }
 
 .footer-grid a{
-color:white; /* mesma cor do texto */
+color:white;
 text-decoration:none;
 }
 
@@ -290,29 +251,19 @@ opacity:.7;
 /* WHATSAPP */
 
 .whatsapp{
-
 position:fixed;
-
 right:20px;
 bottom:90px;
-
 width:60px;
 height:60px;
-
 background:#25D366;
-
 border-radius:50%;
-
 display:flex;
 align-items:center;
 justify-content:center;
-
 font-size:28px;
-
 text-decoration:none;
-
 color:white;
-
 }
 
 </style>
@@ -322,27 +273,15 @@ color:white;
 <body>
 
 <header>
-
-<div class="logo">
-WEB STAR RÁDIO
-</div>
-
+<div class="logo">WEB STAR RÁDIO</div>
 </header>
 
 <section class="hero">
-
 <div class="hero-content">
-
 <h1>SINTONIA PERFEITA</h1>
-
-<p>A rádio que toca suas músicas preferidas e as principais notícias de Cascavel e região!</p>
-
-<button class="listen-btn" onclick="playRadio()">
-OUVIR AGORA
-</button>
-
+<p>A rádio que toca suas músicas preferidas e as principais notícias</p>
+<button class="listen-btn" onclick="playRadio()">OUVIR AGORA</button>
 </div>
-
 </section>
 
 <section class="sponsors">
@@ -378,52 +317,36 @@ OUVIR AGORA
 <div class="footer-grid">
 
 <div>
-
 <div class="footer-title">CONTATO</div>
-
 <div>
-<a href="https://wa.me/5577988361857" target="_blank">
-(77) 98836-1857
-</a>
+<a href="https://wa.me/5577988361857" target="_blank">(77) 98836-1857</a>
 </div>
-
 <div>webstarradio@gmail.com</div>
-
 </div>
 
 <div>
-
 <div class="footer-title">REDES SOCIAIS</div>
-
 <div>Instagram: @WebStarRadio</div>
-
 <div>Facebook: Web Star Radio</div>
-
 </div>
 
 </div>
 
 <div class="copy">
-
 © 2026 Web Star Rádio. Todos os direitos reservados.
-
 </div>
 
 </footer>
 
 <div class="player-bar">
-
 <button class="play-btn" onclick="togglePlay()" id="playBtn">▶</button>
-
 </div>
 
 <audio id="radio">
 <source src="https://stream.zeno.fm/6zb6ag59xy8uv">
 </audio>
 
-<a class="whatsapp" href="https://wa.me/5577988361857" target="_blank">
-💬
-</a>
+<a class="whatsapp" href="https://wa.me/5577988361857" target="_blank">💬</a>
 
 <script>
 
@@ -433,30 +356,24 @@ const playBtn=document.getElementById("playBtn")
 let playing=false
 
 function togglePlay(){
-
 if(!playing){
-
 radio.play()
 playBtn.innerHTML="⏸"
 playing=true
-
 }else{
-
 radio.pause()
 playBtn.innerHTML="▶"
 playing=false
-
 }
-
 }
 
 function playRadio(){
-
 radio.play()
 playBtn.innerHTML="⏸"
 playing=true
-
 }
+
+/* NOTÍCIAS */
 
 async function noticias(){
 
@@ -471,6 +388,18 @@ const grid=document.getElementById("newsGrid")
 data.items.slice(0,3).forEach((n)=>{
 
 let img=n.thumbnail
+
+if(!img){
+
+let match=n.description.match(/<img.*?src="(.*?)"/)
+
+if(match){
+img=match[1]
+}else{
+img="https://picsum.photos/400/200"
+}
+
+}
 
 let desc=n.description.replace(/<[^>]*>?/gm,'')
 
