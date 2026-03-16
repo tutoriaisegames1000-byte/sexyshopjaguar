@@ -1,13 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Web Star Rádio</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<title>Slide Web Star Radio</title>
 
 <style>
 
@@ -15,430 +10,103 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Poppins,sans-serif;
+font-family:Arial, Helvetica, sans-serif;
 }
 
 body{
-background:#0b0f1a;
+background:#000;
 color:white;
-padding-bottom:120px;
 }
-
-/* HEADER */
-
-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px 8%;
-background:#111827;
-border-bottom:1px solid #1f2937;
-}
-
-.logo{
-font-size:26px;
-font-weight:700;
-color:#38bdf8;
-}
-
-/* HERO */
 
 .hero{
-height:500px;
-background:url(SlideWebStarRadio/Slider1.jpg);
-background-size:cover;
-background-position:center;
 position:relative;
+height:500px;
 display:flex;
 align-items:center;
 justify-content:center;
 text-align:center;
+overflow:hidden;
 }
 
-.hero::after{
+.hero::before{
 content:"";
 position:absolute;
+top:0;
+left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.6);
+background-size:cover;
+background-position:center;
+transition:background-image 1s ease-in-out;
+z-index:1;
 }
 
-.hero-content{
-position:relative;
+.overlay{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.5);
 z-index:2;
-max-width:700px;
 }
 
 .hero h1{
-font-size:52px;
-margin-bottom:15px;
-}
-
-.hero p{
-font-size:20px;
-opacity:.9;
-margin-bottom:25px;
-}
-
-.listen-btn{
-background:#38bdf8;
-border:none;
-padding:15px 35px;
-border-radius:40px;
-font-size:18px;
-cursor:pointer;
-font-weight:600;
-}
-
-/* PLAYER */
-
-.player-bar{
-position:fixed;
-bottom:0;
-left:0;
-width:100%;
-background:rgba(17,24,39,0.9);
-border-top:1px solid #1f2937;
-display:flex;
-align-items:center;
-justify-content:center;
-padding:15px;
-z-index:999;
-}
-
-.play-btn{
-width:60px;
-height:60px;
-border-radius:50%;
-border:none;
-background:rgba(56,189,248,0.7);
-color:#0b0f1a;
-font-size:28px;
-cursor:pointer;
-}
-
-/* PATROCINADORES */
-
-.sponsors{
-padding:60px 0;
-overflow:hidden;
-background:#0f172a;
-}
-
-.sponsors h2{
-text-align:center;
-margin-bottom:40px;
-color:#38bdf8;
-}
-
-.track{
-display:flex;
-gap:20px;
-animation:scroll 30s linear infinite;
-width:max-content;
-}
-
-.sponsor{
-display:flex;
-align-items:center;
-justify-content:center;
-padding:6px;
-border:3px solid #38bdf8;
-border-radius:10px;
-background:#0f172a;
-}
-
-.sponsor img{
-display:block;
-height:130px;
-width:auto;
-border-radius:6px;
-}
-
-/* ANIMAÇÃO */
-
-@keyframes scroll{
-0%{transform:translateX(0)}
-100%{transform:translateX(-50%)}
-}
-
-/* NOTÍCIAS */
-
-.news{
-padding:70px 8%;
-background:#0b0f1a;
-}
-
-.news h2{
-text-align:center;
-margin-bottom:50px;
-color:#38bdf8;
-}
-
-.news-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:30px;
-}
-
-@media(max-width:768px){
-.news-grid{
-grid-template-columns:1fr;
-}
-}
-
-.card{
-background:#111827;
-border-radius:14px;
-overflow:hidden;
-transition:.3s;
-}
-
-.card:hover{
-transform:translateY(-5px);
-}
-
-.card img{
-width:100%;
-height:180px;
-object-fit:cover;
-}
-
-.card-content{
-padding:20px;
-}
-
-.date{
-font-size:13px;
-opacity:.7;
-margin:6px 0;
-}
-
-.read{
-margin-top:10px;
-display:inline-block;
-background:#38bdf8;
-color:#0b0f1a;
-padding:6px 12px;
-border-radius:6px;
-cursor:pointer;
-}
-
-/* FOOTER */
-
-footer{
-background:#111827;
-padding:50px 8%;
-margin-top:80px;
-text-align:center;
-}
-
-.footer-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:30px;
-justify-items:center;
-}
-
-.footer-title{
-font-weight:700;
-margin-bottom:10px;
-}
-
-.footer-grid a{
-color:white;
-text-decoration:none;
-}
-
-.footer-grid a:hover{
-text-decoration:underline;
-}
-
-.copy{
-text-align:center;
-margin-top:30px;
-opacity:.7;
-}
-
-/* WHATSAPP */
-
-.whatsapp{
-position:fixed;
-right:20px;
-bottom:120px;
-width:60px;
-height:60px;
-background:#25D366;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:28px;
-text-decoration:none;
-color:white;
+position:relative;
+z-index:3;
+font-size:60px;
+letter-spacing:3px;
 }
 
 </style>
-
 </head>
 
 <body>
 
-<header>
-<div class="logo">WEB STAR RÁDIO</div>
-</header>
+<section class="hero" id="hero">
 
-<section class="hero">
-<div class="hero-content">
+<div class="overlay"></div>
+
 <h1>SINTONIA PERFEITA</h1>
-<p>A rádio que toca suas músicas preferidas e as principais notícias de Cascavel e região!</p>
-<button class="listen-btn" onclick="playRadio()">OUVIR AGORA</button>
-</div>
-</section>
-
-<section class="sponsors">
-
-<h2>PATROCINADORES</h2>
-
-<div class="track">
-
-<div class="sponsor"><img src="PatrocinadoresWebStarRadio/patrocinadores1.jpg"></div>
-<div class="sponsor"><img src="PatrocinadoresWebStarRadio/patrocinadores2.jpg"></div>
-<div class="sponsor"><img src="PatrocinadoresWebStarRadio/patrocinadores3.jpg"></div>
-<div class="sponsor"><img src="PatrocinadoresWebStarRadio/patrocinadores4.jpg"></div>
-
-<div class="sponsor"><img src="PatrocinadoresWebStarRadio/patrocinadores1.jpg"></div>
-<div class="sponsor"><img src="PatrocinadoresWebStarRadio/patrocinadores2.jpg"></div>
-<div class="sponsor"><img src="PatrocinadoresWebStarRadio/patrocinadores3.jpg"></div>
-<div class="sponsor"><img src="PatrocinadoresWebStarRadio/patrocinadores4.jpg"></div>
-
-</div>
 
 </section>
-
-<section class="news">
-
-<h2>ÚLTIMAS NOTÍCIAS</h2>
-
-<div class="news-grid" id="newsGrid"></div>
-
-</section>
-
-<footer>
-
-<div class="footer-grid">
-
-<div>
-<div class="footer-title">CONTATO</div>
-<div>
-<a href="https://wa.me/5577988361857" target="_blank">(77) 98836-1857</a>
-</div>
-<div>webstarradio@gmail.com</div>
-</div>
-
-<div>
-<div class="footer-title">REDES SOCIAIS</div>
-<div>Instagram: @WebStarRadio</div>
-<div>Facebook: Web Star Radio</div>
-</div>
-
-</div>
-
-<div class="copy">
-© 2026 Web Star Rádio. Todos os direitos reservados.
-</div>
-
-</footer>
-
-<div class="player-bar">
-<button class="play-btn" onclick="togglePlay()" id="playBtn">▶</button>
-</div>
-
-<audio id="radio">
-<source src="https://stream.zeno.fm/6zb6ag59xy8uv">
-</audio>
-
-<a class="whatsapp" href="https://wa.me/5577988361857" target="_blank">💬</a>
 
 <script>
 
-const radio=document.getElementById("radio")
-const playBtn=document.getElementById("playBtn")
+const images = [
+"https://raw.githubusercontent.com/SEU-USUARIO/SlideWebStarRadio/main/Slider1.jpg",
+"https://raw.githubusercontent.com/SEU-USUARIO/SlideWebStarRadio/main/Slider2.jpg",
+"https://raw.githubusercontent.com/SEU-USUARIO/SlideWebStarRadio/main/Slider3.jpg",
+"https://raw.githubusercontent.com/SEU-USUARIO/SlideWebStarRadio/main/Slider4.jpg"
+];
 
-let playing=false
+let index = 0;
 
-function togglePlay(){
-if(!playing){
-radio.play()
-playBtn.innerHTML="⏸"
-playing=true
-}else{
-radio.pause()
-playBtn.innerHTML="▶"
-playing=false
+const hero = document.querySelector(".hero");
+
+function changeBackground(){
+
+hero.style.setProperty(
+"--bg",
+`url(${images[index]})`
+);
+
+hero.style.setProperty(
+"background-image",
+`url(${images[index]})`
+);
+
+index++;
+
+if(index >= images.length){
+index = 0;
 }
-}
-
-function playRadio(){
-radio.play()
-playBtn.innerHTML="⏸"
-playing=true
-}
-
-async function noticias(){
-
-const url="https://api.rss2json.com/v1/api.json?rss_url=https://g1.globo.com/rss/g1/"
-
-const res=await fetch(url)
-const data=await res.json()
-
-const grid=document.getElementById("newsGrid")
-
-data.items.slice(0,6).forEach((n)=>{
-
-let img=n.thumbnail
-
-if(!img){
-let match=n.description.match(/<img.*?src="(.*?)"/)
-img = match ? match[1] : "https://picsum.photos/400/200"
-}
-
-let desc=n.description.replace(/<[^>]*>?/gm,'')
-let dataNot=new Date(n.pubDate).toLocaleDateString("pt-BR")
-
-const card=document.createElement("div")
-
-card.className="card"
-
-card.innerHTML=`
-
-<a href="${n.link}" target="_blank" style="text-decoration:none;color:inherit">
-
-<img src="${img}">
-
-<div class="card-content">
-
-<h3>${n.title}</h3>
-
-<div class="date">${dataNot}</div>
-
-<p>${desc.slice(0,120)}...</p>
-
-<span class="read">Ler matéria completa</span>
-
-</div>
-
-</a>
-
-`
-
-grid.appendChild(card)
-
-})
 
 }
 
-noticias()
+changeBackground();
+
+setInterval(changeBackground,4000);
 
 </script>
 
