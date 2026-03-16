@@ -1,0 +1,355 @@
+<?php
+
+$slides = glob(__DIR__ . "/SlideWebStarRadio/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG}", GLOB_BRACE);
+$patrocinadores = glob(__DIR__ . "/PatrocinadoresWebStarRadio/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG}", GLOB_BRACE);
+
+foreach($slides as &$s){
+$s = str_replace(__DIR__."/", "", $s);
+}
+
+foreach($patrocinadores as &$p){
+$p = str_replace(__DIR__."/", "", $p);
+}
+
+?>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Web Star Rádio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:#0b0f1a;
+color:white;
+padding-bottom:120px;
+}
+
+/* HEADER */
+
+header{
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+background:#111827;
+border-bottom:1px solid #1f2937;
+}
+
+.logo{
+font-size:26px;
+font-weight:700;
+color:#38bdf8;
+}
+
+/* HERO */
+
+.hero{
+height:500px;
+background-size:cover;
+background-position:center;
+position:relative;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+transition:background-image 1s ease-in-out;
+}
+
+.hero::after{
+content:"";
+position:absolute;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+}
+
+.hero-content{
+position:relative;
+z-index:2;
+max-width:700px;
+}
+
+.hero h1{
+font-size:52px;
+margin-bottom:15px;
+}
+
+.hero p{
+font-size:20px;
+opacity:.9;
+margin-bottom:25px;
+}
+
+.listen-btn{
+background:#38bdf8;
+border:none;
+padding:15px 35px;
+border-radius:40px;
+font-size:18px;
+cursor:pointer;
+font-weight:600;
+}
+
+/* PLAYER */
+
+.player-bar{
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+background:rgba(17,24,39,0.9);
+border-top:1px solid #1f2937;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:15px;
+z-index:999;
+}
+
+.play-btn{
+width:60px;
+height:60px;
+border-radius:50%;
+border:none;
+background:rgba(56,189,248,0.7);
+color:#0b0f1a;
+font-size:28px;
+cursor:pointer;
+}
+
+/* PATROCINADORES */
+
+.sponsors{
+padding:60px 0;
+overflow:hidden;
+background:#0f172a;
+}
+
+.sponsors h2{
+text-align:center;
+margin-bottom:40px;
+color:#38bdf8;
+}
+
+.track{
+display:flex;
+gap:20px;
+animation:scroll 30s linear infinite;
+width:max-content;
+}
+
+.sponsor{
+display:flex;
+align-items:center;
+justify-content:center;
+padding:6px;
+border:3px solid #38bdf8;
+border-radius:10px;
+background:#0f172a;
+}
+
+.sponsor img{
+height:140px;
+width:auto;
+}
+
+@keyframes scroll{
+0%{transform:translateX(0)}
+100%{transform:translateX(-50%)}
+}
+
+/* FOOTER */
+
+footer{
+background:#111827;
+padding:50px;
+text-align:center;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+justify-items:center;
+}
+
+.copy{
+margin-top:30px;
+opacity:.7;
+}
+
+/* WHATSAPP */
+
+.whatsapp{
+position:fixed;
+right:20px;
+bottom:120px;
+width:60px;
+height:60px;
+background:#25D366;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:28px;
+text-decoration:none;
+color:white;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+<div class="logo">WEB STAR RÁDIO</div>
+</header>
+
+<section class="hero" id="hero">
+
+<div class="hero-content">
+<h1>SINTONIA PERFEITA</h1>
+<p>A rádio que toca suas músicas preferidas!</p>
+<button class="listen-btn" onclick="playRadio()">OUVIR AGORA</button>
+</div>
+
+</section>
+
+<section class="sponsors">
+
+<h2>PATROCINADORES</h2>
+
+<div class="track">
+
+<?php foreach($patrocinadores as $img){ ?>
+
+<div class="sponsor">
+<img src="<?php echo $img ?>">
+</div>
+
+<?php } ?>
+
+<?php foreach($patrocinadores as $img){ ?>
+
+<div class="sponsor">
+<img src="<?php echo $img ?>">
+</div>
+
+<?php } ?>
+
+</div>
+
+</section>
+
+<footer>
+
+<div class="footer-grid">
+
+<div>
+<h3>CONTATO</h3>
+<div>(77) 98836-1857</div>
+<div>webstarradio@gmail.com</div>
+</div>
+
+<div>
+<h3>REDES SOCIAIS</h3>
+<div>Instagram: @WebStarRadio</div>
+<div>Facebook: Web Star Radio</div>
+</div>
+
+</div>
+
+<div class="copy">
+© 2026 Web Star Rádio
+</div>
+
+</footer>
+
+<div class="player-bar">
+<button class="play-btn" onclick="togglePlay()" id="playBtn">▶</button>
+</div>
+
+<audio id="radio">
+<source src="https://stream.zeno.fm/6zb6ag59xy8uv">
+</audio>
+
+<a class="whatsapp" href="https://wa.me/5577988361857" target="_blank">💬</a>
+
+<script>
+
+const slides = <?php echo json_encode($slides); ?>;
+
+let hero = document.getElementById("hero");
+let index = 0;
+
+function trocarSlide(){
+
+if(slides.length == 0) return;
+
+hero.style.backgroundImage = "url('"+slides[index]+"')";
+
+index++;
+
+if(index >= slides.length){
+index = 0;
+}
+
+}
+
+trocarSlide();
+
+setInterval(trocarSlide,5000);
+
+/* PLAYER */
+
+const radio=document.getElementById("radio")
+const playBtn=document.getElementById("playBtn")
+
+let playing=false
+
+function togglePlay(){
+
+if(!playing){
+
+radio.play()
+playBtn.innerHTML="⏸"
+playing=true
+
+}else{
+
+radio.pause()
+playBtn.innerHTML="▶"
+playing=false
+
+}
+
+}
+
+function playRadio(){
+
+radio.play()
+playBtn.innerHTML="⏸"
+playing=true
+
+}
+
+</script>
+
+</body>
+</html>
