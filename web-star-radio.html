@@ -47,12 +47,12 @@ color:#38bdf8;
 height:500px;
 background-size:cover;
 background-position:center;
+background-repeat:no-repeat;
 position:relative;
 display:flex;
 align-items:center;
 justify-content:center;
 text-align:center;
-transition:background-image 1s ease-in-out;
 }
 
 .hero::after{
@@ -183,6 +183,43 @@ grid-template-columns:1fr;
 }
 }
 
+.card{
+background:#111827;
+border-radius:14px;
+overflow:hidden;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.card img{
+width:100%;
+height:180px;
+object-fit:cover;
+}
+
+.card-content{
+padding:20px;
+}
+
+.date{
+font-size:13px;
+opacity:.7;
+margin:6px 0;
+}
+
+.read{
+margin-top:10px;
+display:inline-block;
+background:#38bdf8;
+color:#0b0f1a;
+padding:6px 12px;
+border-radius:6px;
+cursor:pointer;
+}
+
 /* FOOTER */
 
 footer{
@@ -261,6 +298,14 @@ color:white;
 
 </section>
 
+<section class="news">
+
+<h2>ÚLTIMAS NOTÍCIAS</h2>
+
+<div class="news-grid" id="newsGrid"></div>
+
+</section>
+
 <footer>
 
 <div class="footer-grid">
@@ -297,7 +342,7 @@ color:white;
 
 <script>
 
-/* SLIDE DO FUNDO */
+/* SLIDES */
 
 const slides = [
 "SlideWebStarRadio/Slide1.jpg",
@@ -311,7 +356,7 @@ let index = 0
 
 function trocarSlide(){
 
-hero.style.backgroundImage = "url('"+slides[index]+"')"
+hero.style.backgroundImage = "url(" + slides[index] + ")"
 
 index++
 
@@ -351,6 +396,64 @@ radio.play()
 playBtn.innerHTML="⏸"
 playing=true
 }
+
+/* NOTÍCIAS */
+
+async function noticias(){
+
+const url="https://api.rss2json.com/v1/api.json?rss_url=https://g1.globo.com/rss/g1/"
+
+const res=await fetch(url)
+
+const data=await res.json()
+
+const grid=document.getElementById("newsGrid")
+
+data.items.slice(0,6).forEach((n)=>{
+
+let img=n.thumbnail
+
+if(!img){
+img="https://picsum.photos/400/200"
+}
+
+let desc=n.description.replace(/<[^>]*>?/gm,'')
+
+let dataNot=new Date(n.pubDate).toLocaleDateString("pt-BR")
+
+const card=document.createElement("div")
+
+card.className="card"
+
+card.innerHTML=`
+
+<a href="${n.link}" target="_blank" style="text-decoration:none;color:inherit">
+
+<img src="${img}">
+
+<div class="card-content">
+
+<h3>${n.title}</h3>
+
+<div class="date">${dataNot}</div>
+
+<p>${desc.slice(0,120)}...</p>
+
+<span class="read">Ler matéria completa</span>
+
+</div>
+
+</a>
+
+`
+
+grid.appendChild(card)
+
+})
+
+}
+
+noticias()
 
 </script>
 
