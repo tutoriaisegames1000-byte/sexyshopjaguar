@@ -1,18 +1,3 @@
-<?php
-
-$slides = glob(__DIR__ . "/SlideWebStarRadio/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG}", GLOB_BRACE);
-$patrocinadores = glob(__DIR__ . "/PatrocinadoresWebStarRadio/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG}", GLOB_BRACE);
-
-foreach($slides as &$s){
-$s = str_replace(__DIR__."/", "", $s);
-}
-
-foreach($patrocinadores as &$p){
-$p = str_replace(__DIR__."/", "", $p);
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -173,6 +158,31 @@ width:auto;
 100%{transform:translateX(-50%)}
 }
 
+/* NOTÍCIAS */
+
+.news{
+padding:70px 8%;
+background:#0b0f1a;
+}
+
+.news h2{
+text-align:center;
+margin-bottom:50px;
+color:#38bdf8;
+}
+
+.news-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+}
+
+@media(max-width:768px){
+.news-grid{
+grid-template-columns:1fr;
+}
+}
+
 /* FOOTER */
 
 footer{
@@ -237,21 +247,15 @@ color:white;
 
 <div class="track">
 
-<?php foreach($patrocinadores as $img){ ?>
+<div class="sponsor"><img src="PatrocinadoresWebStarRadio/patrocinadores1.jpg"></div>
+<div class="sponsor"><img src="PatrocinadoresWebStarRadio/patrocinadores2.jpg"></div>
+<div class="sponsor"><img src="PatrocinadoresWebStarRadio/patrocinadores3.jpg"></div>
+<div class="sponsor"><img src="PatrocinadoresWebStarRadio/patrocinadores4.jpg"></div>
 
-<div class="sponsor">
-<img src="<?php echo $img ?>">
-</div>
-
-<?php } ?>
-
-<?php foreach($patrocinadores as $img){ ?>
-
-<div class="sponsor">
-<img src="<?php echo $img ?>">
-</div>
-
-<?php } ?>
+<div class="sponsor"><img src="PatrocinadoresWebStarRadio/patrocinadores1.jpg"></div>
+<div class="sponsor"><img src="PatrocinadoresWebStarRadio/patrocinadores2.jpg"></div>
+<div class="sponsor"><img src="PatrocinadoresWebStarRadio/patrocinadores3.jpg"></div>
+<div class="sponsor"><img src="PatrocinadoresWebStarRadio/patrocinadores4.jpg"></div>
 
 </div>
 
@@ -293,28 +297,33 @@ color:white;
 
 <script>
 
-const slides = <?php echo json_encode($slides); ?>;
+/* SLIDE DO FUNDO */
 
-let hero = document.getElementById("hero");
-let index = 0;
+const slides = [
+"SlideWebStarRadio/Slide1.jpg",
+"SlideWebStarRadio/Slide2.jpg",
+"SlideWebStarRadio/Slide3.jpg",
+"SlideWebStarRadio/Slide4.jpg"
+]
+
+let hero = document.getElementById("hero")
+let index = 0
 
 function trocarSlide(){
 
-if(slides.length == 0) return;
+hero.style.backgroundImage = "url('"+slides[index]+"')"
 
-hero.style.backgroundImage = "url('"+slides[index]+"')";
-
-index++;
+index++
 
 if(index >= slides.length){
-index = 0;
+index = 0
 }
 
 }
 
-trocarSlide();
+trocarSlide()
 
-setInterval(trocarSlide,5000);
+setInterval(trocarSlide,5000)
 
 /* PLAYER */
 
@@ -326,27 +335,21 @@ let playing=false
 function togglePlay(){
 
 if(!playing){
-
 radio.play()
 playBtn.innerHTML="⏸"
 playing=true
-
 }else{
-
 radio.pause()
 playBtn.innerHTML="▶"
 playing=false
-
 }
 
 }
 
 function playRadio(){
-
 radio.play()
 playBtn.innerHTML="⏸"
 playing=true
-
 }
 
 </script>
