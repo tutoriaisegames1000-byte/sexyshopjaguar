@@ -1,5 +1,8 @@
 <?php
-$images = glob("imagens/*.{jpg,jpeg,png,webp}", GLOB_BRACE);
+
+$images = glob("SlideWebStarRadio/*.{jpg,jpeg,png,webp}", GLOB_BRACE);
+$patrocinadores = glob("PatrocinadoresWebStarRadio/*.{jpg,jpeg,png,webp}", GLOB_BRACE);
+
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +35,7 @@ padding-bottom:120px;
 
 header{
 display:flex;
-justify-content:space-between;
+justify-content:center;
 align-items:center;
 padding:20px 8%;
 background:#111827;
@@ -153,7 +156,7 @@ background:#0f172a;
 }
 
 .sponsor img{
-height:130px;
+height:140px;
 width:auto;
 }
 
@@ -257,15 +260,21 @@ color:white;
 
 <div class="track">
 
-<div class="sponsor"><img src="imagens/patrocinadores1.jpg"></div>
-<div class="sponsor"><img src="imagens/patrocinadores2.jpg"></div>
-<div class="sponsor"><img src="imagens/patrocinadores3.jpg"></div>
-<div class="sponsor"><img src="imagens/patrocinadores4.jpg"></div>
+<?php foreach($patrocinadores as $img){ ?>
 
-<div class="sponsor"><img src="imagens/patrocinadores1.jpg"></div>
-<div class="sponsor"><img src="imagens/patrocinadores2.jpg"></div>
-<div class="sponsor"><img src="imagens/patrocinadores3.jpg"></div>
-<div class="sponsor"><img src="imagens/patrocinadores4.jpg"></div>
+<div class="sponsor">
+<img src="<?php echo $img; ?>">
+</div>
+
+<?php } ?>
+
+<?php foreach($patrocinadores as $img){ ?>
+
+<div class="sponsor">
+<img src="<?php echo $img; ?>">
+</div>
+
+<?php } ?>
 
 </div>
 
