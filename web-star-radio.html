@@ -1,3 +1,7 @@
+<?php
+$images = glob("imagens/*.{jpg,jpeg,png,webp}", GLOB_BRACE);
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -45,7 +49,6 @@ color:#38bdf8;
 
 .hero{
 height:500px;
-background:url(imagens/renato1.jpg);
 background-size:cover;
 background-position:center;
 position:relative;
@@ -53,6 +56,7 @@ display:flex;
 align-items:center;
 justify-content:center;
 text-align:center;
+transition:background-image 1s ease-in-out;
 }
 
 .hero::after{
@@ -149,13 +153,9 @@ background:#0f172a;
 }
 
 .sponsor img{
-display:block;
 height:130px;
 width:auto;
-border-radius:6px;
 }
-
-/* ANIMAÇÃO */
 
 @keyframes scroll{
 0%{transform:translateX(0)}
@@ -187,43 +187,6 @@ grid-template-columns:1fr;
 }
 }
 
-.card{
-background:#111827;
-border-radius:14px;
-overflow:hidden;
-transition:.3s;
-}
-
-.card:hover{
-transform:translateY(-5px);
-}
-
-.card img{
-width:100%;
-height:180px;
-object-fit:cover;
-}
-
-.card-content{
-padding:20px;
-}
-
-.date{
-font-size:13px;
-opacity:.7;
-margin:6px 0;
-}
-
-.read{
-margin-top:10px;
-display:inline-block;
-background:#38bdf8;
-color:#0b0f1a;
-padding:6px 12px;
-border-radius:6px;
-cursor:pointer;
-}
-
 /* FOOTER */
 
 footer{
@@ -245,17 +208,7 @@ font-weight:700;
 margin-bottom:10px;
 }
 
-.footer-grid a{
-color:white;
-text-decoration:none;
-}
-
-.footer-grid a:hover{
-text-decoration:underline;
-}
-
 .copy{
-text-align:center;
 margin-top:30px;
 opacity:.7;
 }
@@ -288,12 +241,14 @@ color:white;
 <div class="logo">WEB STAR RÁDIO</div>
 </header>
 
-<section class="hero">
+<section class="hero" id="hero">
+
 <div class="hero-content">
 <h1>SINTONIA PERFEITA</h1>
-<p>A rádio que toca suas músicas preferidas e as principais notícias de Cascavel e região!</p>
+<p>A rádio que toca suas músicas preferidas e as principais notícias!</p>
 <button class="listen-btn" onclick="playRadio()">OUVIR AGORA</button>
 </div>
+
 </section>
 
 <section class="sponsors">
@@ -316,23 +271,13 @@ color:white;
 
 </section>
 
-<section class="news">
-
-<h2>ÚLTIMAS NOTÍCIAS</h2>
-
-<div class="news-grid" id="newsGrid"></div>
-
-</section>
-
 <footer>
 
 <div class="footer-grid">
 
 <div>
 <div class="footer-title">CONTATO</div>
-<div>
-<a href="https://wa.me/5577988361857" target="_blank">(77) 98836-1857</a>
-</div>
+<div>(77) 98836-1857</div>
 <div>webstarradio@gmail.com</div>
 </div>
 
@@ -345,7 +290,7 @@ color:white;
 </div>
 
 <div class="copy">
-© 2026 Web Star Rádio. Todos os direitos reservados.
+© 2026 Web Star Rádio
 </div>
 
 </footer>
@@ -361,6 +306,29 @@ color:white;
 <a class="whatsapp" href="https://wa.me/5577988361857" target="_blank">💬</a>
 
 <script>
+
+const images = <?php echo json_encode($images); ?>;
+
+let hero = document.getElementById("hero");
+let index = 0;
+
+function changeBackground(){
+
+hero.style.backgroundImage = "url('"+images[index]+"')";
+
+index++;
+
+if(index >= images.length){
+index = 0;
+}
+
+}
+
+changeBackground();
+
+setInterval(changeBackground,5000);
+
+/* PLAYER */
 
 const radio=document.getElementById("radio")
 const playBtn=document.getElementById("playBtn")
@@ -384,61 +352,6 @@ radio.play()
 playBtn.innerHTML="⏸"
 playing=true
 }
-
-async function noticias(){
-
-const url="https://api.rss2json.com/v1/api.json?rss_url=https://g1.globo.com/rss/g1/"
-
-const res=await fetch(url)
-const data=await res.json()
-
-const grid=document.getElementById("newsGrid")
-
-data.items.slice(0,6).forEach((n)=>{
-
-let img=n.thumbnail
-
-if(!img){
-let match=n.description.match(/<img.*?src="(.*?)"/)
-img = match ? match[1] : "https://picsum.photos/400/200"
-}
-
-let desc=n.description.replace(/<[^>]*>?/gm,'')
-let dataNot=new Date(n.pubDate).toLocaleDateString("pt-BR")
-
-const card=document.createElement("div")
-
-card.className="card"
-
-card.innerHTML=`
-
-<a href="${n.link}" target="_blank" style="text-decoration:none;color:inherit">
-
-<img src="${img}">
-
-<div class="card-content">
-
-<h3>${n.title}</h3>
-
-<div class="date">${dataNot}</div>
-
-<p>${desc.slice(0,120)}...</p>
-
-<span class="read">Ler matéria completa</span>
-
-</div>
-
-</a>
-
-`
-
-grid.appendChild(card)
-
-})
-
-}
-
-noticias()
 
 </script>
 
