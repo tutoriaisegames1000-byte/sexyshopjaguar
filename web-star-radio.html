@@ -97,7 +97,7 @@ position:fixed;
 bottom:0;
 left:0;
 width:100%;
-background:rgba(17,24,39,0.2); /* 80% transparente */
+background:rgba(17,24,39,0.2);
 border-top:1px solid #1f2937;
 display:flex;
 align-items:center;
@@ -111,7 +111,7 @@ width:60px;
 height:60px;
 border-radius:50%;
 border:none;
-background:#38bdf8;
+background:rgba(56,189,248,0.7); /* 30% transparente */
 color:#0b0f1a;
 font-size:28px;
 cursor:pointer;
@@ -173,8 +173,14 @@ color:#38bdf8;
 
 .news-grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+grid-template-columns:repeat(3,1fr);
 gap:30px;
+}
+
+@media(max-width:768px){
+.news-grid{
+grid-template-columns:1fr;
+}
 }
 
 .card{
@@ -380,7 +386,6 @@ async function noticias(){
 const url="https://api.rss2json.com/v1/api.json?rss_url=https://g1.globo.com/rss/g1/"
 
 const res=await fetch(url)
-
 const data=await res.json()
 
 const grid=document.getElementById("newsGrid")
@@ -390,19 +395,11 @@ data.items.slice(0,6).forEach((n)=>{
 let img=n.thumbnail
 
 if(!img){
-
 let match=n.description.match(/<img.*?src="(.*?)"/)
-
-if(match){
-img=match[1]
-}else{
-img="https://picsum.photos/400/200"
-}
-
+img = match ? match[1] : "https://picsum.photos/400/200"
 }
 
 let desc=n.description.replace(/<[^>]*>?/gm,'')
-
 let dataNot=new Date(n.pubDate).toLocaleDateString("pt-BR")
 
 const card=document.createElement("div")
