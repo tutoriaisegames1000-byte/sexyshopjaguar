@@ -28,31 +28,84 @@ padding-bottom:120px;
 
 header{
 display:flex;
-justify-content:center;
 justify-content:space-between;
 align-items:center;
-padding:20px;
 padding:20px 8%;
 background:#111827;
 border-bottom:1px solid #1f2937;
 }
-@@ -45,9 +45,9 @@
+
+.logo{
+font-size:22px;
+font-weight:700;
+}
+
+/* HERO */
 
 .hero{
 height:500px;
-background:url(imagens/renato1.jpg);
 background-size:cover;
 background-position:center;
 background-repeat:no-repeat;
 position:relative;
 display:flex;
 align-items:center;
-@@ -149,10 +149,14 @@
+justify-content:center;
+text-align:center;
+transition:background-image 1s ease-in-out;
+}
+
+.hero::after{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.5);
+}
+
+.hero-content{
+position:relative;
+z-index:2;
+max-width:700px;
+}
+
+.hero h1{
+font-size:48px;
+font-weight:700;
+margin-bottom:10px;
+}
+
+.hero p{
+opacity:.9;
+margin-bottom:20px;
+}
+
+.listen-btn{
+padding:12px 25px;
+background:#ff004c;
+border:none;
+border-radius:5px;
+color:white;
+font-weight:600;
+cursor:pointer;
+}
+
+/* SPONSORS */
+
+.sponsors{
+margin-top:40px;
+overflow:hidden;
+}
+
+.sponsor-track{
+display:flex;
+gap:40px;
+animation:scroll 20s linear infinite;
 }
 
 .sponsor img{
-height:140px;
-display:block;
 height:130px;
 width:auto;
 border-radius:6px;
@@ -63,17 +116,21 @@ border-radius:6px;
 @keyframes scroll{
 0%{transform:translateX(0)}
 100%{transform:translateX(-50%)}
-@@ -224,7 +228,8 @@
+}
+
+/* FOOTER */
 
 footer{
 background:#111827;
-padding:50px;
 padding:50px 8%;
 margin-top:80px;
 text-align:center;
 }
 
-@@ -235,7 +240,22 @@
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:30px;
 justify-items:center;
 }
 
@@ -96,29 +153,33 @@ text-align:center;
 margin-top:30px;
 opacity:.7;
 }
-@@ -268,14 +288,12 @@
+
+</style>
+</head>
+
+<body>
+
+<header>
+
 <div class="logo">WEB STAR RÁDIO</div>
+
 </header>
 
 <section class="hero" id="hero">
 
-<section class="hero">
 <div class="hero-content">
 <h1>SINTONIA PERFEITA</h1>
-<p>A rádio que toca suas músicas preferidas!</p>
 <p>A rádio que toca suas músicas preferidas e as principais notícias de Cascavel e região!</p>
 <button class="listen-btn" onclick="playRadio()">OUVIR AGORA</button>
 </div>
 
 </section>
 
-<section class="sponsors">
-@@ -311,21 +329,23 @@
+<footer>
+
 <div class="footer-grid">
 
 <div>
-<h3>CONTATO</h3>
-<div>(77) 98836-1857</div>
 <div class="footer-title">CONTATO</div>
 <div>
 <a href="https://wa.me/5577988361857" target="_blank">(77) 98836-1857</a>
@@ -127,7 +188,6 @@ opacity:.7;
 </div>
 
 <div>
-<h3>REDES SOCIAIS</h3>
 <div class="footer-title">REDES SOCIAIS</div>
 <div>Instagram: @WebStarRadio</div>
 <div>Facebook: Web Star Radio</div>
@@ -136,22 +196,22 @@ opacity:.7;
 </div>
 
 <div class="copy">
-© 2026 Web Star Rádio
 © 2026 Web Star Rádio. Todos os direitos reservados.
 </div>
 
 </footer>
-@@ -342,43 +362,12 @@
 
 <script>
 
-/* SLIDES */
+/* SLIDER COM IMAGENS DO GITHUB */
 
 const slides = [
-"SlideWebStarRadio/Slide1.jpg",
-"SlideWebStarRadio/Slide2.jpg",
-"SlideWebStarRadio/Slide3.jpg",
-"SlideWebStarRadio/Slide4.jpg"
+
+"https://raw.githubusercontent.com/sexyshopjaguar/SlideWebStarRadio/main/Slider1.jpg",
+"https://raw.githubusercontent.com/sexyshopjaguar/SlideWebStarRadio/main/Slider2.jpg",
+"https://raw.githubusercontent.com/sexyshopjaguar/SlideWebStarRadio/main/Slider3.jpg",
+"https://raw.githubusercontent.com/sexyshopjaguar/SlideWebStarRadio/main/Slider4.jpg"
+
 ]
 
 let hero = document.getElementById("hero")
@@ -159,7 +219,7 @@ let index = 0
 
 function trocarSlide(){
 
-hero.style.backgroundImage = "url(" + slides[index] + ")"
+hero.style.backgroundImage = "url('" + slides[index] + "')"
 
 index++
 
@@ -175,85 +235,13 @@ setInterval(trocarSlide,5000)
 
 /* PLAYER */
 
-const radio=document.getElementById("radio")
-const playBtn=document.getElementById("playBtn")
-
-let playing=false
-
-function togglePlay(){
-
-if(!playing){
-radio.play()
-playBtn.innerHTML="⏸"
-@@ -388,7 +377,6 @@
-playBtn.innerHTML="▶"
-playing=false
-}
-
-}
-
 function playRadio(){
-@@ -397,14 +385,11 @@
-playing=true
-}
 
-/* NOTÍCIAS */
+const radio = new Audio("https://stream.zeno.fm/YOUR_STREAM")
 
-async function noticias(){
-
-const url="https://api.rss2json.com/v1/api.json?rss_url=https://g1.globo.com/rss/g1/"
-
-const res=await fetch(url)
-
-const data=await res.json()
-
-const grid=document.getElementById("newsGrid")
-@@ -414,48 +399,48 @@
-let img=n.thumbnail
-
-if(!img){
-img="https://picsum.photos/400/200"
-let match=n.description.match(/<img.*?src="(.*?)"/)
-img = match ? match[1] : "https://picsum.photos/400/200"
-}
-
-let desc=n.description.replace(/<[^>]*>?/gm,'')
-
-let dataNot=new Date(n.pubDate).toLocaleDateString("pt-BR")
-
-const card=document.createElement("div")
-
-card.className="card"
-
-card.innerHTML=`
-
-<a href="${n.link}" target="_blank" style="text-decoration:none;color:inherit">
-
-<img src="${img}">
-
-<div class="card-content">
-
-<h3>${n.title}</h3>
-
-<div class="date">${dataNot}</div>
-
-<p>${desc.slice(0,120)}...</p>
-
-<span class="read">Ler matéria completa</span>
-
-</div>
-
-</a>
-
-`
-
-grid.appendChild(card)
-
-})
+radio.play()
 
 }
-
-noticias()
 
 </script>
 
