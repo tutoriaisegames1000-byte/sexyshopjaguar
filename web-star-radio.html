@@ -28,9 +28,9 @@ padding-bottom:120px;
 
 header{
 display:flex;
-justify-content:center;
+justify-content:space-between;
 align-items:center;
-padding:20px;
+padding:20px 8%;
 background:#111827;
 border-bottom:1px solid #1f2937;
 }
@@ -45,9 +45,9 @@ color:#38bdf8;
 
 .hero{
 height:500px;
+background:url(imagens/renato1.jpg);
 background-size:cover;
 background-position:center;
-background-repeat:no-repeat;
 position:relative;
 display:flex;
 align-items:center;
@@ -149,9 +149,13 @@ background:#0f172a;
 }
 
 .sponsor img{
-height:140px;
+display:block;
+height:130px;
 width:auto;
+border-radius:6px;
 }
+
+/* ANIMAÇÃO */
 
 @keyframes scroll{
 0%{transform:translateX(0)}
@@ -224,7 +228,8 @@ cursor:pointer;
 
 footer{
 background:#111827;
-padding:50px;
+padding:50px 8%;
+margin-top:80px;
 text-align:center;
 }
 
@@ -235,7 +240,22 @@ gap:30px;
 justify-items:center;
 }
 
+.footer-title{
+font-weight:700;
+margin-bottom:10px;
+}
+
+.footer-grid a{
+color:white;
+text-decoration:none;
+}
+
+.footer-grid a:hover{
+text-decoration:underline;
+}
+
 .copy{
+text-align:center;
 margin-top:30px;
 opacity:.7;
 }
@@ -268,14 +288,12 @@ color:white;
 <div class="logo">WEB STAR RÁDIO</div>
 </header>
 
-<section class="hero" id="hero">
-
+<section class="hero">
 <div class="hero-content">
 <h1>SINTONIA PERFEITA</h1>
-<p>A rádio que toca suas músicas preferidas!</p>
+<p>A rádio que toca suas músicas preferidas e as principais notícias de Cascavel e região!</p>
 <button class="listen-btn" onclick="playRadio()">OUVIR AGORA</button>
 </div>
-
 </section>
 
 <section class="sponsors">
@@ -311,13 +329,15 @@ color:white;
 <div class="footer-grid">
 
 <div>
-<h3>CONTATO</h3>
-<div>(77) 98836-1857</div>
+<div class="footer-title">CONTATO</div>
+<div>
+<a href="https://wa.me/5577988361857" target="_blank">(77) 98836-1857</a>
+</div>
 <div>webstarradio@gmail.com</div>
 </div>
 
 <div>
-<h3>REDES SOCIAIS</h3>
+<div class="footer-title">REDES SOCIAIS</div>
 <div>Instagram: @WebStarRadio</div>
 <div>Facebook: Web Star Radio</div>
 </div>
@@ -325,7 +345,7 @@ color:white;
 </div>
 
 <div class="copy">
-© 2026 Web Star Rádio
+© 2026 Web Star Rádio. Todos os direitos reservados.
 </div>
 
 </footer>
@@ -342,43 +362,12 @@ color:white;
 
 <script>
 
-/* SLIDES */
-
-const slides = [
-"SlideWebStarRadio/Slide1.jpg",
-"SlideWebStarRadio/Slide2.jpg",
-"SlideWebStarRadio/Slide3.jpg",
-"SlideWebStarRadio/Slide4.jpg"
-]
-
-let hero = document.getElementById("hero")
-let index = 0
-
-function trocarSlide(){
-
-hero.style.backgroundImage = "url(" + slides[index] + ")"
-
-index++
-
-if(index >= slides.length){
-index = 0
-}
-
-}
-
-trocarSlide()
-
-setInterval(trocarSlide,5000)
-
-/* PLAYER */
-
 const radio=document.getElementById("radio")
 const playBtn=document.getElementById("playBtn")
 
 let playing=false
 
 function togglePlay(){
-
 if(!playing){
 radio.play()
 playBtn.innerHTML="⏸"
@@ -388,7 +377,6 @@ radio.pause()
 playBtn.innerHTML="▶"
 playing=false
 }
-
 }
 
 function playRadio(){
@@ -397,14 +385,11 @@ playBtn.innerHTML="⏸"
 playing=true
 }
 
-/* NOTÍCIAS */
-
 async function noticias(){
 
 const url="https://api.rss2json.com/v1/api.json?rss_url=https://g1.globo.com/rss/g1/"
 
 const res=await fetch(url)
-
 const data=await res.json()
 
 const grid=document.getElementById("newsGrid")
@@ -414,11 +399,11 @@ data.items.slice(0,6).forEach((n)=>{
 let img=n.thumbnail
 
 if(!img){
-img="https://picsum.photos/400/200"
+let match=n.description.match(/<img.*?src="(.*?)"/)
+img = match ? match[1] : "https://picsum.photos/400/200"
 }
 
 let desc=n.description.replace(/<[^>]*>?/gm,'')
-
 let dataNot=new Date(n.pubDate).toLocaleDateString("pt-BR")
 
 const card=document.createElement("div")
