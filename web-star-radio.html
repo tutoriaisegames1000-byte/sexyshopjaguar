@@ -97,7 +97,7 @@ position:fixed;
 bottom:0;
 left:0;
 width:100%;
-background:rgba(17,24,39,0.4); /* 60% transparente */
+background:rgba(17,24,39,0.2); /* 80% transparente */
 border-top:1px solid #1f2937;
 display:flex;
 align-items:center;
@@ -373,6 +373,8 @@ playBtn.innerHTML="⏸"
 playing=true
 }
 
+/* NOTÍCIAS */
+
 async function noticias(){
 
 const url="https://api.rss2json.com/v1/api.json?rss_url=https://g1.globo.com/rss/g1/"
@@ -383,7 +385,7 @@ const data=await res.json()
 
 const grid=document.getElementById("newsGrid")
 
-data.items.slice(0,3).forEach((n)=>{
+data.items.slice(0,6).forEach((n)=>{
 
 let img=n.thumbnail
 
