@@ -133,7 +133,7 @@ color:#38bdf8;
 
 .track{
 display:flex;
-gap:20px; /* menor espaço */
+gap:20px;
 animation:scroll 30s linear infinite;
 width:max-content;
 }
@@ -142,14 +142,15 @@ width:max-content;
 display:flex;
 align-items:center;
 justify-content:center;
-padding:6px; /* borda branca proporcional */
-background:white;
+padding:6px;
+border:3px solid #38bdf8;
 border-radius:10px;
+background:#0f172a;
 }
 
 .sponsor img{
 display:block;
-height:110px; /* um pouco maior */
+height:130px;
 width:auto;
 border-radius:6px;
 }
@@ -229,12 +230,14 @@ footer{
 background:#111827;
 padding:50px 8%;
 margin-top:80px;
+text-align:center;
 }
 
 .footer-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:30px;
+justify-items:center;
 }
 
 .footer-title{
