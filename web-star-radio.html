@@ -97,7 +97,7 @@ position:fixed;
 bottom:0;
 left:0;
 width:100%;
-background:rgba(17,24,39,0.2);
+background:rgba(17,24,39,0.9); /* 10% transparente */
 border-top:1px solid #1f2937;
 display:flex;
 align-items:center;
@@ -111,7 +111,7 @@ width:60px;
 height:60px;
 border-radius:50%;
 border:none;
-background:rgba(56,189,248,0.7); /* 30% transparente */
+background:rgba(56,189,248,0.7);
 color:#0b0f1a;
 font-size:28px;
 cursor:pointer;
@@ -259,7 +259,7 @@ opacity:.7;
 .whatsapp{
 position:fixed;
 right:20px;
-bottom:90px;
+bottom:120px; /* mais afastado do player */
 width:60px;
 height:60px;
 background:#25D366;
@@ -378,8 +378,6 @@ radio.play()
 playBtn.innerHTML="⏸"
 playing=true
 }
-
-/* NOTÍCIAS */
 
 async function noticias(){
 
