@@ -2,7 +2,8 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Slide Web Star Radio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web Star Radio</title>
 
 <style>
 
@@ -18,6 +19,8 @@ background:#000;
 color:white;
 }
 
+/* AREA DO SLIDE */
+
 .hero{
 position:relative;
 height:500px;
@@ -26,20 +29,12 @@ align-items:center;
 justify-content:center;
 text-align:center;
 overflow:hidden;
-}
-
-.hero::before{
-content:"";
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
 background-size:cover;
 background-position:center;
 transition:background-image 1s ease-in-out;
-z-index:1;
 }
+
+/* camada escura */
 
 .overlay{
 position:absolute;
@@ -48,14 +43,17 @@ left:0;
 width:100%;
 height:100%;
 background:rgba(0,0,0,0.5);
-z-index:2;
+z-index:1;
 }
+
+/* TEXTO */
 
 .hero h1{
 position:relative;
-z-index:3;
+z-index:2;
 font-size:60px;
-letter-spacing:3px;
+letter-spacing:4px;
+font-weight:bold;
 }
 
 </style>
@@ -71,30 +69,30 @@ letter-spacing:3px;
 
 </section>
 
+
 <script>
 
+/* IMAGENS DO GITHUB */
+
 const images = [
-"https://raw.githubusercontent.com/SEU-USUARIO/SlideWebStarRadio/main/Slider1.jpg",
-"https://raw.githubusercontent.com/SEU-USUARIO/SlideWebStarRadio/main/Slider2.jpg",
-"https://raw.githubusercontent.com/SEU-USUARIO/SlideWebStarRadio/main/Slider3.jpg",
-"https://raw.githubusercontent.com/SEU-USUARIO/SlideWebStarRadio/main/Slider4.jpg"
+
+"https://raw.githubusercontent.com/sexyshopjaguar/SlideWebStarRadio/main/Slider1.jpg",
+
+"https://raw.githubusercontent.com/sexyshopjaguar/SlideWebStarRadio/main/Slider2.jpg",
+
+"https://raw.githubusercontent.com/sexyshopjaguar/SlideWebStarRadio/main/Slider3.jpg",
+
+"https://raw.githubusercontent.com/sexyshopjaguar/SlideWebStarRadio/main/Slider4.jpg"
+
 ];
 
 let index = 0;
 
-const hero = document.querySelector(".hero");
+const hero = document.getElementById("hero");
 
-function changeBackground(){
+function trocarImagem(){
 
-hero.style.setProperty(
-"--bg",
-`url(${images[index]})`
-);
-
-hero.style.setProperty(
-"background-image",
-`url(${images[index]})`
-);
+hero.style.backgroundImage = "url('" + images[index] + "')";
 
 index++;
 
@@ -104,9 +102,12 @@ index = 0;
 
 }
 
-changeBackground();
+/* primeira imagem */
+trocarImagem();
 
-setInterval(changeBackground,4000);
+/* troca a cada 4 segundos */
+
+setInterval(trocarImagem,4000);
 
 </script>
 
