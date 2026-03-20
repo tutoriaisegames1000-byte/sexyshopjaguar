@@ -17,6 +17,8 @@
 
 body{background:#0b0f1a;color:white;padding-bottom:120px;}
 
+/* HEADER */
+
 header{
 display:flex;
 flex-direction:column;
@@ -70,7 +72,7 @@ z-index:2;
 max-width:700px;
 }
 
-/* 🔥 SETAS */
+/* SETAS */
 
 .arrow{
 position:absolute;
@@ -88,14 +90,11 @@ z-index:3;
 font-size:20px;
 }
 
-.arrow:hover{
-background:rgba(255,255,255,0.4);
-}
-
+.arrow:hover{background:rgba(255,255,255,0.4);}
 .arrow-left{left:20px;}
 .arrow-right{right:20px;}
 
-/* 🔥 INDICADORES */
+/* DOTS */
 
 .dots{
 position:absolute;
@@ -160,29 +159,108 @@ animation:pulse 1.2s infinite;
 100%{transform:scale(1);}
 }
 
-/* RESTO IGUAL */
+/* PATROCINADORES */
 
-.sponsors{padding:60px 0;overflow:hidden;background:#0f172a;}
-.sponsors h2{text-align:center;margin-bottom:40px;color:#38bdf8;}
-.track{display:flex;gap:20px;animation:scroll 30s linear infinite;width:max-content;}
-.sponsor{display:flex;align-items:center;justify-content:center;padding:6px;border:3px solid #38bdf8;border-radius:10px;background:#0f172a;}
-.sponsor img{height:130px;border-radius:6px;}
-
-@keyframes scroll{
-0%{transform:translateX(0)}
-100%{transform:translateX(-50%)}
+.sponsors{
+padding:60px 0;
+overflow:hidden;
+background:#0f172a;
 }
 
-.news{padding:70px 8%;background:#0b0f1a;}
-.news h2{text-align:center;margin-bottom:50px;color:#38bdf8;}
-.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;}
-@media(max-width:768px){.news-grid{grid-template-columns:1fr;}}
+.sponsors h2{
+text-align:center;
+margin-bottom:40px;
+color:#38bdf8;
+}
 
-.card{background:#1d2433;border-radius:14px;overflow:hidden;}
-.card img{width:100%;height:180px;object-fit:cover;}
+.track{
+display:flex;
+gap:20px;
+animation:scroll 30s linear infinite;
+width:max-content;
+}
+
+.sponsor{
+display:flex;
+align-items:center;
+justify-content:center;
+padding:6px;
+border:3px solid #38bdf8;
+border-radius:10px;
+background:#0f172a;
+}
+
+.sponsor img{
+height:130px;
+border-radius:6px;
+}
+
+/* NOTÍCIAS */
+
+.news{
+padding:70px 8%;
+background:#0b0f1a;
+}
+
+.news h2{
+text-align:center;
+margin-bottom:50px;
+color:#38bdf8;
+}
+
+.news-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+}
+
+@media(max-width:768px){
+.news-grid{grid-template-columns:1fr;}
+}
+
+.card{
+background:#1d2433;
+border-radius:14px;
+overflow:hidden;
+}
+
+.card img{
+width:100%;
+height:180px;
+object-fit:cover;
+}
+
 .card-content{padding:20px;}
 
-footer{background:#111827;padding:50px 8%;margin-top:80px;text-align:center;}
+.read{
+margin-top:10px;
+display:inline-block;
+background:#38bdf8;
+color:#0b0f1a;
+padding:6px 12px;
+border-radius:6px;
+}
+
+/* FOOTER */
+
+footer{
+background:#111827;
+padding:50px 8%;
+margin-top:80px;
+text-align:center;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+}
+
+.footer-title{font-weight:700;margin-bottom:10px;}
+
+.copy{margin-top:30px;opacity:.7;}
+
+/* WHATSAPP */
 
 .whatsapp{
 position:fixed;
@@ -192,7 +270,10 @@ width:80px;
 height:80px;
 }
 
-.whatsapp img{width:100%;height:100%;}
+.whatsapp img{
+width:100%;
+height:100%;
+}
 
 </style>
 
@@ -205,16 +286,15 @@ height:80px;
 <div class="subtitle">por Renato Oliviera.</div>
 </header>
 
+<!-- HERO -->
 <section class="hero">
 
 <div class="hero-bg active" id="bg1"></div>
 <div class="hero-bg" id="bg2"></div>
 
-<!-- 🔥 SETAS -->
 <div class="arrow arrow-left" onclick="prevSlide()">❮</div>
 <div class="arrow arrow-right" onclick="nextSlide()">❯</div>
 
-<!-- 🔥 DOTS -->
 <div class="dots" id="dots"></div>
 
 <div class="hero-content">
@@ -224,6 +304,53 @@ height:80px;
 
 </section>
 
+<!-- PATROCINADORES -->
+<section class="sponsors">
+<h2>PATROCINADORES</h2>
+
+<div class="track">
+<div class="sponsor"><img src="PatrocinadoresWebStarRadio/patrocinadores1.jpg"></div>
+<div class="sponsor"><img src="PatrocinadoresWebStarRadio/patrocinadores2.jpg"></div>
+<div class="sponsor"><img src="PatrocinadoresWebStarRadio/patrocinadores3.jpg"></div>
+<div class="sponsor"><img src="PatrocinadoresWebStarRadio/patrocinadores4.jpg"></div>
+
+<div class="sponsor"><img src="PatrocinadoresWebStarRadio/patrocinadores1.jpg"></div>
+<div class="sponsor"><img src="PatrocinadoresWebStarRadio/patrocinadores2.jpg"></div>
+<div class="sponsor"><img src="PatrocinadoresWebStarRadio/patrocinadores3.jpg"></div>
+<div class="sponsor"><img src="PatrocinadoresWebStarRadio/patrocinadores4.jpg"></div>
+</div>
+</section>
+
+<!-- NOTÍCIAS -->
+<section class="news">
+<h2>ÚLTIMAS NOTÍCIAS</h2>
+<div class="news-grid" id="newsGrid"></div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<div class="footer-grid">
+
+<div>
+<div class="footer-title">CONTATO</div>
+<div><a href="https://wa.me/5577988361857" target="_blank">(77) 98836-1857</a></div>
+<div>webstarradio@gmail.com</div>
+</div>
+
+<div>
+<div class="footer-title">REDES SOCIAIS</div>
+<div>Facebook: Web Star Radio</div>
+<div>Instagram: @WebStarRadio</div>
+</div>
+
+</div>
+
+<div class="copy">
+© 2026 Web Star Rádio. Todos os direitos reservados.
+</div>
+</footer>
+
+<!-- PLAYER -->
 <div class="player-bar">
 <button class="play-btn playing-effect" onclick="togglePlay()" id="playBtn">OUVIR AGORA</button>
 </div>
@@ -238,7 +365,7 @@ height:80px;
 
 <script>
 
-/* SLIDER COMPLETO */
+/* SLIDER */
 
 const slides = [
 "SlideWebStarRadio/Slider1.jpg",
@@ -254,7 +381,6 @@ const bg1 = document.getElementById("bg1")
 const bg2 = document.getElementById("bg2")
 const dotsContainer = document.getElementById("dots")
 
-/* criar dots */
 slides.forEach((_, i)=>{
 let dot = document.createElement("div")
 dot.className = "dot"
@@ -287,30 +413,21 @@ index = next
 updateDots()
 }
 
-function nextSlide(){
-showSlide((index + 1) % slides.length)
-}
+function nextSlide(){showSlide((index+1)%slides.length)}
+function prevSlide(){showSlide((index-1+slides.length)%slides.length)}
+function goToSlide(i){showSlide(i)}
 
-function prevSlide(){
-showSlide((index - 1 + slides.length) % slides.length)
-}
-
-function goToSlide(i){
-showSlide(i)
-}
-
-/* inicial */
 bg1.style.backgroundImage = `url(${slides[0]})`
 updateDots()
 
-setInterval(nextSlide, 5000)
+setInterval(nextSlide,5000)
 
 /* PLAYER */
 
-const radio = document.getElementById("radio")
-const playBtn = document.getElementById("playBtn")
+const radio=document.getElementById("radio")
+const playBtn=document.getElementById("playBtn")
 
-let playing = false
+let playing=false
 
 function togglePlay(){
 if(!playing){
@@ -325,6 +442,43 @@ playBtn.classList.add("playing-effect")
 playing=false
 }
 }
+
+/* NOTÍCIAS */
+
+async function noticias(){
+const url="https://api.rss2json.com/v1/api.json?rss_url=https://g1.globo.com/rss/g1/"
+const res=await fetch(url)
+const data=await res.json()
+const grid=document.getElementById("newsGrid")
+
+data.items.slice(0,6).forEach((n)=>{
+let img=n.thumbnail
+if(!img){
+let match=n.description.match(/<img.*?src="(.*?)"/)
+img = match ? match[1] : "https://picsum.photos/400/200"
+}
+
+let desc=n.description.replace(/<[^>]*>?/gm,'')
+
+const card=document.createElement("div")
+card.className="card"
+
+card.innerHTML=`
+<a href="${n.link}" target="_blank" style="color:inherit;text-decoration:none">
+<img src="${img}">
+<div class="card-content">
+<h3>${n.title}</h3>
+<p>${desc.slice(0,120)}...</p>
+<span class="read">Ler matéria completa</span>
+</div>
+</a>
+`
+
+grid.appendChild(card)
+})
+}
+
+noticias()
 
 </script>
 
