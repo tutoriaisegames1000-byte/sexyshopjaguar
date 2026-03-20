@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Web Star Rádio1</title>
+<title>Web Star Rádio</title>
 
 <link rel="icon" href="imagens/iconewebstarradio.png">
 
@@ -70,15 +70,6 @@ z-index:1;
 position:relative;
 z-index:2;
 max-width:700px;
-}
-
-.hero-content h1{
-font-size:52px;
-}
-
-.hero-content p{
-font-size:20px;
-margin-top:10px;
 }
 
 /* SETAS */
@@ -224,30 +215,30 @@ gap:30px;
 }
 
 @media(max-width:768px){
-
 .news-grid{grid-template-columns:1fr;}
-
-/* AJUSTE MOBILE */
-.hero-content{
-display:flex;
-flex-direction:column;
-justify-content:center;
-height:100%;
-padding:10px;
 }
 
-.hero-content h1{
-font-size:34px;
-margin-top:0;
-margin-bottom:5px;
+.card{
+background:#1d2433;
+border-radius:14px;
+overflow:hidden;
 }
 
-.hero-content p{
-font-size:16px;
-margin-top:0;
-margin-bottom:10px;
+.card img{
+width:100%;
+height:180px;
+object-fit:cover;
 }
 
+.card-content{padding:20px;}
+
+.read{
+margin-top:10px;
+display:inline-block;
+background:#38bdf8;
+color:#0b0f1a;
+padding:6px 12px;
+border-radius:6px;
 }
 
 /* FOOTER */
@@ -274,10 +265,9 @@ gap:30px;
 .whatsapp{
 position:fixed;
 right:20px;
-bottom:160px;
+bottom:100px;
 width:80px;
 height:80px;
-z-index:999;
 }
 
 .whatsapp img{
