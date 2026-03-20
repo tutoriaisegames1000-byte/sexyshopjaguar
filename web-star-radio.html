@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Web Star Rádio32</title>
+<title>Web Star Rádio5</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -26,6 +26,7 @@ padding:20px 8%;background:#111827;border-bottom:1px solid #1f2937;
 height:500px;
 background-size:cover;
 background-position:center;
+background-repeat:no-repeat;
 position:relative;
 display:flex;
 align-items:center;
@@ -216,7 +217,6 @@ color:white;
 </section>
 
 <section class="sponsors">
-
 <h2>PATROCINADORES</h2>
 
 <div class="track">
@@ -230,7 +230,6 @@ color:white;
 <div class="sponsor"><img src="imagens/patrocinadores3.jpg"></div>
 <div class="sponsor"><img src="imagens/patrocinadores4.jpg"></div>
 </div>
-
 </section>
 
 <section class="news">
@@ -264,7 +263,7 @@ color:white;
 <button class="play-btn" onclick="togglePlay()" id="playBtn">OUVIR AGORA</button>
 </div>
 
-<audio id="radio" preload="auto">
+<audio id="radio">
 <source src="https://stream.zeno.fm/6zb6ag59xy8uv">
 </audio>
 
@@ -272,26 +271,25 @@ color:white;
 
 <script>
 
-/* SLIDER */
+/* 🔥 SLIDER CORRIGIDO */
 
 const slides = [
-"https://raw.githubusercontent.com/sexyshopjaguar/SlideWebStarRadio/main/Slider1.jpg",
-"https://raw.githubusercontent.com/sexyshopjaguar/SlideWebStarRadio/main/Slider2.jpg",
-"https://raw.githubusercontent.com/sexyshopjaguar/SlideWebStarRadio/main/Slider3.jpg",
-"https://raw.githubusercontent.com/sexyshopjaguar/SlideWebStarRadio/main/Slider4.jpg"
+"SlideWebStarRadio/Slider1.jpg",
+"SlideWebStarRadio/Slider2.jpg",
+"SlideWebStarRadio/Slider3.jpg",
+"SlideWebStarRadio/Slider4.jpg"
 ]
 
 let hero = document.getElementById("hero")
 let index = 0
 
 function trocarSlide(){
-hero.style.backgroundImage = "url('" + slides[index] + "')"
-index++
-if(index >= slides.length){ index = 0 }
+hero.style.backgroundImage = `url(${slides[index]})`
+index = (index + 1) % slides.length
 }
 
 trocarSlide()
-setInterval(trocarSlide,5000)
+setInterval(trocarSlide, 4000)
 
 /* PLAYER */
 
@@ -299,48 +297,18 @@ const radio = document.getElementById("radio")
 const playBtn = document.getElementById("playBtn")
 
 let playing = false
-let started = false
-
-function atualizarBotao(){
-playBtn.innerHTML = playing ? "PAUSAR" : "OUVIR AGORA"
-}
-
-function iniciarRadio(){
-radio.play().then(()=>{
-playing = true
-started = true
-atualizarBotao()
-}).catch(()=>{})
-}
 
 function togglePlay(){
 if(!playing){
-iniciarRadio()
+radio.play()
+playBtn.innerHTML="PAUSAR"
+playing=true
 }else{
 radio.pause()
-playing = false
-atualizarBotao()
+playBtn.innerHTML="OUVIR AGORA"
+playing=false
 }
 }
-
-/* AUTOPLAY PROFISSIONAL */
-
-window.addEventListener("load", () => {
-radio.muted = true
-
-radio.play().then(()=>{
-radio.muted = false
-playing = true
-started = true
-atualizarBotao()
-}).catch(()=>{})
-})
-
-document.addEventListener("click", () => {
-if(!started){
-iniciarRadio()
-}
-}, { once:true })
 
 /* NOTÍCIAS */
 
