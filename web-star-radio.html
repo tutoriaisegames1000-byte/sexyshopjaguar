@@ -5,7 +5,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Web Star Rádio1</title>
+<title>Web Star Rádio</title>
+
+<!-- 🔥 ÍCONE DO SITE -->
+<link rel="icon" href="imagens/iconewebstarradio.png">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -27,7 +30,6 @@ border-bottom:1px solid #1f2937;
 }
 
 .logo{font-size:26px;font-weight:700;color:#38bdf8;}
-
 .subtitle{font-size:14px;opacity:.7;margin-top:4px;}
 
 /* HERO */
@@ -85,8 +87,6 @@ cursor:pointer;
 font-weight:600;
 transition:0.3s;
 }
-
-/* 🔥 animação SOMENTE quando "OUVIR AGORA" */
 
 .playing-effect{
 animation:pulse 1.2s infinite;
@@ -215,7 +215,7 @@ justify-items:center;
 
 .copy{margin-top:30px;opacity:.7;}
 
-/* WHATSAPP */
+/* 🔥 WHATSAPP COM IMAGEM */
 
 .whatsapp{
 position:fixed;
@@ -223,14 +223,19 @@ right:20px;
 bottom:120px;
 width:60px;
 height:60px;
-background:#25D366;
 border-radius:50%;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:28px;
-text-decoration:none;
-color:white;
+background:#25D366;
+overflow:hidden;
+}
+
+.whatsapp img{
+width:100%;
+height:100%;
+object-fit:cover;
+border-radius:50%;
 }
 
 </style>
@@ -251,7 +256,6 @@ color:white;
 </div>
 </section>
 
-<!-- PATROCINADORES -->
 <section class="sponsors">
 <h2>PATROCINADORES</h2>
 
@@ -268,13 +272,11 @@ color:white;
 </div>
 </section>
 
-<!-- NOTÍCIAS -->
 <section class="news">
 <h2>ÚLTIMAS NOTÍCIAS</h2>
 <div class="news-grid" id="newsGrid"></div>
 </section>
 
-<!-- FOOTER -->
 <footer>
 <div class="footer-grid">
 
@@ -297,7 +299,6 @@ color:white;
 </div>
 </footer>
 
-<!-- PLAYER -->
 <div class="player-bar">
 <button class="play-btn playing-effect" onclick="togglePlay()" id="playBtn">OUVIR AGORA</button>
 </div>
@@ -306,7 +307,10 @@ color:white;
 <source src="https://stream.zeno.fm/6zb6ag59xy8uv">
 </audio>
 
-<a class="whatsapp" href="https://wa.me/5577988361857" target="_blank">💬</a>
+<!-- 🔥 WHATSAPP COM SUA IMAGEM -->
+<a class="whatsapp" href="https://wa.me/5577988361857" target="_blank">
+<img src="imagens/iconewhatsapp.png">
+</a>
 
 <script>
 
@@ -341,12 +345,12 @@ function togglePlay(){
 if(!playing){
 radio.play()
 playBtn.innerHTML="PAUSAR"
-playBtn.classList.remove("playing-effect") // remove animação
+playBtn.classList.remove("playing-effect")
 playing=true
 }else{
 radio.pause()
 playBtn.innerHTML="OUVIR AGORA"
-playBtn.classList.add("playing-effect") // ativa animação
+playBtn.classList.add("playing-effect")
 playing=false
 }
 }
