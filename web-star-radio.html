@@ -17,8 +17,6 @@
 
 body{background:#0b0f1a;color:white;padding-bottom:120px;}
 
-/* HEADER */
-
 header{
 display:flex;
 flex-direction:column;
@@ -31,7 +29,7 @@ border-bottom:1px solid #1f2937;
 .logo{font-size:26px;font-weight:700;color:#38bdf8;}
 .subtitle{font-size:14px;opacity:.7;margin-top:4px;}
 
-/* HERO COM FADE */
+/* HERO */
 
 .hero{
 height:500px;
@@ -55,9 +53,7 @@ opacity:0;
 transition:opacity 1.8s ease-in-out;
 }
 
-.hero-bg.active{
-opacity:1;
-}
+.hero-bg.active{opacity:1;}
 
 .hero::after{
 content:"";
@@ -74,8 +70,57 @@ z-index:2;
 max-width:700px;
 }
 
-.hero h1{font-size:52px;margin-bottom:15px;}
-.hero p{font-size:20px;opacity:.9;margin-bottom:25px;}
+/* 🔥 SETAS */
+
+.arrow{
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+width:45px;
+height:45px;
+border-radius:50%;
+background:rgba(255,255,255,0.2);
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+z-index:3;
+font-size:20px;
+}
+
+.arrow:hover{
+background:rgba(255,255,255,0.4);
+}
+
+.arrow-left{left:20px;}
+.arrow-right{right:20px;}
+
+/* 🔥 INDICADORES */
+
+.dots{
+position:absolute;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+display:flex;
+gap:8px;
+z-index:3;
+}
+
+.dot{
+width:10px;
+height:10px;
+border-radius:50%;
+background:rgba(255,255,255,0.4);
+cursor:pointer;
+transition:0.3s;
+}
+
+.dot.active{
+width:25px;
+border-radius:10px;
+background:white;
+}
 
 /* PLAYER */
 
@@ -103,7 +148,6 @@ color:#0b0f1a;
 font-size:16px;
 cursor:pointer;
 font-weight:600;
-transition:0.3s;
 }
 
 .playing-effect{
@@ -116,124 +160,29 @@ animation:pulse 1.2s infinite;
 100%{transform:scale(1);}
 }
 
-/* PATROCINADORES */
+/* RESTO IGUAL */
 
-.sponsors{
-padding:60px 0;
-overflow:hidden;
-background:#0f172a;
-}
-
-.sponsors h2{
-text-align:center;
-margin-bottom:40px;
-color:#38bdf8;
-}
-
-.track{
-display:flex;
-gap:20px;
-animation:scroll 30s linear infinite;
-width:max-content;
-}
-
-.sponsor{
-display:flex;
-align-items:center;
-justify-content:center;
-padding:6px;
-border:3px solid #38bdf8;
-border-radius:10px;
-background:#0f172a;
-}
-
-.sponsor img{
-display:block;
-height:130px;
-width:auto;
-border-radius:6px;
-}
+.sponsors{padding:60px 0;overflow:hidden;background:#0f172a;}
+.sponsors h2{text-align:center;margin-bottom:40px;color:#38bdf8;}
+.track{display:flex;gap:20px;animation:scroll 30s linear infinite;width:max-content;}
+.sponsor{display:flex;align-items:center;justify-content:center;padding:6px;border:3px solid #38bdf8;border-radius:10px;background:#0f172a;}
+.sponsor img{height:130px;border-radius:6px;}
 
 @keyframes scroll{
 0%{transform:translateX(0)}
 100%{transform:translateX(-50%)}
 }
 
-/* NOTÍCIAS */
+.news{padding:70px 8%;background:#0b0f1a;}
+.news h2{text-align:center;margin-bottom:50px;color:#38bdf8;}
+.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;}
+@media(max-width:768px){.news-grid{grid-template-columns:1fr;}}
 
-.news{
-padding:70px 8%;
-background:#0b0f1a;
-}
-
-.news h2{
-text-align:center;
-margin-bottom:50px;
-color:#38bdf8;
-}
-
-.news-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:30px;
-}
-
-@media(max-width:768px){
-.news-grid{grid-template-columns:1fr;}
-}
-
-.card{
-background:#1d2433;
-border-radius:14px;
-overflow:hidden;
-transition:.3s;
-}
-
-.card:hover{transform:translateY(-5px);}
-
-.card img{
-width:100%;
-height:180px;
-object-fit:cover;
-}
-
+.card{background:#1d2433;border-radius:14px;overflow:hidden;}
+.card img{width:100%;height:180px;object-fit:cover;}
 .card-content{padding:20px;}
 
-.date{font-size:13px;opacity:.7;margin:6px 0;}
-
-.read{
-margin-top:10px;
-display:inline-block;
-background:#38bdf8;
-color:#0b0f1a;
-padding:6px 12px;
-border-radius:6px;
-}
-
-/* FOOTER */
-
-footer{
-background:#111827;
-padding:50px 8%;
-margin-top:80px;
-text-align:center;
-}
-
-.footer-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:30px;
-justify-items:center;
-}
-
-.footer-title{font-weight:700;margin-bottom:10px;}
-
-.footer-grid a{color:white;text-decoration:none;}
-.footer-grid a:hover{text-decoration:underline;}
-
-.copy{margin-top:30px;opacity:.7;}
-
-/* WHATSAPP */
+footer{background:#111827;padding:50px 8%;margin-top:80px;text-align:center;}
 
 .whatsapp{
 position:fixed;
@@ -241,19 +190,9 @@ right:20px;
 bottom:100px;
 width:80px;
 height:80px;
-display:flex;
-align-items:center;
-justify-content:center;
-background:transparent;
-overflow:hidden;
 }
 
-.whatsapp img{
-width:100%;
-height:100%;
-object-fit:cover;
-border-radius:50%;
-}
+.whatsapp img{width:100%;height:100%;}
 
 </style>
 
@@ -271,55 +210,19 @@ border-radius:50%;
 <div class="hero-bg active" id="bg1"></div>
 <div class="hero-bg" id="bg2"></div>
 
+<!-- 🔥 SETAS -->
+<div class="arrow arrow-left" onclick="prevSlide()">❮</div>
+<div class="arrow arrow-right" onclick="nextSlide()">❯</div>
+
+<!-- 🔥 DOTS -->
+<div class="dots" id="dots"></div>
+
 <div class="hero-content">
 <h1>SINTONIA PERFEITA</h1>
 <p>A rádio que toca suas músicas preferidas e as principais notícias de Cascavel e região!</p>
 </div>
 
 </section>
-
-<section class="sponsors">
-<h2>PATROCINADORES</h2>
-
-<div class="track">
-<div class="sponsor"><img src="PatrocinadoresWebStarRadio/patrocinadores1.jpg"></div>
-<div class="sponsor"><img src="PatrocinadoresWebStarRadio/patrocinadores2.jpg"></div>
-<div class="sponsor"><img src="PatrocinadoresWebStarRadio/patrocinadores3.jpg"></div>
-<div class="sponsor"><img src="PatrocinadoresWebStarRadio/patrocinadores4.jpg"></div>
-
-<div class="sponsor"><img src="PatrocinadoresWebStarRadio/patrocinadores1.jpg"></div>
-<div class="sponsor"><img src="PatrocinadoresWebStarRadio/patrocinadores2.jpg"></div>
-<div class="sponsor"><img src="PatrocinadoresWebStarRadio/patrocinadores3.jpg"></div>
-<div class="sponsor"><img src="PatrocinadoresWebStarRadio/patrocinadores4.jpg"></div>
-</div>
-</section>
-
-<section class="news">
-<h2>ÚLTIMAS NOTÍCIAS</h2>
-<div class="news-grid" id="newsGrid"></div>
-</section>
-
-<footer>
-<div class="footer-grid">
-
-<div>
-<div class="footer-title">CONTATO</div>
-<div><a href="https://wa.me/5577988361857" target="_blank">(77) 98836-1857</a></div>
-<div>webstarradio@gmail.com</div>
-</div>
-
-<div>
-<div class="footer-title">REDES SOCIAIS</div>
-<div>Facebook: Web Star Radio</div>
-<div>Instagram: @WebStarRadio</div>
-</div>
-
-</div>
-
-<div class="copy">
-© 2026 Web Star Rádio. Todos os direitos reservados.
-</div>
-</footer>
 
 <div class="player-bar">
 <button class="play-btn playing-effect" onclick="togglePlay()" id="playBtn">OUVIR AGORA</button>
@@ -329,13 +232,13 @@ border-radius:50%;
 <source src="https://stream.zeno.fm/6zb6ag59xy8uv">
 </audio>
 
-<a class="whatsapp" href="https://wa.me/5577988361857" target="_blank">
+<a class="whatsapp" href="https://wa.me/5577988361857">
 <img src="imagens/iconewhatsapp.png">
 </a>
 
 <script>
 
-/* SLIDER SUAVE */
+/* SLIDER COMPLETO */
 
 const slides = [
 "SlideWebStarRadio/Slider1.jpg",
@@ -349,12 +252,24 @@ let current = 0
 
 const bg1 = document.getElementById("bg1")
 const bg2 = document.getElementById("bg2")
+const dotsContainer = document.getElementById("dots")
 
-bg1.style.backgroundImage = `url(${slides[0]})`
+/* criar dots */
+slides.forEach((_, i)=>{
+let dot = document.createElement("div")
+dot.className = "dot"
+dot.onclick = ()=>goToSlide(i)
+dotsContainer.appendChild(dot)
+})
 
-function trocarSlide(){
+function updateDots(){
+document.querySelectorAll(".dot").forEach((d,i)=>{
+d.classList.toggle("active", i === index)
+})
+}
 
-let next = (index + 1) % slides.length
+function showSlide(newIndex){
+let next = newIndex
 
 if(current === 0){
 bg2.style.backgroundImage = `url(${slides[next]})`
@@ -369,9 +284,26 @@ current = 0
 }
 
 index = next
+updateDots()
 }
 
-setInterval(trocarSlide, 4000)
+function nextSlide(){
+showSlide((index + 1) % slides.length)
+}
+
+function prevSlide(){
+showSlide((index - 1 + slides.length) % slides.length)
+}
+
+function goToSlide(i){
+showSlide(i)
+}
+
+/* inicial */
+bg1.style.backgroundImage = `url(${slides[0]})`
+updateDots()
+
+setInterval(nextSlide, 5000)
 
 /* PLAYER */
 
@@ -393,52 +325,6 @@ playBtn.classList.add("playing-effect")
 playing=false
 }
 }
-
-/* NOTÍCIAS */
-
-async function noticias(){
-
-const url="https://api.rss2json.com/v1/api.json?rss_url=https://g1.globo.com/rss/g1/"
-
-const res=await fetch(url)
-const data=await res.json()
-
-const grid=document.getElementById("newsGrid")
-
-data.items.slice(0,6).forEach((n)=>{
-
-let img=n.thumbnail
-
-if(!img){
-let match=n.description.match(/<img.*?src="(.*?)"/)
-img = match ? match[1] : "https://picsum.photos/400/200"
-}
-
-let desc=n.description.replace(/<[^>]*>?/gm,'')
-let dataNot=new Date(n.pubDate).toLocaleDateString("pt-BR")
-
-const card=document.createElement("div")
-card.className="card"
-
-card.innerHTML=`
-<a href="${n.link}" target="_blank" style="text-decoration:none;color:inherit">
-<img src="${img}">
-<div class="card-content">
-<h3>${n.title}</h3>
-<div class="date">${dataNot}</div>
-<p>${desc.slice(0,120)}...</p>
-<span class="read">Ler matéria completa</span>
-</div>
-</a>
-`
-
-grid.appendChild(card)
-
-})
-
-}
-
-noticias()
 
 </script>
 
