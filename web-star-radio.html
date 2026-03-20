@@ -7,7 +7,6 @@
 
 <title>Web Star Rádio</title>
 
-<!-- 🔥 ÍCONE DO SITE -->
 <link rel="icon" href="imagens/iconewebstarradio.png">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -32,18 +31,32 @@ border-bottom:1px solid #1f2937;
 .logo{font-size:26px;font-weight:700;color:#38bdf8;}
 .subtitle{font-size:14px;opacity:.7;margin-top:4px;}
 
-/* HERO */
+/* HERO COM FADE */
 
 .hero{
 height:500px;
-background-size:cover;
-background-position:center;
 position:relative;
+overflow:hidden;
 display:flex;
 align-items:center;
 justify-content:center;
 text-align:center;
-transition:background-image 1s ease-in-out;
+}
+
+.hero-bg{
+position:absolute;
+width:100%;
+height:100%;
+background-size:cover;
+background-position:center;
+top:0;
+left:0;
+opacity:0;
+transition:opacity 1.8s ease-in-out;
+}
+
+.hero-bg.active{
+opacity:1;
 }
 
 .hero::after{
@@ -52,9 +65,14 @@ position:absolute;
 width:100%;
 height:100%;
 background:rgba(0,0,0,0.6);
+z-index:1;
 }
 
-.hero-content{position:relative;z-index:2;max-width:700px;}
+.hero-content{
+position:relative;
+z-index:2;
+max-width:700px;
+}
 
 .hero h1{font-size:52px;margin-bottom:15px;}
 .hero p{font-size:20px;opacity:.9;margin-bottom:25px;}
@@ -215,7 +233,7 @@ justify-items:center;
 
 .copy{margin-top:30px;opacity:.7;}
 
-/* 🔥 WHATSAPP COM IMAGEM */
+/* WHATSAPP */
 
 .whatsapp{
 position:fixed;
@@ -223,7 +241,6 @@ right:20px;
 bottom:100px;
 width:80px;
 height:80px;
-border-radius:50%;
 display:flex;
 align-items:center;
 justify-content:center;
@@ -249,11 +266,16 @@ border-radius:50%;
 <div class="subtitle">por Renato Oliviera.</div>
 </header>
 
-<section class="hero" id="hero">
+<section class="hero">
+
+<div class="hero-bg active" id="bg1"></div>
+<div class="hero-bg" id="bg2"></div>
+
 <div class="hero-content">
 <h1>SINTONIA PERFEITA</h1>
 <p>A rádio que toca suas músicas preferidas e as principais notícias de Cascavel e região!</p>
 </div>
+
 </section>
 
 <section class="sponsors">
@@ -307,14 +329,13 @@ border-radius:50%;
 <source src="https://stream.zeno.fm/6zb6ag59xy8uv">
 </audio>
 
-<!-- 🔥 WHATSAPP COM SUA IMAGEM -->
 <a class="whatsapp" href="https://wa.me/5577988361857" target="_blank">
 <img src="imagens/iconewhatsapp.png">
 </a>
 
 <script>
 
-/* SLIDER */
+/* SLIDER SUAVE */
 
 const slides = [
 "SlideWebStarRadio/Slider1.jpg",
@@ -323,15 +344,33 @@ const slides = [
 "SlideWebStarRadio/Slider4.jpg"
 ]
 
-let hero = document.getElementById("hero")
 let index = 0
+let current = 0
+
+const bg1 = document.getElementById("bg1")
+const bg2 = document.getElementById("bg2")
+
+bg1.style.backgroundImage = `url(${slides[0]})`
 
 function trocarSlide(){
-hero.style.backgroundImage = `url(${slides[index]})`
-index = (index + 1) % slides.length
+
+let next = (index + 1) % slides.length
+
+if(current === 0){
+bg2.style.backgroundImage = `url(${slides[next]})`
+bg2.classList.add("active")
+bg1.classList.remove("active")
+current = 1
+}else{
+bg1.style.backgroundImage = `url(${slides[next]})`
+bg1.classList.add("active")
+bg2.classList.remove("active")
+current = 0
 }
 
-trocarSlide()
+index = next
+}
+
 setInterval(trocarSlide, 4000)
 
 /* PLAYER */
